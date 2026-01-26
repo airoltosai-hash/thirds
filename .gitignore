@@ -1,0 +1,27 @@
+# Python
+__pychche__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# PyInstaller
+build/
+dist/
+*.spec
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config (비밀번호 등)
+service_account.json
+settings.json
+

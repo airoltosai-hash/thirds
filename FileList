@@ -1,0 +1,18 @@
+
+test_hts_window.py      :       열려 있는 창의 속성을 얻어오는 테스트 코드 (실행부)
+window_inspector.py     :       열려 있는 창의 속성을 얻어오는 테스트 코드 (구현부)
+
+test_cert_selection.py  :       HTS 팝업 연동 확인 테스트
+test_cert_login.py      :       HTS 인증서 팝업에 pw입력 테스트
+
+hts_automation.py       :       자동 매수/매도 수행
+login_automation.py     :       자동 로그인 수행
+win_input.py            :       win32 Key-in Setting
+
+
+pip install
+keyboard
+pynput
+google-auth
+google-api-python-client
+
