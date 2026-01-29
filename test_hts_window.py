@@ -1,6 +1,9 @@
 # test_hts_window.py
 
 import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 sys.path.insert(0, '.')
 from automation.window_inspector import print_windows_info
 

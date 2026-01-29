@@ -67,17 +67,18 @@ def print_windows_info():
     if not windows:
         print("열려있는 창이 없습니다.")
         return
-
+# #32770
     for i, w in enumerate(windows, 1):
         visible_str = "⭕" if w['visible'] else "❌"
+        #if "계좌평가" in w['title']:
         print(f"\n[{i}] HWND: {w['hwnd_hex']}")
-        print(f"    점수: {w['title']}")
+        print(f"    점수: {w['hwnd']}")
         print(f"    타이틀: {w['title']}")
         print(f"    클래스: {w['class']}")
         print(f"    보이는 창: {visible_str}")
 
     print("\n" + "="*100)
-    print("총 창 개수:: {len(windows)}개")
+    print(f"총 창 개수: {len(windows)}개")
     print("="*100 + "\n")
 
 if __name__ == "__main__":
