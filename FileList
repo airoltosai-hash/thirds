@@ -1,6 +1,8 @@
 
+# Folder test
 test_hts_window.py      :       열려 있는 창의 속성을 얻어오는 테스트 코드 (실행부)
 window_inspector.py     :       열려 있는 창의 속성을 얻어오는 테스트 코드 (구현부)
+test_mouse_click.py     :       마우스 클릭 시 좌표 값 획득 프로그램
 
 test_cert_selection.py  :       HTS 팝업 연동 확인 테스트
 test_cert_login.py      :       HTS 인증서 팝업에 pw입력 테스트

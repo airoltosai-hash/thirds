@@ -1,4 +1,4 @@
-# automation/window_inspector.py
+# automation/test/window_inspector.py
 import ctypes
 from ctypes import wintypes
 
