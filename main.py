@@ -7,7 +7,7 @@ import os
 import datetime
 import re
 import subprocess
-from automation.win_input import(
+from core.win_input import(
     user32,   # 포커스/FindWindow 등에 사용
     VK_MENU,  # ALT 트릭
     send_enter,
@@ -15,14 +15,14 @@ from automation.win_input import(
     send_unicode_text,
     press_vk, release_vk
 )
-from automation.login_automation import(
+from core.login_manager import(
     type_password_to_login,
     auto_type_password_in_login
 )
-from automation.hts_automation import HtsAutomation
+from core.hts_engine import HtsAutomation
 
 # Setting 값 저장
-SETTINGS_FILE = "settings.json"
+SETTINGS_FILE = "config/settings.json"
 
 # Windows API 상수
 SW_MINIMIZE = 6
@@ -608,7 +608,7 @@ class GridCell(tk.Frame):
         - 최상위 로그인 창(메모장) 이 존재하면 True
         """
         try:
-            from automation.login_automation import _find_login_top_hwnd
+            from core.login_manager import _find_login_top_hwnd
             hwnd = _find_login_top_hwnd(timeout_sec=0.0)
             return bool(hwnd)
         except Exception:
@@ -940,7 +940,7 @@ class GridCell(tk.Frame):
         self._set_login_info("인증서 선택 중...", fg="khaki")
 
         try:
-            from automation.login_automation import select_certificate_auto
+            from core.login_manager import select_certificate_auto
             success = select_certificate_auto()
 
             if success:
@@ -965,7 +965,7 @@ class GridCell(tk.Frame):
     def _do_login_attempt(self, pwd: str):
         """ 비밀번호 입력 시도 """
         try:
-            from automation.login_automation import type_password_in_login
+            from core.login_manager import type_password_in_login
             ok, code, msg = type_password_in_login(pwd, return_detail=True)
         except Exception as e:
             ok, code, msg = (False, "EXCEPTION", str(e))

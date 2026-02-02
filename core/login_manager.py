@@ -1,4 +1,4 @@
-# automation/notepad_automation.py
+# core/login_managers.py
 import keyboard
 from pynput.keyboard import Controller, Key
 import time
@@ -22,12 +22,12 @@ FindWindowExW = user32.FindWindowExW
 EnumWindows = user32.EnumWindows
 EnumChildWindows = user32.EnumChildWindows
 
-from .win_input import (
+from core.win_input import (
     user32, VK_MENU, press_vk, release_vk,
     send_enter, send_ctrl_h, send_unicode_char
 )
 
-SETTINGS_FILE = "settings.json" 
+SETTINGS_FILE = "config/settings.json" 
 
 WM_SETTEXT = 0x000C
 WM_CHAR    = 0x0102

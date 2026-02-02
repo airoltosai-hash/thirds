@@ -1,10 +1,10 @@
-# automation/hts_automation.py
+# core/hts_engine.py
 from dataclasses import dataclass
 from enum import Enum
 from typing import Optional
 
 # 임시로 메모장 대체 사용
-from .login_automation import (
+from core.login_manager import (
     type_password_to_login,
     auto_type_password_in_login,
 )
