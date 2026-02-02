@@ -4,7 +4,7 @@ import subprocess
 import time
 import sys
 sys.path.insert(0, '.')
-from automation.login_automation import type_password_in_login
+from core.login_manager import type_password_in_login
 
 
 print("="*80)

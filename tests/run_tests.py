@@ -1,3 +1,5 @@
+# /tests/run_tests.py
+
 import window_inspector as wi
 from test_find_price_window import main as find_price_main
 try: from test_mouse_click import monitor_mouse_clicks
