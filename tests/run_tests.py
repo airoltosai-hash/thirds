@@ -16,7 +16,8 @@ def show_menu():
         print("2. PC 전체 모든 자식 HWND 전수조사 (Total Scan)") # 모든 자식!
         print("3. 마우스 클릭 좌표 추적")
         print("4. 현재가 창 정밀 탐색 (참고용)")
-        print("5. 특정 창의 자식 요소 파일 저장 ** ")
+        print("5. 특정 창의 자식 요소 파일 저장 ")
+        print("6. 해외주식 주문창 데이터 추출 ")
         print("q. 종료")
         
         choice = input("원하는 메뉴 번호를 입력하세요: ").strip()
@@ -39,8 +40,13 @@ def show_menu():
                 print(f" {len(children)}개의 자식 요소를 {filename}에 저장했습니다!")
             except Exception as e:
                 print(f" 오류 : {e}")
-        
-        elif choice == 'q': break
+        elif choice == '6':
+            hwnd_input = input("HWND를 입력하세요 (16진수)").strip()
+            try:
+                hwnd = int(hwnd_input, 16)
+                wi.extract_all_text_from_window(hwnd)
+            except:
+                print("x 오류")
 
 if __name__ == "__main__":
     show_menu()

@@ -11,6 +11,153 @@ GetClassNameW = user32.GetClassNameW
 EnumWindows = user32.EnumWindows
 IsWindowVisible = user32.IsWindowVisible
 
+def extract_all_text_from_window(hwnd):
+    """
+    HWND 안의 모든 텍스트를 간단하게 추출
+    """
+    import ctypes
+    from ctypes import wintypes
+    from datetime import datetime
+
+    user32 = ctypes.windll.user32
+
+    all_texts = []
+    @ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+    def enum_child_proc(child_hwnd, lp):
+        try:
+            # 텍스트만 추출
+            length = user32.GetWindowTextLengthW(child_hwnd)
+            if length > 0:
+                buf = ctypes.create_unicode_buffer(length + 1)
+                user32.GetWindowTextW(child_hwnd, buf, length + 1)
+                text = buf.value.strip()
+
+                if text: # 공백이 아니면 추가
+                    all_texts.append(text)
+        except:
+            pass
+            
+        return True
+    
+    enum_child = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+    callback = enum_child(enum_child_proc)
+
+    user32.EnumChildWindows(hwnd, callback, 0)
+
+    # 콘솔에 출력
+    print("\n" + "="*80)
+    print(f" HWND {hex(hwnd)}안의 모든 텍스트")
+    print("="*80 + "\n")
+
+    for i, text in enumerate(all_texts, 1):
+        print(f"[{i:3d}] {text}")
+
+    print("\n" + "="*80)
+    print(f" 총 {len(all_texts)}개의 텍스트 추출됨")
+    print("="*80 + "\n")
+
+    # 파일로도 저장
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"child_elements_{hex(hwnd)}_{timestamp}.txt"
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write("="*180 + "\n")
+        f.write(f"HWND {hex(hwnd)}안의 모든 텍스트\n")
+        f.write(f"저장 시간: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write("="*80 + "\n\n")
+        
+        for i, text in enumerate(all_texts, 1):
+            f.write(f"[{i:3d}] {text}\n")
+
+        f.write("\n" + "="*80 + "\n")
+        f.write(f"총 {len(all_texts)}개의 텍스트")
+            
+
+        print(f" 파일저장: {filename}\n")
+
+    return all_texts
+
+            
+
+
+
+def extract_foreign_stock_data(hwnd):
+    """
+    해외주식 주문창([06100] 에서 모든 데이터 추출)
+    """
+    import ctypes
+    from ctypes import wintypes
+
+    user32 = ctypes.windll.user32
+
+    data = {}
+    
+    def enum_child_proc(child_hwnd, lp):
+        try:
+            # 텍스트 추출
+            length = user32.GetWindowTextLengthW(child_hwnd)
+            if length == 0:
+                title = ""
+            else:
+                buf = ctypes.create_unicode_buffer(length + 1)
+                user32.GetWindowTextW(child_hwnd, buf, length + 1)
+                title = buf.value
+
+            # 클래스명
+            buf_class = ctypes.create_unicode_buffer(256)
+            user32.GetClassNameW(child_hwnd< buf_class, 256)
+            class_name = buf_class.value
+
+            # Control ID
+            control_id = user32.GetDlgCtrlID(child_hwnd)
+
+            # 위치
+            rect = user32.GetWindowRect(child_hwnd)
+            x, y = rect[0], rect[1]
+
+            # 데이터 저장
+            if title.strip(): # 텍스트가 있으면
+                if control_id not in data:
+                    data[control_id] = []
+
+                data[control_id].append({
+                    'hwnd': hex(child_hwnd),
+                    'title' : title,
+                    'class': class_name,
+                    'position': (x, y)
+                })
+        except:
+            pass
+            
+        return True
+
+    enum_child = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+    callback = enum_child(enum_child_proc)
+
+    user32.EnumChildWindows(hwnd, callback, 0)
+
+    return data
+
+def print_foreign_stock_data(hwnd):
+    """
+    해외주식 주문창의 데이터를 정리해서 출력
+    """
+    data = extract_foreign_stock_data(hwnd)
+
+    print("\n" + "="*100)
+    print(" 해외주식 주문창 데이터 추출")
+    print("="*100)
+
+    print(f"\n[총 {len(data)}개의 Control ID 그룹]\n")
+            
+    for control_id in sorted(data.keys()):
+        items = data[control_id]
+        print(f"[Control ID: {control_id}]")
+        for i, item in enumerate(item):
+            print(f" [{i+1}] {item['title']:<30} | {item['class']:<20} | {item['position']}")
+        print()
+
+    print("="*100 + "\n")
 
 def inspect_child_elements_with_details_to_file(hwnd):
     """
