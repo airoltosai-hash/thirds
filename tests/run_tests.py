@@ -18,6 +18,7 @@ def show_menu():
         print("4. 현재가 창 정밀 탐색 (참고용)")
         print("5. 특정 창의 자식 요소 파일 저장 ")
         print("6. 해외주식 주문창 데이터 추출 ")
+        print("8. [06000] 팝업의 모든 정보 수집")
         print("q. 종료")
         
         choice = input("원하는 메뉴 번호를 입력하세요: ").strip()
@@ -47,6 +48,14 @@ def show_menu():
                 wi.extract_all_text_from_window(hwnd)
             except:
                 print("x 오류")
+        elif choice == '8':
+            hwnd_input = input("HWND 를 입력하세요 (16진수) " ).strip()
+            try:
+                hwnd = int(hwnd_input, 16)
+                wi.full_window_analysis(hwnd)
+            except Exception as e:
+                print(f" x 오류 발생 : {e}")
+
 
 if __name__ == "__main__":
     show_menu()

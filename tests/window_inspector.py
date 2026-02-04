@@ -11,6 +11,161 @@ GetClassNameW = user32.GetClassNameW
 EnumWindows = user32.EnumWindows
 IsWindowVisible = user32.IsWindowVisible
 
+def full_window_analysis(hwnd):
+    """
+    창의 완전한 분석
+    (텍스트, 좌표, 클래스, 스타일 모두)
+    """
+    import ctypes
+    from ctypes import wintypes
+    from datetime import datetime
+
+    user32 = ctypes.windll.user32
+
+    print("\n" + "="*100)
+    print(f" 완전한 창 분석: {hex(hwnd)}")
+    print("="*100 + "\n")
+
+    # 창의 기본 정보
+    print("[창 기본 정보]")
+    length = user32.GetWindowTextLengthW(hwnd)
+    if length > 0:
+        buf = ctypes.create_unicode_buffer(length + 1)
+        user32.GetWindowTextW(hwnd, buf, length + 1)
+        title = buf.value
+    else:
+        title = "(타이틀 없음)"
+
+    buf_class = ctypes.create_unicode_buffer(256)
+    user32.GetClassNameW(hwnd, buf_class, 256)
+    class_name = buf_class.value
+
+    rect = wintypes.RECT()
+    user32.GetWindowRect(hwnd, ctypes.byref(rect))
+    width = rect.right - rect.left
+    height = rect.bottom - rect.top
+    
+    print(f" 타이틀 : {title}")
+    print(f" 클래스 : {class_name}")
+    print(f" 위치 : ({rect.left}, {rect.top})")
+    print(f" 크기 : {width} x {height}")
+
+    # 스타일
+    try:
+        style = user32.GetWindowLongW(hwnd, -16)
+        ex_style = user32.GetWindowLongW(hwnd, -20)
+        print(f" 스타일: 0x{style:X}")
+        print(f" 확장스타일: 0x{ex_style:X}")
+    except:
+        pass
+
+    # 자식 요소 (깊이 있게 탐색)
+    print(f"\n[자식 요소 분석] 깊이 우선 탐색")
+
+
+    all_children = []
+    def recursive_enum(parent_hwnd, depth=0):
+        try:
+            child = user32.GetWindow(parent_hwnd, 5)
+
+            while child:
+                try:
+
+                    length = user32.GetWindowTextLengthW(child)
+                    text = ""
+                    if length > 0:
+                        buf_class = ctypes.create_unicode_buffer(length + 1)
+                        user32.GetWindowTextW(child, buf, length + 1)
+                        text = buf.value
+
+                    # 클래스명
+                    buf_class = ctypes.create_unicode_buffer(256)
+                    user32.GetClassNameW(child, buf_class, 256)
+
+                    child_rect = wintypes.RECT()
+                    user32.GetWindowRect(child, ctypes.byref(child_rect))
+
+                    control_id = user32.GetDlgCtrlID(child)
+                    visible= bool(user32.IsWindowVisible(child))
+
+                    all_children.append({
+                        'hwnd': child,
+                        'hwnd_hex': hex(child),
+                        'text': text,
+                        'class': buf_class.value,
+                        'x': child_rect.left,
+                        'y': child_rect.top,
+                        'width': child_rect.right - child_rect.left,
+                        'height': child_rect.bottom - child_rect.top,
+                        'control_id': control_id,
+                        'visible': visible,
+                        'depth': depth
+                    })
+                    
+                    # 재귀 : 이 자식의 자식들도 탐색
+                    recursive_enum(child, depth + 1)
+
+                except:
+                    pass
+
+                # 다음 형제 창
+                child = user32.GetWindow(child, 2)
+        except:
+            pass
+
+    # 재귀 탐색 시작
+    recursive_enum(hwnd)
+
+    print(f"  총{len(all_children)}개의 자식 요소\n")
+
+    # 출력 (깊이 표시 추가)
+    print(f"{'Depth':>3} | {'No':>3} | {'텍스트':<20} | {'클래스':<25} | {'위치':^15} | {'크기':^12} | {'ID':>5} | 표시")
+    print("-"*130)
+            
+    for i, child in enumerate(all_children, 1):
+        text = child['text'][:20] if child['text'] else "(없음)"
+        pos = f"({child['x']}, {child['y']})"
+        size = f"{child['width']}x{child['height']}"
+        visible = "v" if child['visible'] else "x"
+        depth_str = "   " * child['depth'] + str(child['depth'])
+
+        print(f"{depth_str:>3} | {i:3d} | {text:<20} | {child['class']:<25} | {pos:^15} | {size:^12} | {child['control_id']:>5} | {visible}")
+
+    # 파일 저장
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"full_analysis_{hex(hwnd)}_{timestamp}.txt"
+
+    with open(filename, 'w', encoding='utf-8') as f:
+        f.write("="*130 + "\n")
+        f.write(f"완전한 창 분석 : {hex(hwnd)}\n")
+        f.write(f"저장 시간: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write("="*130 + "\n\n")
+
+        f.write("[창 기본 정보]\n")
+        f.write(f" 타이틀: {title}\n")
+        f.write(f" 클래스: {class_name}\n")
+        f.write(f" 위치: ({rect.left}, {rect.top})\n")
+        f.write(f" 크기: {width} x {height}\n\n")
+
+        f.write(f"[자식 요소: 총 {len(all_children)}개]\n\n")
+
+        f.write(f"{'Depth':>3} | {'No':>3} | {'텍스트':<30} | {'클래스':<25} | {'위치':^20} | {'크기':^15} | {'ID':>8} | 표시\n")
+        f.write("-"*150 + "\n")
+
+        for i, child in enumerate(all_children, 1):
+            text = child['text'][:30] if child['text'] else "(없음)"
+            pos = f"({child['x']}, {child['y']})"
+            size = f"{child['width']}x{child['height']}"
+            visible = "v" if child['visible'] else "x"
+            depth_sr = "    " * child['depth'] + str(child['depth'])
+
+            f.write(f"{depth_str:>3} | {i:3d} | {text:<30} | {child['class']:<25} | {pos:^20} | {size:^15} | {child['control_id']:>8} | {visible}\n")
+
+    print(f"\n 파일 저장: {filename}\n")
+
+    return all_children    
+
+
 def extract_all_text_from_window(hwnd):
     """
     HWND 안의 모든 텍스트를 간단하게 추출
