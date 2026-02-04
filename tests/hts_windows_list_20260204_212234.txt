@@ -1,0 +1,6679 @@
+======================================================================================================================================================
+ PC 전체 모든 HWND 탐색 결과 
+ 저장 시간: 2026-02-04 21:22:34
+======================================================================================================================================================
+[총 1333개의 창]
+
+  No |         HWND |           Class           | V | Text/Title                                                                      
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+======================================================================================================================================================
+
+
+[상세 정보 - 가격 관련 창들]
+
+
+[1] Default IME  HWND (16진수): 0x30604
+  HWND (10진수): 198148
+  클래스: IME
+  보임: x
+
+[2] GDI+ Window (amdow.exe)  HWND (16진수): 0x30608
+  HWND (10진수): 198152
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[3] amd dvr overlay  HWND (16진수): 0x10620
+  HWND (10진수): 67104
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[4] amd dvr overlay  HWND (16진수): 0x10624
+  HWND (10진수): 67108
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[5] amd dvr overlay  HWND (16진수): 0x10622
+  HWND (10진수): 67106
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[6] amd dvr overlay  HWND (16진수): 0x1061E
+  HWND (10진수): 67102
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[7] amd dvr overlay  HWND (16진수): 0x10618
+  HWND (10진수): 67096
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[8] amd dvr overlay  HWND (16진수): 0x10614
+  HWND (10진수): 67092
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[9] amd dvr overlay  HWND (16진수): 0x10612
+  HWND (10진수): 67090
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[10] amd dvr overlay  HWND (16진수): 0x2060E
+  HWND (10진수): 132622
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[11] amd dvr overlay  HWND (16진수): 0x1061C
+  HWND (10진수): 67100
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[12] amd dvr overlay  HWND (16진수): 0x10610
+  HWND (10진수): 67088
+  클래스: AMDDVROVERLAYWINDOWCLASS
+  보임: x
+
+[13] Default IME  HWND (16진수): 0x10634
+  HWND (10진수): 67124
+  클래스: IME
+  보임: x
+
+[14] Default IME  HWND (16진수): 0x10632
+  HWND (10진수): 67122
+  클래스: IME
+  보임: x
+
+[15] Default IME  HWND (16진수): 0x10630
+  HWND (10진수): 67120
+  클래스: IME
+  보임: x
+
+[16] Default IME  HWND (16진수): 0x1062E
+  HWND (10진수): 67118
+  클래스: IME
+  보임: x
+
+[17] Default IME  HWND (16진수): 0x1062C
+  HWND (10진수): 67116
+  클래스: IME
+  보임: x
+
+[18] Default IME  HWND (16진수): 0x1062A
+  HWND (10진수): 67114
+  클래스: IME
+  보임: x
+
+[19] Default IME  HWND (16진수): 0x10628
+  HWND (10진수): 67112
+  클래스: IME
+  보임: x
+
+[20] Default IME  HWND (16진수): 0x10626
+  HWND (10진수): 67110
+  클래스: IME
+  보임: x
+
+[21] Default IME  HWND (16진수): 0x1061A
+  HWND (10진수): 67098
+  클래스: IME
+  보임: x
+
+[22] Default IME  HWND (16진수): 0x10616
+  HWND (10진수): 67094
+  클래스: IME
+  보임: x
+
+[23] Default IME  HWND (16진수): 0x205FE
+  HWND (10진수): 132606
+  클래스: IME
+  보임: x
+
+[24] GDI+ Window (AMDRSServ.exe)  HWND (16진수): 0x305A8
+  HWND (10진수): 198056
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[25] MSCTFIME UI  HWND (16진수): 0x90FEE
+  HWND (10진수): 593902
+  클래스: MSCTFIME UI
+  보임: x
+
+[26] Default IME  HWND (16진수): 0x101EE
+  HWND (10진수): 66030
+  클래스: IME
+  보임: x
+
+[27] 작업 전환  HWND (16진수): 0xB0FDE
+  HWND (10진수): 724958
+  클래스: XamlExplorerHostIslandWindow
+  보임: x
+
+[28] DesktopWindowXamlSource  HWND (16진수): 0x90FE2
+  HWND (10진수): 593890
+  클래스: Windows.UI.Composition.DesktopWindowContentBridge
+  보임: x
+
+[29] (타이틀 없음)  HWND (16진수): 0x70FE4
+  HWND (10진수): 462820
+  클래스: Windows.UI.Input.InputSite.WindowClass
+  보임: x
+
+[30] (타이틀 없음)  HWND (16진수): 0x101EC
+  HWND (10진수): 66028
+  클래스: ForegroundStaging
+  보임: x
+
+[31] MSCTFIME UI  HWND (16진수): 0x20E20
+  HWND (10진수): 134688
+  클래스: MSCTFIME UI
+  보임: x
+
+[32] Default IME  HWND (16진수): 0x101A2
+  HWND (10진수): 65954
+  클래스: IME
+  보임: x
+
+[33] (타이틀 없음)  HWND (16진수): 0x101B4
+  HWND (10진수): 65972
+  클래스: ForegroundStaging
+  보임: x
+
+[34] (타이틀 없음)  HWND (16진수): 0xC0FDA
+  HWND (10진수): 790490
+  클래스: ThumbnailDeviceHelperWnd
+  보임: v
+
+[35] (타이틀 없음)  HWND (16진수): 0x1708D0
+  HWND (10진수): 1509584
+  클래스: ThumbnailDeviceHelperWnd
+  보임: v
+
+[36] MSCTFIME UI  HWND (16진수): 0x10150
+  HWND (10진수): 65872
+  클래스: MSCTFIME UI
+  보임: x
+
+[37] Default IME  HWND (16진수): 0x1013C
+  HWND (10진수): 65852
+  클래스: IME
+  보임: x
+
+[38] 팝업 호스트  HWND (16진수): 0x50F38
+  HWND (10진수): 331576
+  클래스: Xaml_WindowedPopupClass
+  보임: x
+
+[39] (타이틀 없음)  HWND (16진수): 0x1014C
+  HWND (10진수): 65868
+  클래스: tooltips_class32
+  보임: x
+
+[40] (타이틀 없음)  HWND (16진수): 0x20130
+  HWND (10진수): 131376
+  클래스: Shell_TrayWnd
+  보임: v
+
+[41] DesktopWindowXamlSource  HWND (16진수): 0x102C2
+  HWND (10진수): 66242
+  클래스: Windows.UI.Core.CoreWindow
+  보임: x
+
+[42] 시작  HWND (16진수): 0x1013E
+  HWND (10진수): 65854
+  클래스: Start
+  보임: x
+
+[43] (타이틀 없음)  HWND (16진수): 0x10140
+  HWND (10진수): 65856
+  클래스: TrayDummySearchControl
+  보임: v
+
+[44] (타이틀 없음)  HWND (16진수): 0x10142
+  HWND (10진수): 65858
+  클래스: TrayNotifyWnd
+  보임: v
+
+[45] (타이틀 없음)  HWND (16진수): 0x10146
+  HWND (10진수): 65862
+  클래스: ReBarWindow32
+  보임: v
+
+[46] 실행 중인 응용 프로그램  HWND (16진수): 0x10148
+  HWND (10진수): 65864
+  클래스: MSTaskSwWClass
+  보임: v
+
+[47] 실행 중인 응용 프로그램  HWND (16진수): 0x1014A
+  HWND (10진수): 65866
+  클래스: MSTaskListWClass
+  보임: x
+
+[48] DesktopWindowXamlSource  HWND (16진수): 0x102F8
+  HWND (10진수): 66296
+  클래스: Windows.UI.Composition.DesktopWindowContentBridge
+  보임: v
+
+[49] (타이틀 없음)  HWND (16진수): 0x102FA
+  HWND (10진수): 66298
+  클래스: Windows.UI.Input.InputSite.WindowClass
+  보임: v
+
+[50] 배터리 수준  HWND (16진수): 0x102BE
+  HWND (10진수): 66238
+  클래스: SystemTray_Main
+  보임: x
+
+[51] Default IME  HWND (16진수): 0x102DC
+  HWND (10진수): 66268
+  클래스: IME
+  보임: x
+
+[52] (타이틀 없음)  HWND (16진수): 0x102DA
+  HWND (10진수): 66266
+  클래스: ATL:00007FFEC33CC050
+  보임: x
+
+[53] (타이틀 없음)  HWND (16진수): 0x5095C
+  HWND (10진수): 330076
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[54] (타이틀 없음)  HWND (16진수): 0xC0422
+  HWND (10진수): 787490
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[55] (타이틀 없음)  HWND (16진수): 0x5096E
+  HWND (10진수): 330094
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[56] (타이틀 없음)  HWND (16진수): 0x60914
+  HWND (10진수): 395540
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[57] (타이틀 없음)  HWND (16진수): 0x50952
+  HWND (10진수): 330066
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[58] (타이틀 없음)  HWND (16진수): 0xB05DE
+  HWND (10진수): 722398
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[59] (타이틀 없음)  HWND (16진수): 0x20C26
+  HWND (10진수): 134182
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[60] (타이틀 없음)  HWND (16진수): 0x30CF0
+  HWND (10진수): 199920
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[61] (타이틀 없음)  HWND (16진수): 0x409E8
+  HWND (10진수): 264680
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[62] (타이틀 없음)  HWND (16진수): 0x3029A
+  HWND (10진수): 197274
+  클래스: HintWnd
+  보임: x
+
+[63] (타이틀 없음)  HWND (16진수): 0x40996
+  HWND (10진수): 264598
+  클래스: Afx:09380000:b
+  보임: x
+
+[64] Dummy Window  HWND (16진수): 0x30936
+  HWND (10진수): 198966
+  클래스: AfxWnd90
+  보임: x
+
+[65] (타이틀 없음)  HWND (16진수): 0x29081E
+  HWND (10진수): 2689054
+  클래스: Afx:09380000:b
+  보임: x
+
+[66] (타이틀 없음)  HWND (16진수): 0x30992
+  HWND (10진수): 199058
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[67] (타이틀 없음)  HWND (16진수): 0xC0A4C
+  HWND (10진수): 789068
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[68] (타이틀 없음)  HWND (16진수): 0x50946
+  HWND (10진수): 330054
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[69] (타이틀 없음)  HWND (16진수): 0x50944
+  HWND (10진수): 330052
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[70] (타이틀 없음)  HWND (16진수): 0x30A98
+  HWND (10진수): 199320
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[71] (타이틀 없음)  HWND (16진수): 0x2B0770
+  HWND (10진수): 2819952
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[72] (타이틀 없음)  HWND (16진수): 0x808EE
+  HWND (10진수): 526574
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[73] (타이틀 없음)  HWND (16진수): 0x808E6
+  HWND (10진수): 526566
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[74] (타이틀 없음)  HWND (16진수): 0x130A4A
+  HWND (10진수): 1247818
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[75] (타이틀 없음)  HWND (16진수): 0x60A2E
+  HWND (10진수): 395822
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[76] (타이틀 없음)  HWND (16진수): 0x40FB6
+  HWND (10진수): 266166
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[77] (타이틀 없음)  HWND (16진수): 0x4091E
+  HWND (10진수): 264478
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[78] (타이틀 없음)  HWND (16진수): 0x40AA6
+  HWND (10진수): 264870
+  클래스: TFXDataTip
+  보임: x
+
+[79] (타이틀 없음)  HWND (16진수): 0x40A8C
+  HWND (10진수): 264844
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[80] (타이틀 없음)  HWND (16진수): 0x40AA8
+  HWND (10진수): 264872
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[81] (타이틀 없음)  HWND (16진수): 0x40A78
+  HWND (10진수): 264824
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[82] (타이틀 없음)  HWND (16진수): 0x50AAE
+  HWND (10진수): 330414
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[83] (타이틀 없음)  HWND (16진수): 0x40A76
+  HWND (10진수): 264822
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[84] (타이틀 없음)  HWND (16진수): 0x50A48
+  HWND (10진수): 330312
+  클래스: MAIN_BASE_TOOLTIP_CTRL
+  보임: x
+
+[85] CiceroUIWndFrame  HWND (16진수): 0x20EF8
+  HWND (10진수): 134904
+  클래스: CiceroUIWndFrame
+  보임: x
+
+[86] (타이틀 없음)  HWND (16진수): 0x10174
+  HWND (10진수): 65908
+  클래스: tooltips_class32
+  보임: x
+
+[87] 시스템 트레이 오버플로 창입니다.  HWND (16진수): 0x20234
+  HWND (10진수): 131636
+  클래스: TopLevelWindowForOverflowXamlIsland
+  보임: x
+
+[88] DesktopWindowXamlSource  HWND (16진수): 0x500EA
+  HWND (10진수): 327914
+  클래스: Windows.UI.Composition.DesktopWindowContentBridge
+  보임: x
+
+[89] (타이틀 없음)  HWND (16진수): 0x500EC
+  HWND (10진수): 327916
+  클래스: Windows.UI.Input.InputSite.WindowClass
+  보임: x
+
+[90] Menu  HWND (16진수): 0x20718
+  HWND (10진수): 132888
+  클래스: SDL_app
+  보임: x
+
+[91] (타이틀 없음)  HWND (16진수): 0x2071C
+  HWND (10진수): 132892
+  클래스: CefBrowserWindow
+  보임: x
+
+[92] (타이틀 없음)  HWND (16진수): 0x2071A
+  HWND (10진수): 132890
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[93] (타이틀 없음)  HWND (16진수): 0x1073E
+  HWND (10진수): 67390
+  클래스: Intermediate D3D Window
+  보임: x
+
+[94] (타이틀 없음)  HWND (16진수): 0x600BA
+  HWND (10진수): 393402
+  클래스: WindowsDashboard
+  보임: x
+
+[95] (타이틀 없음)  HWND (16진수): 0x40662
+  HWND (10진수): 263778
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[96] CiceroUIWndFrame  HWND (16진수): 0x20094
+  HWND (10진수): 131220
+  클래스: CiceroUIWndFrame
+  보임: x
+
+[97] (타이틀 없음)  HWND (16진수): 0x20DEC
+  HWND (10진수): 134636
+  클래스: tooltips_class32
+  보임: x
+
+[98] MSCTFIME UI  HWND (16진수): 0x60F34
+  HWND (10진수): 397108
+  클래스: MSCTFIME UI
+  보임: x
+
+[99] Default IME  HWND (16진수): 0xA0196
+  HWND (10진수): 655766
+  클래스: IME
+  보임: x
+
+[100] 관리자: 명령 프롬프트 - python  run_tests.py  HWND (16진수): 0x70E04
+  HWND (10진수): 462340
+  클래스: ConsoleWindowClass
+  보임: v
+
+[101] GDI+ Window (Explorer.EXE)  HWND (16진수): 0x90E66
+  HWND (10진수): 593510
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[102] Default IME  HWND (16진수): 0x80E6E
+  HWND (10진수): 527982
+  클래스: IME
+  보임: x
+
+[103] MSCTFIME UI  HWND (16진수): 0x10DA2
+  HWND (10진수): 69026
+  클래스: MSCTFIME UI
+  보임: x
+
+[104] Default IME  HWND (16진수): 0x20290
+  HWND (10진수): 131728
+  클래스: IME
+  보임: x
+
+[105] (타이틀 없음)  HWND (16진수): 0x20DC2
+  HWND (10진수): 134594
+  클래스: tooltips_class32
+  보임: x
+
+[106] tests - 파일 탐색기  HWND (16진수): 0x1F01C8
+  HWND (10진수): 2032072
+  클래스: CabinetWClass
+  보임: v
+
+[107] (타이틀 없음)  HWND (16진수): 0x30DF6
+  HWND (10진수): 200182
+  클래스: TITLE_BAR_SCAFFOLDING_WINDOW_CLASS
+  보임: v
+
+[108] Non Client Input Sink Window  HWND (16진수): 0x10DFE
+  HWND (10진수): 69118
+  클래스: InputNonClientPointerSource
+  보임: v
+
+[109] tests  HWND (16진수): 0x10DA4
+  HWND (10진수): 69028
+  클래스: ShellTabWindowClass
+  보임: v
+
+[110] (타이틀 없음)  HWND (16진수): 0x10DB4
+  HWND (10진수): 69044
+  클래스: DUIViewWndClassName
+  보임: v
+
+[111] (타이틀 없음)  HWND (16진수): 0x10DB6
+  HWND (10진수): 69046
+  클래스: DirectUIHWND
+  보임: v
+
+[112] (타이틀 없음)  HWND (16진수): 0x10DB8
+  HWND (10진수): 69048
+  클래스: CtrlNotifySink
+  보임: v
+
+[113] 네임스페이스 트리 컨트롤  HWND (16진수): 0x10DBC
+  HWND (10진수): 69052
+  클래스: NamespaceTreeControl
+  보임: v
+
+[114] 네임스페이스 트리 컨트롤  HWND (16진수): 0x10DBE
+  HWND (10진수): 69054
+  클래스: Static
+  보임: x
+
+[115] 탐색 창  HWND (16진수): 0x10DC0
+  HWND (10진수): 69056
+  클래스: SysTreeView32
+  보임: v
+
+[116] (타이틀 없음)  HWND (16진수): 0x10DC4
+  HWND (10진수): 69060
+  클래스: CtrlNotifySink
+  보임: x
+
+[117] (타이틀 없음)  HWND (16진수): 0x10DC6
+  HWND (10진수): 69062
+  클래스: Button
+  보임: x
+
+[118] (타이틀 없음)  HWND (16진수): 0x10DC8
+  HWND (10진수): 69064
+  클래스: CtrlNotifySink
+  보임: x
+
+[119] (타이틀 없음)  HWND (16진수): 0x10DCA
+  HWND (10진수): 69066
+  클래스: Button
+  보임: x
+
+[120] (타이틀 없음)  HWND (16진수): 0x10DCC
+  HWND (10진수): 69068
+  클래스: CtrlNotifySink
+  보임: x
+
+[121] Shell Preview Extension Host  HWND (16진수): 0x10DCE
+  HWND (10진수): 69070
+  클래스: Shell Preview Extension Host
+  보임: x
+
+[122] (타이틀 없음)  HWND (16진수): 0x20DEA
+  HWND (10진수): 134634
+  클래스: CtrlNotifySink
+  보임: v
+
+[123] ShellView  HWND (16진수): 0x40E1A
+  HWND (10진수): 265754
+  클래스: SHELLDLL_DefView
+  보임: v
+
+[124] (타이틀 없음)  HWND (16진수): 0x20E1C
+  HWND (10진수): 134684
+  클래스: DirectUIHWND
+  보임: v
+
+[125] (타이틀 없음)  HWND (16진수): 0x20E18
+  HWND (10진수): 134680
+  클래스: CtrlNotifySink
+  보임: x
+
+[126] (타이틀 없음)  HWND (16진수): 0x30DAC
+  HWND (10진수): 200108
+  클래스: ScrollBar
+  보임: x
+
+[127] (타이틀 없음)  HWND (16진수): 0x30DF2
+  HWND (10진수): 200178
+  클래스: CtrlNotifySink
+  보임: x
+
+[128] (타이틀 없음)  HWND (16진수): 0x20DEE
+  HWND (10진수): 134638
+  클래스: ScrollBar
+  보임: x
+
+[129] (타이틀 없음)  HWND (16진수): 0x10DA8
+  HWND (10진수): 69032
+  클래스: msctls_statusbar32
+  보임: x
+
+[130] (타이틀 없음)  HWND (16진수): 0x10DFA
+  HWND (10진수): 69114
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: v
+
+[131] (타이틀 없음)  HWND (16진수): 0x10DF8
+  HWND (10진수): 69112
+  클래스: InputSiteWindowClass
+  보임: x
+
+[132] Default IME  HWND (16진수): 0x70E74
+  HWND (10진수): 462452
+  클래스: IME
+  보임: x
+
+[133] MSCTFIME UI  HWND (16진수): 0x16092C
+  HWND (10진수): 1444140
+  클래스: MSCTFIME UI
+  보임: x
+
+[134] 진행률  HWND (16진수): 0x90E70
+  HWND (10진수): 593520
+  클래스: OperationStatusWindow
+  보임: x
+
+[135] (타이틀 없음)  HWND (16진수): 0x130FF6
+  HWND (10진수): 1249270
+  클래스: DirectUIHWND
+  보임: x
+
+[136] (타이틀 없음)  HWND (16진수): 0x50E7A
+  HWND (10진수): 331386
+  클래스: CtrlNotifySink
+  보임: x
+
+[137] (타이틀 없음)  HWND (16진수): 0x30EA0
+  HWND (10진수): 200352
+  클래스: ScrollBar
+  보임: x
+
+[138] (타이틀 없음)  HWND (16진수): 0x20E6A
+  HWND (10진수): 134762
+  클래스: CtrlNotifySink
+  보임: x
+
+[139] (타이틀 없음)  HWND (16진수): 0xB09BC
+  HWND (10진수): 723388
+  클래스: ScrollBar
+  보임: x
+
+[140] MSCTFIME UI  HWND (16진수): 0x90EA8
+  HWND (10진수): 593576
+  클래스: MSCTFIME UI
+  보임: x
+
+[141] Default IME  HWND (16진수): 0x80E9E
+  HWND (10진수): 528030
+  클래스: IME
+  보임: x
+
+[142] MSCTFIME UI  HWND (16진수): 0x10E64
+  HWND (10진수): 69220
+  클래스: MSCTFIME UI
+  보임: x
+
+[143] Default IME  HWND (16진수): 0x10E3E
+  HWND (10진수): 69182
+  클래스: IME
+  보임: x
+
+[144] 팝업 호스트  HWND (16진수): 0x10E82
+  HWND (10진수): 69250
+  클래스: Microsoft.UI.Content.PopupWindowSiteBridge
+  보임: x
+
+[145] (타이틀 없음)  HWND (16진수): 0x10E84
+  HWND (10진수): 69252
+  클래스: InputSiteWindowClass
+  보임: x
+
+[146] 제목 없음 - 메모장  HWND (16진수): 0x10E3C
+  HWND (10진수): 69180
+  클래스: Notepad
+  보임: v
+
+[147] Non Client Input Sink Window  HWND (16진수): 0x10E48
+  HWND (10진수): 69192
+  클래스: InputNonClientPointerSource
+  보임: v
+
+[148] (타이틀 없음)  HWND (16진수): 0x10E5E
+  HWND (10진수): 69214
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: x
+
+[149] (타이틀 없음)  HWND (16진수): 0x10E5C
+  HWND (10진수): 69212
+  클래스: InputSiteWindowClass
+  보임: x
+
+[150] (타이틀 없음)  HWND (16진수): 0x10E58
+  HWND (10진수): 69208
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: x
+
+[151] (타이틀 없음)  HWND (16진수): 0x10E56
+  HWND (10진수): 69206
+  클래스: InputSiteWindowClass
+  보임: x
+
+[152] (타이틀 없음)  HWND (16진수): 0xC0ADA
+  HWND (10진수): 789210
+  클래스: NotepadTextBox
+  보임: v
+
+[153] (타이틀 없음)  HWND (16진수): 0xA0E9C
+  HWND (10진수): 659100
+  클래스: RichEditD2DPT
+  보임: v
+
+[154] (타이틀 없음)  HWND (16진수): 0x80A28
+  HWND (10진수): 526888
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: x
+
+[155] (타이틀 없음)  HWND (16진수): 0x90278
+  HWND (10진수): 590456
+  클래스: InputSiteWindowClass
+  보임: x
+
+[156] (타이틀 없음)  HWND (16진수): 0x10E44
+  HWND (10진수): 69188
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: v
+
+[157] (타이틀 없음)  HWND (16진수): 0x10E42
+  HWND (10진수): 69186
+  클래스: InputSiteWindowClass
+  보임: x
+
+[158] (타이틀 없음)  HWND (16진수): 0x10E4C
+  HWND (10진수): 69196
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: v
+
+[159] (타이틀 없음)  HWND (16진수): 0x10E4A
+  HWND (10진수): 69194
+  클래스: InputSiteWindowClass
+  보임: x
+
+[160] (타이틀 없음)  HWND (16진수): 0x10E52
+  HWND (10진수): 69202
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: v
+
+[161] (타이틀 없음)  HWND (16진수): 0x20E50
+  HWND (10진수): 134736
+  클래스: InputSiteWindowClass
+  보임: x
+
+[162] (타이틀 없음)  HWND (16진수): 0x10E7E
+  HWND (10진수): 69246
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: x
+
+[163] (타이틀 없음)  HWND (16진수): 0x10E7C
+  HWND (10진수): 69244
+  클래스: InputSiteWindowClass
+  보임: x
+
+[164] MSCTFIME UI  HWND (16진수): 0x50AD2
+  HWND (10진수): 330450
+  클래스: MSCTFIME UI
+  보임: x
+
+[165] Default IME  HWND (16진수): 0xE0A36
+  HWND (10진수): 920118
+  클래스: IME
+  보임: x
+
+[166] window_inspector.py - thirds - Visual Studio Code  HWND (16진수): 0x40AD0
+  HWND (10진수): 264912
+  클래스: Chrome_WidgetWin_1
+  보임: v
+
+[167] Chrome Legacy Window  HWND (16진수): 0x40AD6
+  HWND (10진수): 264918
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: v
+
+[168] (타이틀 없음)  HWND (16진수): 0x20BC8
+  HWND (10진수): 134088
+  클래스: Intermediate D3D Window
+  보임: v
+
+[169] MSCTFIME UI  HWND (16진수): 0x20EFC
+  HWND (10진수): 134908
+  클래스: MSCTFIME UI
+  보임: x
+
+[170] Default IME  HWND (16진수): 0x20F0A
+  HWND (10진수): 134922
+  클래스: IME
+  보임: x
+
+[171] 업무 VDI - HAE Shadebar  HWND (16진수): 0x20F28
+  HWND (10진수): 134952
+  클래스: HwndWrapper[Horizon.Client.UI;;8eff1d79-d44d-4dd8-9ce8-39cdd8e796c0]
+  보임: x
+
+[172] Default IME  HWND (16진수): 0x20F52
+  HWND (10진수): 134994
+  클래스: IME
+  보임: x
+
+[173] (타이틀 없음)  HWND (16진수): 0x20F56
+  HWND (10진수): 134998
+  클래스: ATL:00007FFE08394370
+  보임: x
+
+[174] (타이틀 없음)  HWND (16진수): 0x20F50
+  HWND (10진수): 134992
+  클래스: ATL:00007FFE08394670
+  보임: x
+
+[175] view-localhost:4494/streamingClient?token=B50D3B17-C4AA-4C56-8D57-0900FF97A471&webport=4489&trace=false  HWND (16진수): 0x40F6A
+  HWND (10진수): 266090
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[176] Chrome Legacy Window  HWND (16진수): 0x10F84
+  HWND (10진수): 69508
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[177] (타이틀 없음)  HWND (16진수): 0x10F94
+  HWND (10진수): 69524
+  클래스: Intermediate D3D Window
+  보임: x
+
+[178] Default IME  HWND (16진수): 0x20F5C
+  HWND (10진수): 135004
+  클래스: IME
+  보임: x
+
+[179] (타이틀 없음)  HWND (16진수): 0x20F5E
+  HWND (10진수): 135006
+  클래스: ATL:00007FFE08394370
+  보임: x
+
+[180] (타이틀 없음)  HWND (16진수): 0x20F5A
+  HWND (10진수): 135002
+  클래스: ATL:00007FFE08394670
+  보임: x
+
+[181] view-localhost:4494/streamingClient?token=F8CAA388-C8C8-40C5-8982-FCA4A16EBF0F&webport=4489&trace=false  HWND (16진수): 0x10F82
+  HWND (10진수): 69506
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[182] Chrome Legacy Window  HWND (16진수): 0x10F86
+  HWND (10진수): 69510
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[183] (타이틀 없음)  HWND (16진수): 0x10F96
+  HWND (10진수): 69526
+  클래스: Intermediate D3D Window
+  보임: x
+
+[184] 업무 VDI - HAE  HWND (16진수): 0x30E22
+  HWND (10진수): 200226
+  클래스: HwndWrapper[Horizon.Client.UI;;82b762ed-4c84-457b-95a9-781da43b9d34]
+  보임: v
+
+[185] Horizon Remote Host Window  HWND (16진수): 0x70E88
+  HWND (10진수): 462472
+  클래스: VMware.Horizon.Client.SDK.NativeWindowClass<VMware::Horizon::Client::SDK::RemoteHostWindow>
+  보임: v
+
+[186] (타이틀 없음)  HWND (16진수): 0x30DD8
+  HWND (10진수): 200152
+  클래스: VMware.Horizon.Client.Sdk:RemoteWindow Class
+  보임: v
+
+[187] MainMKSWindow  HWND (16진수): 0x80F40
+  HWND (10진수): 528192
+  클래스: MainMKSClass
+  보임: v
+
+[188] MKSWindow  HWND (16진수): 0x20E2E
+  HWND (10진수): 134702
+  클래스: WswcRdpClass
+  보임: v
+
+[189] (타이틀 없음)  HWND (16진수): 0x20F66
+  HWND (10진수): 135014
+  클래스: MKSScreenWindow
+  보임: v
+
+[190] MKSWindow#1  HWND (16진수): 0x20F64
+  HWND (10진수): 135012
+  클래스: MKSEmbedded
+  보임: v
+
+[191] DesktopWindowXamlSource  HWND (16진수): 0x201FA
+  HWND (10진수): 131578
+  클래스: Windows.UI.Core.CoreWindow
+  보임: x
+
+[192] (타이틀 없음)  HWND (16진수): 0x60EE2
+  HWND (10진수): 397026
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[193] Chrome Legacy Window  HWND (16진수): 0x50EEC
+  HWND (10진수): 331500
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[194] Chrome Legacy Window  HWND (16진수): 0x10FD0
+  HWND (10진수): 69584
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[195] (타이틀 없음)  HWND (16진수): 0x30BE6
+  HWND (10진수): 199654
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[196] Default IME  HWND (16진수): 0x20BEE
+  HWND (10진수): 134126
+  클래스: IME
+  보임: x
+
+[197] (타이틀 없음)  HWND (16진수): 0x20BE8
+  HWND (10진수): 134120
+  클래스: PseudoConsoleWindow
+  보임: x
+
+[198] Default IME  HWND (16진수): 0x20BEA
+  HWND (10진수): 134122
+  클래스: IME
+  보임: x
+
+[199] (타이틀 없음)  HWND (16진수): 0x80FAC
+  HWND (10진수): 528300
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[200] Default IME  HWND (16진수): 0x20BC6
+  HWND (10진수): 134086
+  클래스: IME
+  보임: x
+
+[201] (타이틀 없음)  HWND (16진수): 0x50ABC
+  HWND (10진수): 330428
+  클래스: crashpad_SessionEndWatcher
+  보임: x
+
+[202] Default IME  HWND (16진수): 0x40ABE
+  HWND (10진수): 264894
+  클래스: IME
+  보임: x
+
+[203] (타이틀 없음)  HWND (16진수): 0x50ABA
+  HWND (10진수): 330426
+  클래스: Electron_SystemPreferencesHostWindow
+  보임: x
+
+[204] (타이틀 없음)  HWND (16진수): 0x60938
+  HWND (10진수): 395576
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[205] (타이틀 없음)  HWND (16진수): 0xA08E4
+  HWND (10진수): 657636
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[206] (타이틀 없음)  HWND (16진수): 0x101A4
+  HWND (10진수): 65956
+  클래스: ApplicationManager_DesktopShellWindow
+  보임: x
+
+[207] MSCTFIME UI  HWND (16진수): 0x60A52
+  HWND (10진수): 395858
+  클래스: MSCTFIME UI
+  보임: x
+
+[208] Default IME  HWND (16진수): 0x5021C
+  HWND (10진수): 328220
+  클래스: IME
+  보임: x
+
+[209] Copilot  HWND (16진수): 0x70918
+  HWND (10진수): 461080
+  클래스: WinUIDesktopWin32WindowClass
+  보임: x
+
+[210] Non Client Input Sink Window  HWND (16진수): 0xB0A22
+  HWND (10진수): 723490
+  클래스: InputNonClientPointerSource
+  보임: x
+
+[211] ReunionCaptionControlsWindow  HWND (16진수): 0x8028A
+  HWND (10진수): 524938
+  클래스: ReunionWindowingCaptionControls
+  보임: x
+
+[212] (타이틀 없음)  HWND (16진수): 0xC0A38
+  HWND (10진수): 789048
+  클래스: Microsoft.UI.Content.DesktopChildSiteBridge
+  보임: x
+
+[213] (타이틀 없음)  HWND (16진수): 0x90912
+  HWND (10진수): 592146
+  클래스: InputSiteWindowClass
+  보임: x
+
+[214] (타이틀 없음)  HWND (16진수): 0x20BC4
+  HWND (10진수): 134084
+  클래스: tooltips_class32
+  보임: x
+
+[215] MSCTFIME UI  HWND (16진수): 0x40928
+  HWND (10진수): 264488
+  클래스: MSCTFIME UI
+  보임: x
+
+[216] Default IME  HWND (16진수): 0x50A44
+  HWND (10진수): 330308
+  클래스: IME
+  보임: x
+
+[217] (타이틀 없음)  HWND (16진수): 0x20BC2
+  HWND (10진수): 134082
+  클래스: tooltips_class32
+  보임: x
+
+[218] (타이틀 없음)  HWND (16진수): 0x20C24
+  HWND (10진수): 134180
+  클래스: tooltips_class32
+  보임: x
+
+[219] (타이틀 없음)  HWND (16진수): 0x20AE6
+  HWND (10진수): 133862
+  클래스: tooltips_class32
+  보임: x
+
+[220] (타이틀 없음)  HWND (16진수): 0x30C02
+  HWND (10진수): 199682
+  클래스: tooltips_class32
+  보임: x
+
+[221] (타이틀 없음)  HWND (16진수): 0x20C6E
+  HWND (10진수): 134254
+  클래스: tooltips_class32
+  보임: x
+
+[222] (타이틀 없음)  HWND (16진수): 0x20D1E
+  HWND (10진수): 134430
+  클래스: tooltips_class32
+  보임: x
+
+[223] (타이틀 없음)  HWND (16진수): 0x20CDA
+  HWND (10진수): 134362
+  클래스: tooltips_class32
+  보임: x
+
+[224] (타이틀 없음)  HWND (16진수): 0x20CD8
+  HWND (10진수): 134360
+  클래스: tooltips_class32
+  보임: x
+
+[225] (타이틀 없음)  HWND (16진수): 0x409EA
+  HWND (10진수): 264682
+  클래스: Afx:60200000:0
+  보임: x
+
+[226] (타이틀 없음)  HWND (16진수): 0x3027A
+  HWND (10진수): 197242
+  클래스: tooltips_class32
+  보임: x
+
+[227] (타이틀 없음)  HWND (16진수): 0x409CE
+  HWND (10진수): 264654
+  클래스: tooltips_class32
+  보임: x
+
+[228] (타이틀 없음)  HWND (16진수): 0x905AC
+  HWND (10진수): 591276
+  클래스: tooltips_class32
+  보임: x
+
+[229] (타이틀 없음)  HWND (16진수): 0x608E8
+  HWND (10진수): 395496
+  클래스: tooltips_class32
+  보임: x
+
+[230] 체결내역  HWND (16진수): 0x3098A
+  HWND (10진수): 199050
+  클래스: #32770
+  보임: x
+
+[231] List1  HWND (16진수): 0x30988
+  HWND (10진수): 199048
+  클래스: SysListView32
+  보임: x
+
+[232] (타이틀 없음)  HWND (16진수): 0x3098E
+  HWND (10진수): 199054
+  클래스: SysHeader32
+  보임: x
+
+[233] 삭제  HWND (16진수): 0x40990
+  HWND (10진수): 264592
+  클래스: Button
+  보임: x
+
+[234] 설정  HWND (16진수): 0x4093A
+  HWND (10진수): 264506
+  클래스: Button
+  보임: x
+
+[235] 주식잔고  HWND (16진수): 0x40964
+  HWND (10진수): 264548
+  클래스: Button
+  보임: x
+
+[236] 선옵잔고  HWND (16진수): 0x40962
+  HWND (10진수): 264546
+  클래스: Button
+  보임: x
+
+[237] 긴급 메시지  HWND (16진수): 0x30972
+  HWND (10진수): 199026
+  클래스: #32770
+  보임: x
+
+[238] 내용삭제  HWND (16진수): 0x30974
+  HWND (10진수): 199028
+  클래스: Button
+  보임: x
+
+[239] 닫기  HWND (16진수): 0xA06BE
+  HWND (10진수): 657086
+  클래스: Button
+  보임: x
+
+[240] (타이틀 없음)  HWND (16진수): 0x30980
+  HWND (10진수): 199040
+  클래스: ListBox
+  보임: x
+
+[241] 신호 알리미  HWND (16진수): 0x80DDE
+  HWND (10진수): 527838
+  클래스: #32770
+  보임: x
+
+[242] (타이틀 없음)  HWND (16진수): 0x120E96
+  HWND (10진수): 1183382
+  클래스: SysListView32
+  보임: x
+
+[243] (타이틀 없음)  HWND (16진수): 0x20FBC
+  HWND (10진수): 135100
+  클래스: SysHeader32
+  보임: x
+
+[244] (타이틀 없음)  HWND (16진수): 0x30FBA
+  HWND (10진수): 200634
+  클래스: Edit
+  보임: x
+
+[245] Static  HWND (16진수): 0x20FC0
+  HWND (10진수): 135104
+  클래스: Static
+  보임: x
+
+[246] (타이틀 없음)  HWND (16진수): 0x30934
+  HWND (10진수): 198964
+  클래스: Button
+  보임: x
+
+[247] (타이틀 없음)  HWND (16진수): 0x30950
+  HWND (10진수): 198992
+  클래스: Button
+  보임: x
+
+[248] ▶  HWND (16진수): 0x3094E
+  HWND (10진수): 198990
+  클래스: Button
+  보임: x
+
+[249] ■  HWND (16진수): 0x30976
+  HWND (10진수): 199030
+  클래스: Button
+  보임: x
+
+[250] ∧  HWND (16진수): 0x50016
+  HWND (10진수): 327702
+  클래스: Button
+  보임: x
+
+[251] 항목선택  HWND (16진수): 0x3095E
+  HWND (10진수): 199006
+  클래스: Button
+  보임: x
+
+[252] 설정  HWND (16진수): 0x3094C
+  HWND (10진수): 198988
+  클래스: Button
+  보임: x
+
+[253] ≪  HWND (16진수): 0x3096C
+  HWND (10진수): 199020
+  클래스: Button
+  보임: x
+
+[254] (타이틀 없음)  HWND (16진수): 0x30A6A
+  HWND (10진수): 199274
+  클래스: tooltips_class32
+  보임: x
+
+[255] iMeritz  HWND (16진수): 0x40A88
+  HWND (10진수): 264840
+  클래스: iMeritz XII
+  보임: v
+
+[256] MenuBar  HWND (16진수): 0xC0AB2
+  HWND (10진수): 789170
+  클래스: Afx:60200000:b:00010003:00000010:00000000
+  보임: v
+
+[257] (타이틀 없음)  HWND (16진수): 0x50A86
+  HWND (10진수): 330374
+  클래스: MDIClient
+  보임: v
+
+[258] [06100] 해외주식 주문  HWND (16진수): 0x409E6
+  HWND (10진수): 264678
+  클래스: ITGEN_SCREEN_WINDOW
+  보임: v
+
+[259] (타이틀 없음)  HWND (16진수): 0x409E4
+  HWND (10진수): 264676
+  클래스: #32770
+  보임: v
+
+[260] (타이틀 없음)  HWND (16진수): 0x409FC
+  HWND (10진수): 264700
+  클래스: AfxWnd90
+  보임: x
+
+[261] (타이틀 없음)  HWND (16진수): 0x409FE
+  HWND (10진수): 264702
+  클래스: Button
+  보임: v
+
+[262] (타이틀 없음)  HWND (16진수): 0x1B0570
+  HWND (10진수): 1770864
+  클래스: Button
+  보임: x
+
+[263] (타이틀 없음)  HWND (16진수): 0x80A0A
+  HWND (10진수): 526858
+  클래스: AfxWnd90
+  보임: v
+
+[264] (타이틀 없음)  HWND (16진수): 0x70A0E
+  HWND (10진수): 461326
+  클래스: AfxWnd90
+  보임: v
+
+[265] (타이틀 없음)  HWND (16진수): 0x409C0
+  HWND (10진수): 264640
+  클래스: Button
+  보임: v
+
+[266] (타이틀 없음)  HWND (16진수): 0x409D8
+  HWND (10진수): 264664
+  클래스: Button
+  보임: v
+
+[267] (타이틀 없음)  HWND (16진수): 0x40A04
+  HWND (10진수): 264708
+  클래스: Button
+  보임: x
+
+[268] (타이틀 없음)  HWND (16진수): 0x40A02
+  HWND (10진수): 264706
+  클래스: AfxWnd90
+  보임: x
+
+[269] (타이틀 없음)  HWND (16진수): 0x40A00
+  HWND (10진수): 264704
+  클래스: SysTabControl32
+  보임: v
+
+[270] (타이틀 없음)  HWND (16진수): 0x20D20
+  HWND (10진수): 134432
+  클래스: AfxWnd90
+  보임: v
+
+[271] (타이틀 없음)  HWND (16진수): 0x20D2A
+  HWND (10진수): 134442
+  클래스: AfxWnd90
+  보임: x
+
+[272] (타이틀 없음)  HWND (16진수): 0x20D2C
+  HWND (10진수): 134444
+  클래스: AfxWnd90
+  보임: v
+
+[273] (타이틀 없음)  HWND (16진수): 0x20D2E
+  HWND (10진수): 134446
+  클래스: AfxWnd90
+  보임: v
+
+[274] GDXU  HWND (16진수): 0x20ADC
+  HWND (10진수): 133852
+  클래스: iMeritz MaskEdit2
+  보임: x
+
+[275] (타이틀 없음)  HWND (16진수): 0x20ADE
+  HWND (10진수): 133854
+  클래스: Button
+  보임: x
+
+[276] (타이틀 없음)  HWND (16진수): 0x20B08
+  HWND (10진수): 133896
+  클래스: AfxWnd90
+  보임: x
+
+[277] (타이틀 없음)  HWND (16진수): 0x20C00
+  HWND (10진수): 134144
+  클래스: AfxWnd90
+  보임: x
+
+[278] (타이틀 없음)  HWND (16진수): 0x20BFE
+  HWND (10진수): 134142
+  클래스: Button
+  보임: x
+
+[279] (타이틀 없음)  HWND (16진수): 0x20BFC
+  HWND (10진수): 134140
+  클래스: AfxWnd90
+  보임: v
+
+[280] (타이틀 없음)  HWND (16진수): 0x20BF8
+  HWND (10진수): 134136
+  클래스: AfxWnd90
+  보임: v
+
+[281] (타이틀 없음)  HWND (16진수): 0x20BF6
+  HWND (10진수): 134134
+  클래스: AfxOleControl90
+  보임: v
+
+[282] SysIndicator  HWND (16진수): 0x20AF2
+  HWND (10진수): 133874
+  클래스: AfxWnd90
+  보임: x
+
+[283] (타이틀 없음)  HWND (16진수): 0x20C40
+  HWND (10진수): 134208
+  클래스: Button
+  보임: v
+
+[284] (타이틀 없음)  HWND (16진수): 0x20C3E
+  HWND (10진수): 134206
+  클래스: AfxWnd90
+  보임: v
+
+[285] (타이틀 없음)  HWND (16진수): 0x20C3C
+  HWND (10진수): 134204
+  클래스: AfxWnd90
+  보임: v
+
+[286] GDXU  HWND (16진수): 0x20C3A
+  HWND (10진수): 134202
+  클래스: iMeritz MaskEdit2
+  보임: v
+
+[287] (타이틀 없음)  HWND (16진수): 0x20AE2
+  HWND (10진수): 133858
+  클래스: AfxWnd90
+  보임: v
+
+[288] (타이틀 없음)  HWND (16진수): 0x20AE4
+  HWND (10진수): 133860
+  클래스: Button
+  보임: v
+
+[289] (타이틀 없음)  HWND (16진수): 0x20D22
+  HWND (10진수): 134434
+  클래스: AfxWnd90
+  보임: x
+
+[290] (타이틀 없음)  HWND (16진수): 0x20D24
+  HWND (10진수): 134436
+  클래스: AfxWnd90
+  보임: x
+
+[291] (타이틀 없음)  HWND (16진수): 0x20D26
+  HWND (10진수): 134438
+  클래스: AfxWnd90
+  보임: x
+
+[292] (타이틀 없음)  HWND (16진수): 0x20D28
+  HWND (10진수): 134440
+  클래스: AfxWnd90
+  보임: x
+
+[293] (타이틀 없음)  HWND (16진수): 0x290740
+  HWND (10진수): 2688832
+  클래스: Button
+  보임: v
+
+[294] (타이틀 없음)  HWND (16진수): 0x30A3E
+  HWND (10진수): 199230
+  클래스: Button
+  보임: v
+
+[295] (타이틀 없음)  HWND (16진수): 0x30A3C
+  HWND (10진수): 199228
+  클래스: Button
+  보임: v
+
+[296] (타이틀 없음)  HWND (16진수): 0x30A26
+  HWND (10진수): 199206
+  클래스: Button
+  보임: v
+
+[297] (타이틀 없음)  HWND (16진수): 0x50A08
+  HWND (10진수): 330248
+  클래스: Button
+  보임: v
+
+[298] GDXU  HWND (16진수): 0x90A06
+  HWND (10진수): 592390
+  클래스: iMeritz MaskEdit2
+  보임: x
+
+[299] (타이틀 없음)  HWND (16진수): 0x50A10
+  HWND (10진수): 330256
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[300] (타이틀 없음)  HWND (16진수): 0x70A12
+  HWND (10진수): 461330
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[301] (타이틀 없음)  HWND (16진수): 0x40A18
+  HWND (10진수): 264728
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[302] (타이틀 없음)  HWND (16진수): 0x50A16
+  HWND (10진수): 330262
+  클래스: AfxWnd90
+  보임: v
+
+[303] (타이틀 없음)  HWND (16진수): 0x30A1A
+  HWND (10진수): 199194
+  클래스: SysTabControl32
+  보임: v
+
+[304] (타이틀 없음)  HWND (16진수): 0x20CDE
+  HWND (10진수): 134366
+  클래스: AfxWnd90
+  보임: x
+
+[305] (타이틀 없음)  HWND (16진수): 0x20CE0
+  HWND (10진수): 134368
+  클래스: AfxWnd90
+  보임: x
+
+[306] (타이틀 없음)  HWND (16진수): 0x20CE2
+  HWND (10진수): 134370
+  클래스: AfxWnd90
+  보임: v
+
+[307] (타이틀 없음)  HWND (16진수): 0x20CEC
+  HWND (10진수): 134380
+  클래스: AfxWnd90
+  보임: x
+
+[308] (타이틀 없음)  HWND (16진수): 0x20CEE
+  HWND (10진수): 134382
+  클래스: Button
+  보임: v
+
+[309]  USD 미국  HWND (16진수): 0x20CE6
+  HWND (10진수): 134374
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[310] 미국  HWND (16진수): 0x20CE8
+  HWND (10진수): 134376
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[311] (타이틀 없음)  HWND (16진수): 0x20CF8
+  HWND (10진수): 134392
+  클래스: Button
+  보임: v
+
+[312] (타이틀 없음)  HWND (16진수): 0x20D08
+  HWND (10진수): 134408
+  클래스: Button
+  보임: v
+
+[313] GDXU  HWND (16진수): 0x20D0A
+  HWND (10진수): 134410
+  클래스: iMeritz MaskEdit2
+  보임: v
+
+[314] (타이틀 없음)  HWND (16진수): 0x20D04
+  HWND (10진수): 134404
+  클래스: AfxWnd90
+  보임: x
+
+[315] (타이틀 없음)  HWND (16진수): 0x20D06
+  HWND (10진수): 134406
+  클래스: Button
+  보임: x
+
+[316] (타이틀 없음)  HWND (16진수): 0x20CFE
+  HWND (10진수): 134398
+  클래스: Button
+  보임: x
+
+[317] (타이틀 없음)  HWND (16진수): 0x20D00
+  HWND (10진수): 134400
+  클래스: Button
+  보임: x
+
+[318] (타이틀 없음)  HWND (16진수): 0x20D02
+  HWND (10진수): 134402
+  클래스: GXWND
+  보임: v
+
+[319] (타이틀 없음)  HWND (16진수): 0x20CFA
+  HWND (10진수): 134394
+  클래스: ComboBox
+  보임: x
+
+[320] (타이틀 없음)  HWND (16진수): 0x20D0C
+  HWND (10진수): 134412
+  클래스: ComboBox
+  보임: x
+
+[321] (타이틀 없음)  HWND (16진수): 0x20D10
+  HWND (10진수): 134416
+  클래스: Edit
+  보임: x
+
+[322] (타이틀 없음)  HWND (16진수): 0x20D12
+  HWND (10진수): 134418
+  클래스: ComboBox
+  보임: x
+
+[323] (타이틀 없음)  HWND (16진수): 0x20D16
+  HWND (10진수): 134422
+  클래스: ComboBox
+  보임: x
+
+[324] (타이틀 없음)  HWND (16진수): 0x20D1A
+  HWND (10진수): 134426
+  클래스: AfxWnd90
+  보임: x
+
+[325] (타이틀 없음)  HWND (16진수): 0x20D1C
+  HWND (10진수): 134428
+  클래스: Button
+  보임: v
+
+[326] (타이틀 없음)  HWND (16진수): 0x20CE4
+  HWND (10진수): 134372
+  클래스: AfxWnd90
+  보임: x
+
+[327] (타이틀 없음)  HWND (16진수): 0x20CF4
+  HWND (10진수): 134388
+  클래스: AfxWnd90
+  보임: x
+
+[328] (타이틀 없음)  HWND (16진수): 0x20CF6
+  HWND (10진수): 134390
+  클래스: AfxWnd90
+  보임: x
+
+[329] (타이틀 없음)  HWND (16진수): 0xF0846
+  HWND (10진수): 985158
+  클래스: AfxWnd90
+  보임: v
+
+[330] (타이틀 없음)  HWND (16진수): 0x110020
+  HWND (10진수): 1114144
+  클래스: AfxWnd90
+  보임: x
+
+[331] (타이틀 없음)  HWND (16진수): 0x40450
+  HWND (10진수): 263248
+  클래스: Button
+  보임: v
+
+[332] GDXU  HWND (16진수): 0x20D34
+  HWND (10진수): 134452
+  클래스: iMeritz MaskEdit2
+  보임: v
+
+[333] (타이틀 없음)  HWND (16진수): 0x20D36
+  HWND (10진수): 134454
+  클래스: AfxWnd90
+  보임: x
+
+[334] (타이틀 없음)  HWND (16진수): 0x20D3A
+  HWND (10진수): 134458
+  클래스: AfxWnd90
+  보임: x
+
+[335] (타이틀 없음)  HWND (16진수): 0x20D3C
+  HWND (10진수): 134460
+  클래스: AfxWnd90
+  보임: v
+
+[336] AX@GDXU  HWND (16진수): 0x20D3E
+  HWND (10진수): 134462
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[337] (타이틀 없음)  HWND (16진수): 0x20D40
+  HWND (10진수): 134464
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[338] (타이틀 없음)  HWND (16진수): 0x20D42
+  HWND (10진수): 134466
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[339] 0.00  HWND (16진수): 0x20D44
+  HWND (10진수): 134468
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[340] (타이틀 없음)  HWND (16진수): 0x20D46
+  HWND (10진수): 134470
+  클래스: Button
+  보임: x
+
+[341] GDXU  HWND (16진수): 0x20D48
+  HWND (10진수): 134472
+  클래스: iMeritz MaskEdit2
+  보임: x
+
+[342] 0.00  HWND (16진수): 0x20D4A
+  HWND (10진수): 134474
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[343] 344.3100  HWND (16진수): 0x20D4C
+  HWND (10진수): 134476
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[344] (타이틀 없음)  HWND (16진수): 0x20D4E
+  HWND (10진수): 134478
+  클래스: Button
+  보임: x
+
+[345] GDXU  HWND (16진수): 0x20D50
+  HWND (10진수): 134480
+  클래스: iMeritz MaskEdit2
+  보임: x
+
+[346] (타이틀 없음)  HWND (16진수): 0x20D52
+  HWND (10진수): 134482
+  클래스: Button
+  보임: v
+
+[347] (타이틀 없음)  HWND (16진수): 0x20D54
+  HWND (10진수): 134484
+  클래스: Button
+  보임: x
+
+[348] 03:예탁담보  HWND (16진수): 0x20D56
+  HWND (10진수): 134486
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[349] (타이틀 없음)  HWND (16진수): 0x20D58
+  HWND (10진수): 134488
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[350] (타이틀 없음)  HWND (16진수): 0x20D5A
+  HWND (10진수): 134490
+  클래스: Button
+  보임: x
+
+[351] (타이틀 없음)  HWND (16진수): 0x20D5C
+  HWND (10진수): 134492
+  클래스: Button
+  보임: x
+
+[352] (타이틀 없음)  HWND (16진수): 0x20D5E
+  HWND (10진수): 134494
+  클래스: Button
+  보임: x
+
+[353] (타이틀 없음)  HWND (16진수): 0x20D60
+  HWND (10진수): 134496
+  클래스: Static
+  보임: x
+
+[354] (타이틀 없음)  HWND (16진수): 0x20D62
+  HWND (10진수): 134498
+  클래스: AfxWnd90
+  보임: x
+
+[355] (타이틀 없음)  HWND (16진수): 0x20D64
+  HWND (10진수): 134500
+  클래스: AfxWnd90
+  보임: x
+
+[356] (타이틀 없음)  HWND (16진수): 0x20D66
+  HWND (10진수): 134502
+  클래스: AfxWnd90
+  보임: x
+
+[357] (타이틀 없음)  HWND (16진수): 0x20D68
+  HWND (10진수): 134504
+  클래스: AfxWnd90
+  보임: x
+
+[358] (타이틀 없음)  HWND (16진수): 0x20D6A
+  HWND (10진수): 134506
+  클래스: AfxWnd90
+  보임: v
+
+[359] (타이틀 없음)  HWND (16진수): 0x20D6C
+  HWND (10진수): 134508
+  클래스: Afx:60200000:8
+  보임: x
+
+[360] (타이틀 없음)  HWND (16진수): 0x20D6E
+  HWND (10진수): 134510
+  클래스: AfxWnd90
+  보임: v
+
+[361] (타이틀 없음)  HWND (16진수): 0x20D70
+  HWND (10진수): 134512
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[362] (타이틀 없음)  HWND (16진수): 0x20D72
+  HWND (10진수): 134514
+  클래스: AfxWnd90
+  보임: v
+
+[363] (타이틀 없음)  HWND (16진수): 0x20D74
+  HWND (10진수): 134516
+  클래스: AfxWnd90
+  보임: v
+
+[364] (타이틀 없음)  HWND (16진수): 0x20D76
+  HWND (10진수): 134518
+  클래스: AfxWnd90
+  보임: x
+
+[365] (타이틀 없음)  HWND (16진수): 0x20D78
+  HWND (10진수): 134520
+  클래스: AfxWnd90
+  보임: x
+
+[366] (타이틀 없음)  HWND (16진수): 0x20D7A
+  HWND (10진수): 134522
+  클래스: AfxWnd90
+  보임: x
+
+[367] (타이틀 없음)  HWND (16진수): 0x20D7C
+  HWND (10진수): 134524
+  클래스: AfxWnd90
+  보임: x
+
+[368] (타이틀 없음)  HWND (16진수): 0x20D7E
+  HWND (10진수): 134526
+  클래스: AfxWnd90
+  보임: x
+
+[369] (타이틀 없음)  HWND (16진수): 0x20D80
+  HWND (10진수): 134528
+  클래스: AfxWnd90
+  보임: x
+
+[370] (타이틀 없음)  HWND (16진수): 0x20D8A
+  HWND (10진수): 134538
+  클래스: AfxWnd90
+  보임: x
+
+[371] (타이틀 없음)  HWND (16진수): 0x20D88
+  HWND (10진수): 134536
+  클래스: AfxWnd90
+  보임: x
+
+[372] (타이틀 없음)  HWND (16진수): 0x20D86
+  HWND (10진수): 134534
+  클래스: AfxWnd90
+  보임: x
+
+[373] (타이틀 없음)  HWND (16진수): 0x20D84
+  HWND (10진수): 134532
+  클래스: AfxWnd90
+  보임: x
+
+[374] (타이틀 없음)  HWND (16진수): 0x20D82
+  HWND (10진수): 134530
+  클래스: AfxWnd90
+  보임: x
+
+[375] (타이틀 없음)  HWND (16진수): 0x20D8C
+  HWND (10진수): 134540
+  클래스: AfxWnd90
+  보임: x
+
+[376] (타이틀 없음)  HWND (16진수): 0x20D8E
+  HWND (10진수): 134542
+  클래스: AfxWnd90
+  보임: x
+
+[377] (타이틀 없음)  HWND (16진수): 0x20D92
+  HWND (10진수): 134546
+  클래스: AfxWnd90
+  보임: x
+
+[378] (타이틀 없음)  HWND (16진수): 0x20D90
+  HWND (10진수): 134544
+  클래스: AfxWnd90
+  보임: x
+
+[379] (타이틀 없음)  HWND (16진수): 0x20D94
+  HWND (10진수): 134548
+  클래스: AfxWnd90
+  보임: x
+
+[380] (타이틀 없음)  HWND (16진수): 0x20D96
+  HWND (10진수): 134550
+  클래스: AfxWnd90
+  보임: x
+
+[381] (타이틀 없음)  HWND (16진수): 0x20D98
+  HWND (10진수): 134552
+  클래스: AfxWnd90
+  보임: x
+
+[382] (타이틀 없음)  HWND (16진수): 0x20D9A
+  HWND (10진수): 134554
+  클래스: AfxWnd90
+  보임: x
+
+[383] (타이틀 없음)  HWND (16진수): 0x20D9C
+  HWND (10진수): 134556
+  클래스: AfxWnd90
+  보임: x
+
+[384] (타이틀 없음)  HWND (16진수): 0x20D9E
+  HWND (10진수): 134558
+  클래스: AfxWnd90
+  보임: x
+
+[385] (타이틀 없음)  HWND (16진수): 0x20D38
+  HWND (10진수): 134456
+  클래스: AfxWnd90
+  보임: x
+
+[386] (타이틀 없음)  HWND (16진수): 0x20DA0
+  HWND (10진수): 134560
+  클래스: Button
+  보임: x
+
+[387] (타이틀 없음)  HWND (16진수): 0x20D32
+  HWND (10진수): 134450
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[388] (타이틀 없음)  HWND (16진수): 0x30BF4
+  HWND (10진수): 199668
+  클래스: Button
+  보임: v
+
+[389] (타이틀 없음)  HWND (16진수): 0x20C6C
+  HWND (10진수): 134252
+  클래스: AfxWnd90
+  보임: v
+
+[390] (타이틀 없음)  HWND (16진수): 0x20C04
+  HWND (10진수): 134148
+  클래스: AfxWnd90
+  보임: v
+
+[391] (타이틀 없음)  HWND (16진수): 0x20C06
+  HWND (10진수): 134150
+  클래스: AfxWnd90
+  보임: x
+
+[392] (타이틀 없음)  HWND (16진수): 0x20C70
+  HWND (10진수): 134256
+  클래스: Button
+  보임: x
+
+[393] (타이틀 없음)  HWND (16진수): 0x20C72
+  HWND (10진수): 134258
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: x
+
+[394] (타이틀 없음)  HWND (16진수): 0x20C74
+  HWND (10진수): 134260
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[395] (타이틀 없음)  HWND (16진수): 0x20C76
+  HWND (10진수): 134262
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[396] (타이틀 없음)  HWND (16진수): 0x20C78
+  HWND (10진수): 134264
+  클래스: Button
+  보임: x
+
+[397] (타이틀 없음)  HWND (16진수): 0x20C7A
+  HWND (10진수): 134266
+  클래스: Button
+  보임: x
+
+[398] (타이틀 없음)  HWND (16진수): 0x20C7C
+  HWND (10진수): 134268
+  클래스: Button
+  보임: x
+
+[399] (타이틀 없음)  HWND (16진수): 0x20C7E
+  HWND (10진수): 134270
+  클래스: AfxWnd90
+  보임: x
+
+[400] (타이틀 없음)  HWND (16진수): 0x20C80
+  HWND (10진수): 134272
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[401] 지정가  HWND (16진수): 0x20C82
+  HWND (10진수): 134274
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[402] (타이틀 없음)  HWND (16진수): 0x20C84
+  HWND (10진수): 134276
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[403] (타이틀 없음)  HWND (16진수): 0x20C86
+  HWND (10진수): 134278
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: x
+
+[404] 100%  HWND (16진수): 0x20C88
+  HWND (10진수): 134280
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[405] (타이틀 없음)  HWND (16진수): 0x20C8A
+  HWND (10진수): 134282
+  클래스: Button
+  보임: x
+
+[406] (타이틀 없음)  HWND (16진수): 0x20C8C
+  HWND (10진수): 134284
+  클래스: Button
+  보임: x
+
+[407] (타이틀 없음)  HWND (16진수): 0x20C8E
+  HWND (10진수): 134286
+  클래스: Button
+  보임: x
+
+[408] (타이틀 없음)  HWND (16진수): 0x20C90
+  HWND (10진수): 134288
+  클래스: AfxWnd90
+  보임: x
+
+[409] 0  HWND (16진수): 0x20C92
+  HWND (10진수): 134290
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[410] 보통(지정가)  HWND (16진수): 0x20C94
+  HWND (10진수): 134292
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[411] (타이틀 없음)  HWND (16진수): 0x20C96
+  HWND (10진수): 134294
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: x
+
+[412] 100%  HWND (16진수): 0x20C98
+  HWND (10진수): 134296
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[413] (타이틀 없음)  HWND (16진수): 0x20C9A
+  HWND (10진수): 134298
+  클래스: Button
+  보임: v
+
+[414] (타이틀 없음)  HWND (16진수): 0x20C9C
+  HWND (10진수): 134300
+  클래스: Button
+  보임: v
+
+[415] (타이틀 없음)  HWND (16진수): 0x20C9E
+  HWND (10진수): 134302
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[416] (타이틀 없음)  HWND (16진수): 0x20CA0
+  HWND (10진수): 134304
+  클래스: Button
+  보임: v
+
+[417] (타이틀 없음)  HWND (16진수): 0x20CA2
+  HWND (10진수): 134306
+  클래스: AfxWnd90
+  보임: v
+
+[418] 보통(지정가)  HWND (16진수): 0x20CA4
+  HWND (10진수): 134308
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[419] (타이틀 없음)  HWND (16진수): 0x20CA6
+  HWND (10진수): 134310
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: v
+
+[420] (타이틀 없음)  HWND (16진수): 0x20CA8
+  HWND (10진수): 134312
+  클래스: AfxWnd90
+  보임: v
+
+[421] (타이틀 없음)  HWND (16진수): 0x20CAA
+  HWND (10진수): 134314
+  클래스: AfxWnd90
+  보임: v
+
+[422] (타이틀 없음)  HWND (16진수): 0x20CAC
+  HWND (10진수): 134316
+  클래스: AfxWnd90
+  보임: v
+
+[423] (타이틀 없음)  HWND (16진수): 0x20CAE
+  HWND (10진수): 134318
+  클래스: AfxWnd90
+  보임: v
+
+[424] (타이틀 없음)  HWND (16진수): 0x20CB0
+  HWND (10진수): 134320
+  클래스: AfxWnd90
+  보임: v
+
+[425] (타이틀 없음)  HWND (16진수): 0x20CB2
+  HWND (10진수): 134322
+  클래스: AfxWnd90
+  보임: v
+
+[426] (타이틀 없음)  HWND (16진수): 0x20CB4
+  HWND (10진수): 134324
+  클래스: AfxWnd90
+  보임: v
+
+[427] (타이틀 없음)  HWND (16진수): 0x20CB6
+  HWND (10진수): 134326
+  클래스: AfxWnd90
+  보임: v
+
+[428] 일반  HWND (16진수): 0x20CB8
+  HWND (10진수): 134328
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[429] (타이틀 없음)  HWND (16진수): 0x20CBA
+  HWND (10진수): 134330
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: v
+
+[430] (타이틀 없음)  HWND (16진수): 0x20CBC
+  HWND (10진수): 134332
+  클래스: Button
+  보임: v
+
+[431] (타이틀 없음)  HWND (16진수): 0x20CBE
+  HWND (10진수): 134334
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: x
+
+[432] (타이틀 없음)  HWND (16진수): 0x20CC0
+  HWND (10진수): 134336
+  클래스: Button
+  보임: x
+
+[433] (타이틀 없음)  HWND (16진수): 0x20CC2
+  HWND (10진수): 134338
+  클래스: Afx:60200000:3:00010003:00000000:00000000
+  보임: x
+
+[434] (타이틀 없음)  HWND (16진수): 0x20CC4
+  HWND (10진수): 134340
+  클래스: Button
+  보임: x
+
+[435] GDXU  HWND (16진수): 0x20CC6
+  HWND (10진수): 134342
+  클래스: iMeritz MaskEdit2
+  보임: x
+
+[436] (타이틀 없음)  HWND (16진수): 0x20CC8
+  HWND (10진수): 134344
+  클래스: Button
+  보임: x
+
+[437] (타이틀 없음)  HWND (16진수): 0x20CCA
+  HWND (10진수): 134346
+  클래스: SysTabControl32
+  보임: v
+
+[438] (타이틀 없음)  HWND (16진수): 0x20CCC
+  HWND (10진수): 134348
+  클래스: Button
+  보임: v
+
+[439] (타이틀 없음)  HWND (16진수): 0x20CCE
+  HWND (10진수): 134350
+  클래스: Button
+  보임: x
+
+[440] (타이틀 없음)  HWND (16진수): 0x20CD0
+  HWND (10진수): 134352
+  클래스: Button
+  보임: x
+
+[441] (타이틀 없음)  HWND (16진수): 0x20CD2
+  HWND (10진수): 134354
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[442] (타이틀 없음)  HWND (16진수): 0x20CD4
+  HWND (10진수): 134356
+  클래스: Button
+  보임: v
+
+[443] (타이틀 없음)  HWND (16진수): 0x20CD6
+  HWND (10진수): 134358
+  클래스: AfxWnd90
+  보임: v
+
+[444] [09501] 공지사항  HWND (16진수): 0x20C28
+  HWND (10진수): 134184
+  클래스: ITGEN_SCREEN_WINDOW
+  보임: v
+
+[445] (타이틀 없음)  HWND (16진수): 0x20C20
+  HWND (10진수): 134176
+  클래스: #32770
+  보임: v
+
+[446] (타이틀 없음)  HWND (16진수): 0x20C22
+  HWND (10진수): 134178
+  클래스: AfxWnd90
+  보임: x
+
+[447] (타이틀 없음)  HWND (16진수): 0x20C32
+  HWND (10진수): 134194
+  클래스: Button
+  보임: v
+
+[448] (타이틀 없음)  HWND (16진수): 0x20C34
+  HWND (10진수): 134196
+  클래스: Button
+  보임: v
+
+[449] (타이틀 없음)  HWND (16진수): 0x20C08
+  HWND (10진수): 134152
+  클래스: Button
+  보임: v
+
+[450] (타이틀 없음)  HWND (16진수): 0x20C36
+  HWND (10진수): 134198
+  클래스: AfxWnd90
+  보임: v
+
+[451] (타이틀 없음)  HWND (16진수): 0x20B0A
+  HWND (10진수): 133898
+  클래스: AfxWnd90
+  보임: v
+
+[452] (타이틀 없음)  HWND (16진수): 0x20B0E
+  HWND (10진수): 133902
+  클래스: Button
+  보임: v
+
+[453] (타이틀 없음)  HWND (16진수): 0x20B10
+  HWND (10진수): 133904
+  클래스: Button
+  보임: v
+
+[454] (타이틀 없음)  HWND (16진수): 0x20B12
+  HWND (10진수): 133906
+  클래스: Button
+  보임: v
+
+[455] (타이틀 없음)  HWND (16진수): 0x20B14
+  HWND (10진수): 133908
+  클래스: AfxWnd90
+  보임: v
+
+[456] (타이틀 없음)  HWND (16진수): 0x20B16
+  HWND (10진수): 133910
+  클래스: Button
+  보임: v
+
+[457] (타이틀 없음)  HWND (16진수): 0x20B18
+  HWND (10진수): 133912
+  클래스: AfxWnd90
+  보임: x
+
+[458] (타이틀 없음)  HWND (16진수): 0x20B1A
+  HWND (10진수): 133914
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[459] (타이틀 없음)  HWND (16진수): 0x20B1C
+  HWND (10진수): 133916
+  클래스: AfxWnd90
+  보임: x
+
+[460] (타이틀 없음)  HWND (16진수): 0x20B1E
+  HWND (10진수): 133918
+  클래스: AfxWnd90
+  보임: x
+
+[461] (타이틀 없음)  HWND (16진수): 0x20B20
+  HWND (10진수): 133920
+  클래스: Button
+  보임: v
+
+[462] (타이틀 없음)  HWND (16진수): 0x20B22
+  HWND (10진수): 133922
+  클래스: Button
+  보임: v
+
+[463] (타이틀 없음)  HWND (16진수): 0x20B24
+  HWND (10진수): 133924
+  클래스: RichEdit20A
+  보임: x
+
+[464] (타이틀 없음)  HWND (16진수): 0x20B26
+  HWND (10진수): 133926
+  클래스: RichEdit20A
+  보임: x
+
+[465] (타이틀 없음)  HWND (16진수): 0x20B28
+  HWND (10진수): 133928
+  클래스: AfxWnd90
+  보임: v
+
+[466] (타이틀 없음)  HWND (16진수): 0x20B2A
+  HWND (10진수): 133930
+  클래스: Button
+  보임: v
+
+[467] (타이틀 없음)  HWND (16진수): 0x20B2C
+  HWND (10진수): 133932
+  클래스: Button
+  보임: v
+
+[468] (타이틀 없음)  HWND (16진수): 0x20B2E
+  HWND (10진수): 133934
+  클래스: AfxWnd90
+  보임: x
+
+[469] (타이틀 없음)  HWND (16진수): 0x20B30
+  HWND (10진수): 133936
+  클래스: Button
+  보임: v
+
+[470] (타이틀 없음)  HWND (16진수): 0x20B32
+  HWND (10진수): 133938
+  클래스: Button
+  보임: v
+
+[471] (타이틀 없음)  HWND (16진수): 0x20B34
+  HWND (10진수): 133940
+  클래스: AfxWnd90
+  보임: v
+
+[472] (타이틀 없음)  HWND (16진수): 0x20B38
+  HWND (10진수): 133944
+  클래스: AfxWnd90
+  보임: v
+
+[473] (타이틀 없음)  HWND (16진수): 0x20B36
+  HWND (10진수): 133942
+  클래스: AfxWnd90
+  보임: v
+
+[474] (타이틀 없음)  HWND (16진수): 0x20B3A
+  HWND (10진수): 133946
+  클래스: AfxWnd90
+  보임: v
+
+[475] (타이틀 없음)  HWND (16진수): 0x20B3C
+  HWND (10진수): 133948
+  클래스: AfxWnd90
+  보임: v
+
+[476] (타이틀 없음)  HWND (16진수): 0x20B3E
+  HWND (10진수): 133950
+  클래스: AfxWnd90
+  보임: x
+
+[477] (타이틀 없음)  HWND (16진수): 0x20B40
+  HWND (10진수): 133952
+  클래스: AfxWnd90
+  보임: v
+
+[478] (타이틀 없음)  HWND (16진수): 0x20B42
+  HWND (10진수): 133954
+  클래스: AfxWnd90
+  보임: v
+
+[479] (타이틀 없음)  HWND (16진수): 0x20B44
+  HWND (10진수): 133956
+  클래스: AfxWnd90
+  보임: v
+
+[480] (타이틀 없음)  HWND (16진수): 0x20B46
+  HWND (10진수): 133958
+  클래스: AfxWnd90
+  보임: v
+
+[481] (타이틀 없음)  HWND (16진수): 0x20B48
+  HWND (10진수): 133960
+  클래스: AfxWnd90
+  보임: v
+
+[482] (타이틀 없음)  HWND (16진수): 0x20B4A
+  HWND (10진수): 133962
+  클래스: AfxWnd90
+  보임: v
+
+[483] (타이틀 없음)  HWND (16진수): 0x20B4C
+  HWND (10진수): 133964
+  클래스: AfxWnd90
+  보임: v
+
+[484] (타이틀 없음)  HWND (16진수): 0x20B4E
+  HWND (10진수): 133966
+  클래스: AfxWnd90
+  보임: v
+
+[485] (타이틀 없음)  HWND (16진수): 0x20B50
+  HWND (10진수): 133968
+  클래스: AfxWnd90
+  보임: v
+
+[486] (타이틀 없음)  HWND (16진수): 0x20B52
+  HWND (10진수): 133970
+  클래스: AfxWnd90
+  보임: x
+
+[487] (타이틀 없음)  HWND (16진수): 0x20B54
+  HWND (10진수): 133972
+  클래스: SysTabControl32
+  보임: v
+
+[488] (타이틀 없음)  HWND (16진수): 0x20B56
+  HWND (10진수): 133974
+  클래스: SysTabControl32
+  보임: v
+
+[489] (타이틀 없음)  HWND (16진수): 0x20B58
+  HWND (10진수): 133976
+  클래스: AfxWnd90
+  보임: x
+
+[490] (타이틀 없음)  HWND (16진수): 0x20B5A
+  HWND (10진수): 133978
+  클래스: AfxWnd90
+  보임: x
+
+[491] (타이틀 없음)  HWND (16진수): 0x20B5C
+  HWND (10진수): 133980
+  클래스: AfxWnd90
+  보임: x
+
+[492] (타이틀 없음)  HWND (16진수): 0x20B5E
+  HWND (10진수): 133982
+  클래스: Button
+  보임: x
+
+[493] (타이틀 없음)  HWND (16진수): 0x20B60
+  HWND (10진수): 133984
+  클래스: AfxWnd90
+  보임: x
+
+[494] (타이틀 없음)  HWND (16진수): 0x20B62
+  HWND (10진수): 133986
+  클래스: Button
+  보임: v
+
+[495] (타이틀 없음)  HWND (16진수): 0x20B64
+  HWND (10진수): 133988
+  클래스: Button
+  보임: v
+
+[496] (타이틀 없음)  HWND (16진수): 0x20B66
+  HWND (10진수): 133990
+  클래스: Button
+  보임: v
+
+[497] (타이틀 없음)  HWND (16진수): 0x20B68
+  HWND (10진수): 133992
+  클래스: Button
+  보임: v
+
+[498] (타이틀 없음)  HWND (16진수): 0x20B6A
+  HWND (10진수): 133994
+  클래스: Button
+  보임: v
+
+[499] (타이틀 없음)  HWND (16진수): 0x20B6C
+  HWND (10진수): 133996
+  클래스: Button
+  보임: v
+
+[500] (타이틀 없음)  HWND (16진수): 0x20B6E
+  HWND (10진수): 133998
+  클래스: Button
+  보임: x
+
+[501] (타이틀 없음)  HWND (16진수): 0x20B70
+  HWND (10진수): 134000
+  클래스: Button
+  보임: x
+
+[502] (타이틀 없음)  HWND (16진수): 0x20B72
+  HWND (10진수): 134002
+  클래스: Button
+  보임: v
+
+[503] (타이틀 없음)  HWND (16진수): 0x20B74
+  HWND (10진수): 134004
+  클래스: Button
+  보임: v
+
+[504] (타이틀 없음)  HWND (16진수): 0x20B76
+  HWND (10진수): 134006
+  클래스: Button
+  보임: v
+
+[505] (타이틀 없음)  HWND (16진수): 0x20B78
+  HWND (10진수): 134008
+  클래스: GXWND
+  보임: v
+
+[506] (타이틀 없음)  HWND (16진수): 0x20B7A
+  HWND (10진수): 134010
+  클래스: ComboBox
+  보임: x
+
+[507] (타이틀 없음)  HWND (16진수): 0x20B7E
+  HWND (10진수): 134014
+  클래스: ComboBox
+  보임: x
+
+[508] (타이틀 없음)  HWND (16진수): 0x20B82
+  HWND (10진수): 134018
+  클래스: Edit
+  보임: x
+
+[509] (타이틀 없음)  HWND (16진수): 0x20B84
+  HWND (10진수): 134020
+  클래스: ComboBox
+  보임: x
+
+[510] (타이틀 없음)  HWND (16진수): 0x20B88
+  HWND (10진수): 134024
+  클래스: ComboBox
+  보임: x
+
+[511] (타이틀 없음)  HWND (16진수): 0x20B8C
+  HWND (10진수): 134028
+  클래스: GXWND
+  보임: v
+
+[512] (타이틀 없음)  HWND (16진수): 0x20B8E
+  HWND (10진수): 134030
+  클래스: ComboBox
+  보임: x
+
+[513] (타이틀 없음)  HWND (16진수): 0x20B92
+  HWND (10진수): 134034
+  클래스: ComboBox
+  보임: x
+
+[514] (타이틀 없음)  HWND (16진수): 0x20B96
+  HWND (10진수): 134038
+  클래스: Edit
+  보임: x
+
+[515] (타이틀 없음)  HWND (16진수): 0x20B98
+  HWND (10진수): 134040
+  클래스: ComboBox
+  보임: x
+
+[516] (타이틀 없음)  HWND (16진수): 0x20B9C
+  HWND (10진수): 134044
+  클래스: ComboBox
+  보임: x
+
+[517] (타이틀 없음)  HWND (16진수): 0x20BA0
+  HWND (10진수): 134048
+  클래스: AfxWnd90
+  보임: v
+
+[518] (타이틀 없음)  HWND (16진수): 0x20BA2
+  HWND (10진수): 134050
+  클래스: AfxWnd90
+  보임: v
+
+[519] (타이틀 없음)  HWND (16진수): 0x20BA4
+  HWND (10진수): 134052
+  클래스: Button
+  보임: v
+
+[520] (타이틀 없음)  HWND (16진수): 0x20BA6
+  HWND (10진수): 134054
+  클래스: AfxWnd90
+  보임: x
+
+[521] (타이틀 없음)  HWND (16진수): 0x20BA8
+  HWND (10진수): 134056
+  클래스: Button
+  보임: v
+
+[522] (타이틀 없음)  HWND (16진수): 0x20BAA
+  HWND (10진수): 134058
+  클래스: AfxWnd90
+  보임: v
+
+[523] (타이틀 없음)  HWND (16진수): 0x20BAC
+  HWND (10진수): 134060
+  클래스: Button
+  보임: v
+
+[524] (타이틀 없음)  HWND (16진수): 0x20BAE
+  HWND (10진수): 134062
+  클래스: Button
+  보임: v
+
+[525] (타이틀 없음)  HWND (16진수): 0x20BB0
+  HWND (10진수): 134064
+  클래스: Button
+  보임: v
+
+[526] (타이틀 없음)  HWND (16진수): 0x20BB2
+  HWND (10진수): 134066
+  클래스: Button
+  보임: v
+
+[527] (타이틀 없음)  HWND (16진수): 0x20BB4
+  HWND (10진수): 134068
+  클래스: Button
+  보임: v
+
+[528] (타이틀 없음)  HWND (16진수): 0x20BB6
+  HWND (10진수): 134070
+  클래스: Button
+  보임: x
+
+[529] (타이틀 없음)  HWND (16진수): 0x20BB8
+  HWND (10진수): 134072
+  클래스: AfxWnd90
+  보임: v
+
+[530] (타이틀 없음)  HWND (16진수): 0x20BBA
+  HWND (10진수): 134074
+  클래스: Button
+  보임: v
+
+[531] (타이틀 없음)  HWND (16진수): 0x20BBC
+  HWND (10진수): 134076
+  클래스: AfxWnd90
+  보임: v
+
+[532] (타이틀 없음)  HWND (16진수): 0x20BBE
+  HWND (10진수): 134078
+  클래스: AfxWnd90
+  보임: v
+
+[533] (타이틀 없음)  HWND (16진수): 0x20BC0
+  HWND (10진수): 134080
+  클래스: AfxWnd90
+  보임: v
+
+[534] [07441] 잔고 통보처 변경  HWND (16진수): 0x30CDC
+  HWND (10진수): 199900
+  클래스: ITGEN_SCREEN_WINDOW
+  보임: v
+
+[535] (타이틀 없음)  HWND (16진수): 0x20AE8
+  HWND (10진수): 133864
+  클래스: #32770
+  보임: v
+
+[536] (타이틀 없음)  HWND (16진수): 0x20AEA
+  HWND (10진수): 133866
+  클래스: AfxWnd90
+  보임: x
+
+[537] (타이틀 없음)  HWND (16진수): 0x20AEC
+  HWND (10진수): 133868
+  클래스: Button
+  보임: v
+
+[538] (타이틀 없음)  HWND (16진수): 0x20AEE
+  HWND (10진수): 133870
+  클래스: Button
+  보임: v
+
+[539] (타이틀 없음)  HWND (16진수): 0x20AF0
+  HWND (10진수): 133872
+  클래스: AfxWnd90
+  보임: v
+
+[540] (타이틀 없음)  HWND (16진수): 0x20C38
+  HWND (10진수): 134200
+  클래스: AfxWnd90
+  보임: v
+
+[541] (타이틀 없음)  HWND (16진수): 0x20C46
+  HWND (10진수): 134214
+  클래스: AfxWnd90
+  보임: v
+
+[542] (타이틀 없음)  HWND (16진수): 0x20C4A
+  HWND (10진수): 134218
+  클래스: RichEdit20A
+  보임: v
+
+[543] (타이틀 없음)  HWND (16진수): 0x20C44
+  HWND (10진수): 134212
+  클래스: AfxWnd90
+  보임: v
+
+[544] (타이틀 없음)  HWND (16진수): 0x20C48
+  HWND (10진수): 134216
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[545] (타이틀 없음)  HWND (16진수): 0x20C4C
+  HWND (10진수): 134220
+  클래스: AfxWnd90
+  보임: v
+
+[546] (타이틀 없음)  HWND (16진수): 0x20C4E
+  HWND (10진수): 134222
+  클래스: Button
+  보임: v
+
+[547] (타이틀 없음)  HWND (16진수): 0x20C50
+  HWND (10진수): 134224
+  클래스: AfxWnd90
+  보임: v
+
+[548] 온라인조회  HWND (16진수): 0x20C52
+  HWND (10진수): 134226
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[549] (타이틀 없음)  HWND (16진수): 0x20C54
+  HWND (10진수): 134228
+  클래스: Button
+  보임: v
+
+[550] (타이틀 없음)  HWND (16진수): 0x20C56
+  HWND (10진수): 134230
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[551] (타이틀 없음)  HWND (16진수): 0x20C58
+  HWND (10진수): 134232
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[552] (타이틀 없음)  HWND (16진수): 0x20C5A
+  HWND (10진수): 134234
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[553] (타이틀 없음)  HWND (16진수): 0x20C5C
+  HWND (10진수): 134236
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[554] (타이틀 없음)  HWND (16진수): 0x20C5E
+  HWND (10진수): 134238
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[555] 자택주소  HWND (16진수): 0x20C60
+  HWND (10진수): 134240
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[556] (타이틀 없음)  HWND (16진수): 0x20C62
+  HWND (10진수): 134242
+  클래스: Button
+  보임: v
+
+[557] (타이틀 없음)  HWND (16진수): 0x20C64
+  HWND (10진수): 134244
+  클래스: Button
+  보임: v
+
+[558] (타이틀 없음)  HWND (16진수): 0x20C66
+  HWND (10진수): 134246
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[559] (타이틀 없음)  HWND (16진수): 0x20C68
+  HWND (10진수): 134248
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[560] (타이틀 없음)  HWND (16진수): 0x20C42
+  HWND (10진수): 134210
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[561] (타이틀 없음)  HWND (16진수): 0x20C6A
+  HWND (10진수): 134250
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[562] 자택주소  HWND (16진수): 0x20AF4
+  HWND (10진수): 133876
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[563] (타이틀 없음)  HWND (16진수): 0x20AF6
+  HWND (10진수): 133878
+  클래스: AfxWnd90
+  보임: v
+
+[564] (타이틀 없음)  HWND (16진수): 0x20AF8
+  HWND (10진수): 133880
+  클래스: AfxWnd90
+  보임: v
+
+[565] (타이틀 없음)  HWND (16진수): 0x20AFA
+  HWND (10진수): 133882
+  클래스: AfxWnd90
+  보임: v
+
+[566] (타이틀 없음)  HWND (16진수): 0x20AFC
+  HWND (10진수): 133884
+  클래스: Button
+  보임: v
+
+[567] (타이틀 없음)  HWND (16진수): 0x20AFE
+  HWND (10진수): 133886
+  클래스: Button
+  보임: v
+
+[568] (타이틀 없음)  HWND (16진수): 0x20B00
+  HWND (10진수): 133888
+  클래스: AfxWnd90
+  보임: v
+
+[569] (타이틀 없음)  HWND (16진수): 0x20B02
+  HWND (10진수): 133890
+  클래스: iMeritz MaskEdit
+  보임: v
+
+[570] (타이틀 없음)  HWND (16진수): 0x20B04
+  HWND (10진수): 133892
+  클래스: AfxWnd90
+  보임: v
+
+[571] (타이틀 없음)  HWND (16진수): 0x20B06
+  HWND (10진수): 133894
+  클래스: AfxWnd90
+  보임: v
+
+[572] (타이틀 없음)  HWND (16진수): 0x20BFA
+  HWND (10진수): 134138
+  클래스: Button
+  보임: v
+
+[573] (타이틀 없음)  HWND (16진수): 0x20C0A
+  HWND (10진수): 134154
+  클래스: Button
+  보임: v
+
+[574] (타이틀 없음)  HWND (16진수): 0x20C0C
+  HWND (10진수): 134156
+  클래스: Button
+  보임: v
+
+[575] (타이틀 없음)  HWND (16진수): 0x20C0E
+  HWND (10진수): 134158
+  클래스: Button
+  보임: v
+
+[576] (타이틀 없음)  HWND (16진수): 0x20C10
+  HWND (10진수): 134160
+  클래스: Button
+  보임: v
+
+[577] (타이틀 없음)  HWND (16진수): 0x20C12
+  HWND (10진수): 134162
+  클래스: Button
+  보임: v
+
+[578] (타이틀 없음)  HWND (16진수): 0x20C14
+  HWND (10진수): 134164
+  클래스: AfxWnd90
+  보임: v
+
+[579] (타이틀 없음)  HWND (16진수): 0x20C16
+  HWND (10진수): 134166
+  클래스: Button
+  보임: v
+
+[580] (타이틀 없음)  HWND (16진수): 0x20C18
+  HWND (10진수): 134168
+  클래스: Button
+  보임: v
+
+[581] (타이틀 없음)  HWND (16진수): 0x20C1C
+  HWND (10진수): 134172
+  클래스: Button
+  보임: v
+
+[582] (타이틀 없음)  HWND (16진수): 0x20C1A
+  HWND (10진수): 134170
+  클래스: Button
+  보임: v
+
+[583] (타이틀 없음)  HWND (16진수): 0x20C1E
+  HWND (10진수): 134174
+  클래스: Button
+  보임: v
+
+[584] (타이틀 없음)  HWND (16진수): 0x20C2E
+  HWND (10진수): 134190
+  클래스: AfxWnd90
+  보임: v
+
+[585] (타이틀 없음)  HWND (16진수): 0x20C30
+  HWND (10진수): 134192
+  클래스: AfxWnd90
+  보임: v
+
+[586] (타이틀 없음)  HWND (16진수): 0x20C2A
+  HWND (10진수): 134186
+  클래스: AfxWnd90
+  보임: v
+
+[587] (타이틀 없음)  HWND (16진수): 0x20C2C
+  HWND (10진수): 134188
+  클래스: AfxWnd90
+  보임: v
+
+[588] [01706] 실시간 신호검색  HWND (16진수): 0x4099C
+  HWND (10진수): 264604
+  클래스: ITGEN_SCREEN_WINDOW
+  보임: x
+
+[589] (타이틀 없음)  HWND (16진수): 0x4099A
+  HWND (10진수): 264602
+  클래스: #32770
+  보임: x
+
+[590] (타이틀 없음)  HWND (16진수): 0x60A1E
+  HWND (10진수): 395806
+  클래스: #32770
+  보임: x
+
+[591] (타이틀 없음)  HWND (16진수): 0x40994
+  HWND (10진수): 264596
+  클래스: AfxWnd90
+  보임: x
+
+[592] 통  HWND (16진수): 0x409A0
+  HWND (10진수): 264608
+  클래스: iMeritz MaskEdit
+  보임: x
+
+[593] (타이틀 없음)  HWND (16진수): 0x4099E
+  HWND (10진수): 264606
+  클래스: Button
+  보임: x
+
+[594] (타이틀 없음)  HWND (16진수): 0x409A8
+  HWND (10진수): 264616
+  클래스: Button
+  보임: x
+
+[595] (타이틀 없음)  HWND (16진수): 0x409B2
+  HWND (10진수): 264626
+  클래스: Button
+  보임: x
+
+[596] 138040  HWND (16진수): 0x409AE
+  HWND (10진수): 264622
+  클래스: iMeritz MaskEdit2
+  보임: x
+
+[597] (타이틀 없음)  HWND (16진수): 0x409AC
+  HWND (10진수): 264620
+  클래스: Button
+  보임: x
+
+[598] (타이틀 없음)  HWND (16진수): 0x409AA
+  HWND (10진수): 264618
+  클래스: Button
+  보임: x
+
+[599] (타이틀 없음)  HWND (16진수): 0x40940
+  HWND (10진수): 264512
+  클래스: Button
+  보임: x
+
+[600] (타이틀 없음)  HWND (16진수): 0x40292
+  HWND (10진수): 262802
+  클래스: Button
+  보임: x
+
+[601] Main Frame Window  HWND (16진수): 0x309A4
+  HWND (10진수): 199076
+  클래스: AfxFrameOrView90
+  보임: x
+
+[602] 전체  HWND (16진수): 0x805B0
+  HWND (10진수): 525744
+  클래스: Button
+  보임: x
+
+[603] >  HWND (16진수): 0x309A2
+  HWND (10진수): 199074
+  클래스: Button
+  보임: x
+
+[604] 신호설정  HWND (16진수): 0x70112
+  HWND (10진수): 459026
+  클래스: Button
+  보임: x
+
+[605] 지우기  HWND (16진수): 0x30958
+  HWND (10진수): 199000
+  클래스: Button
+  보임: x
+
+[606] 검색  HWND (16진수): 0x30982
+  HWND (10진수): 199042
+  클래스: Button
+  보임: x
+
+[607] 항목편집  HWND (16진수): 0x3098C
+  HWND (10진수): 199052
+  클래스: Button
+  보임: x
+
+[608] (타이틀 없음)  HWND (16진수): 0x20AD8
+  HWND (10진수): 133848
+  클래스: AfxWnd90
+  보임: x
+
+[609] (타이틀 없음)  HWND (16진수): 0x20AB6
+  HWND (10진수): 133814
+  클래스: AfxWnd90
+  보임: x
+
+[610] (타이틀 없음)  HWND (16진수): 0x20AA0
+  HWND (10진수): 133792
+  클래스: AfxWnd90
+  보임: x
+
+[611] (타이틀 없음)  HWND (16진수): 0x20A6E
+  HWND (10진수): 133742
+  클래스: AfxWnd90
+  보임: x
+
+[612] (타이틀 없음)  HWND (16진수): 0x20A5A
+  HWND (10진수): 133722
+  클래스: AfxWnd90
+  보임: x
+
+[613] (타이틀 없음)  HWND (16진수): 0x3096A
+  HWND (10진수): 199018
+  클래스: AfxWnd90
+  보임: x
+
+[614] (타이틀 없음)  HWND (16진수): 0x20D30
+  HWND (10진수): 134448
+  클래스: ScrollBar
+  보임: x
+
+[615] (타이틀 없음)  HWND (16진수): 0x7028C
+  HWND (10진수): 459404
+  클래스: ScrollBar
+  보임: x
+
+[616] (타이틀 없음)  HWND (16진수): 0x30280
+  HWND (10진수): 197248
+  클래스: ScrollBar
+  보임: x
+
+[617] (타이틀 없음)  HWND (16진수): 0x30288
+  HWND (10진수): 197256
+  클래스: Edit
+  보임: x
+
+[618] (타이틀 없음)  HWND (16진수): 0x3027E
+  HWND (10진수): 197246
+  클래스: AfxOleControl90
+  보임: x
+
+[619] (타이틀 없음)  HWND (16진수): 0x809B8
+  HWND (10진수): 526776
+  클래스: #32770
+  보임: x
+
+[620] (타이틀 없음)  HWND (16진수): 0x90276
+  HWND (10진수): 590454
+  클래스: SysDateTimePick32
+  보임: x
+
+[621] (타이틀 없음)  HWND (16진수): 0x70248
+  HWND (10진수): 459336
+  클래스: ScrollBar
+  보임: x
+
+[622] B  HWND (16진수): 0x709BA
+  HWND (10진수): 461242
+  클래스: Button
+  보임: x
+
+[623] B  HWND (16진수): 0xD0A0C
+  HWND (10진수): 854540
+  클래스: Button
+  보임: x
+
+[624] B  HWND (16진수): 0x70420
+  HWND (10진수): 459808
+  클래스: Button
+  보임: x
+
+[625] B  HWND (16진수): 0x409D4
+  HWND (10진수): 264660
+  클래스: Button
+  보임: x
+
+[626] (타이틀 없음)  HWND (16진수): 0x609B6
+  HWND (10진수): 395702
+  클래스: msctls_trackbar32
+  보임: x
+
+[627] B  HWND (16진수): 0x409CC
+  HWND (10진수): 264652
+  클래스: Button
+  보임: x
+
+[628] (타이틀 없음)  HWND (16진수): 0x409CA
+  HWND (10진수): 264650
+  클래스: SysTabControl32
+  보임: x
+
+[629] SysIndicator  HWND (16진수): 0x409C2
+  HWND (10진수): 264642
+  클래스: AfxWnd90
+  보임: x
+
+[630]  메리츠금융지주  HWND (16진수): 0xB0694
+  HWND (10진수): 722580
+  클래스: Static
+  보임: x
+
+[631] 일  HWND (16진수): 0x409C8
+  HWND (10진수): 264648
+  클래스: Button
+  보임: x
+
+[632] 주  HWND (16진수): 0x30282
+  HWND (10진수): 197250
+  클래스: Button
+  보임: x
+
+[633] 월  HWND (16진수): 0x30298
+  HWND (10진수): 197272
+  클래스: Button
+  보임: x
+
+[634] 분  HWND (16진수): 0x30296
+  HWND (10진수): 197270
+  클래스: Button
+  보임: x
+
+[635] 틱  HWND (16진수): 0x3029C
+  HWND (10진수): 197276
+  클래스: Button
+  보임: x
+
+[636] (타이틀 없음)  HWND (16진수): 0x30286
+  HWND (10진수): 197254
+  클래스: Button
+  보임: x
+
+[637] (타이틀 없음)  HWND (16진수): 0x3027C
+  HWND (10진수): 197244
+  클래스: ComboBox
+  보임: x
+
+[638] (타이틀 없음)  HWND (16진수): 0x60FB4
+  HWND (10진수): 397236
+  클래스: Edit
+  보임: x
+
+[639] 메리츠금융지주  HWND (16진수): 0x50A24
+  HWND (10진수): 330276
+  클래스: Static
+  보임: x
+
+[640] Code Init  HWND (16진수): 0x609D0
+  HWND (10진수): 395728
+  클래스: Button
+  보임: x
+
+[641] (타이틀 없음)  HWND (16진수): 0x809DA
+  HWND (10진수): 526810
+  클래스: ComboBox
+  보임: x
+
+[642] (타이틀 없음)  HWND (16진수): 0x409E2
+  HWND (10진수): 264674
+  클래스: Button
+  보임: x
+
+[643] 뉴스  HWND (16진수): 0x409FA
+  HWND (10진수): 264698
+  클래스: Button
+  보임: x
+
+[644] 시스템  HWND (16진수): 0x409F8
+  HWND (10진수): 264696
+  클래스: Button
+  보임: x
+
+[645] [1분]  HWND (16진수): 0x409F6
+  HWND (10진수): 264694
+  클래스: Static
+  보임: x
+
+[646] 시세  HWND (16진수): 0x409F4
+  HWND (10진수): 264692
+  클래스: Button
+  보임: x
+
+[647] 기술적 지표  HWND (16진수): 0x409F2
+  HWND (10진수): 264690
+  클래스: Button
+  보임: x
+
+[648] 거래원  HWND (16진수): 0x409F0
+  HWND (10진수): 264688
+  클래스: Button
+  보임: x
+
+[649] (타이틀 없음)  HWND (16진수): 0x409EE
+  HWND (10진수): 264686
+  클래스: ComboBox
+  보임: x
+
+[650] 종목바  HWND (16진수): 0x60A80
+  HWND (10진수): 395904
+  클래스: AfxControlBar90
+  보임: v
+
+[651] 계좌툴바  HWND (16진수): 0x30900
+  HWND (10진수): 198912
+  클래스: Afx:60200000:8:00010003:00100063:00000000
+  보임: x
+
+[652] (타이틀 없음)  HWND (16진수): 0x9090A
+  HWND (10진수): 592138
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: x
+
+[653] 종목바  HWND (16진수): 0x50FB2
+  HWND (10진수): 331698
+  클래스: Afx:60200000:8:00010003:00100063:00000000
+  보임: v
+
+[654] (타이틀 없음)  HWND (16진수): 0x5097C
+  HWND (10진수): 330108
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: v
+
+[655] Tool bar  HWND (16진수): 0xC011A
+  HWND (10진수): 786714
+  클래스: Afx:60200000:8:00010003:00100063:00000000
+  보임: v
+
+[656] (타이틀 없음)  HWND (16진수): 0x6095A
+  HWND (10진수): 395610
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: v
+
+[657] (타이틀 없음)  HWND (16진수): 0x50A40
+  HWND (10진수): 330304
+  클래스: AfxWnd90
+  보임: v
+
+[658] (타이틀 없음)  HWND (16진수): 0x40A7E
+  HWND (10진수): 264830
+  클래스: Edit
+  보임: v
+
+[659] (타이틀 없음)  HWND (16진수): 0xC08EA
+  HWND (10진수): 788714
+  클래스: #32770
+  보임: v
+
+[660] (타이틀 없음)  HWND (16진수): 0x508F4
+  HWND (10진수): 329972
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: v
+
+[661] 화면 제어바  HWND (16진수): 0x700A0
+  HWND (10진수): 458912
+  클래스: AfxControlBar90
+  보임: v
+
+[662] 티커바  HWND (16진수): 0x30908
+  HWND (10진수): 198920
+  클래스: Afx:60200000:8:00010003:00100063:00000000
+  보임: v
+
+[663] (타이틀 없음)  HWND (16진수): 0x908FC
+  HWND (10진수): 592124
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: v
+
+[664] 티커 라인 컨트롤  HWND (16진수): 0x14092E
+  HWND (10진수): 1313070
+  클래스: CTickerLineCtrl
+  보임: v
+
+[665] 티커 표시 라인 컨트롤  HWND (16진수): 0x50970
+  HWND (10진수): 330096
+  클래스: CTickerItemCtrl
+  보임: v
+
+[666] (타이틀 없음)  HWND (16진수): 0x5094A
+  HWND (10진수): 330058
+  클래스: Button
+  보임: x
+
+[667] 티커 표시 라인 컨트롤  HWND (16진수): 0x5097A
+  HWND (10진수): 330106
+  클래스: CTickerItemCtrl
+  보임: v
+
+[668] (타이틀 없음)  HWND (16진수): 0x5097E
+  HWND (10진수): 330110
+  클래스: Button
+  보임: v
+
+[669] 티커 표시 라인 컨트롤  HWND (16진수): 0x50984
+  HWND (10진수): 330116
+  클래스: CTickerItemCtrl
+  보임: v
+
+[670] (타이틀 없음)  HWND (16진수): 0x50986
+  HWND (10진수): 330118
+  클래스: Button
+  보임: v
+
+[671] 티커 표시 라인 컨트롤  HWND (16진수): 0x3F08D8
+  HWND (10진수): 4131032
+  클래스: CTickerItemCtrl
+  보임: v
+
+[672] (타이틀 없음)  HWND (16진수): 0x70998
+  HWND (10진수): 461208
+  클래스: Button
+  보임: x
+
+[673] 티커 표시 라인 컨트롤  HWND (16진수): 0x60A4E
+  HWND (10진수): 395854
+  클래스: CTickerItemCtrl
+  보임: v
+
+[674] (타이틀 없음)  HWND (16진수): 0x50948
+  HWND (10진수): 330056
+  클래스: Button
+  보임: x
+
+[675] 티커 표시 라인 컨트롤  HWND (16진수): 0x50954
+  HWND (10진수): 330068
+  클래스: CTickerItemCtrl
+  보임: v
+
+[676] (타이틀 없음)  HWND (16진수): 0xA0FB8
+  HWND (10진수): 659384
+  클래스: Button
+  보임: x
+
+[677] 티커 버튼 컨트롤  HWND (16진수): 0x33082E
+  HWND (10진수): 3344430
+  클래스: CTickerButtonCtrl
+  보임: v
+
+[678] 티커 차트 컨트롤  HWND (16진수): 0x50968
+  HWND (10진수): 330088
+  클래스: CTickerChartCtrl
+  보임: v
+
+[679] 티커 차트 표시 컨트롤  HWND (16진수): 0x5029E
+  HWND (10진수): 328350
+  클래스: CTickerChartDrawCtrl
+  보임: v
+
+[680] 화면 제어바  HWND (16진수): 0x408F0
+  HWND (10진수): 264432
+  클래스: Afx:60200000:8:00010003:00100063:00000000
+  보임: v
+
+[681] (타이틀 없음)  HWND (16진수): 0x3090E
+  HWND (10진수): 198926
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: v
+
+[682] 메뉴바  HWND (16진수): 0x50A8A
+  HWND (10진수): 330378
+  클래스: AfxControlBar90
+  보임: v
+
+[683] 메뉴바  HWND (16진수): 0x30904
+  HWND (10진수): 198916
+  클래스: Afx:60200000:8:00010003:00100063:00000000
+  보임: x
+
+[684] (타이틀 없음)  HWND (16진수): 0x308FA
+  HWND (10진수): 198906
+  클래스: #32770
+  보임: x
+
+[685] Tab1  HWND (16진수): 0x508EC
+  HWND (10진수): 329964
+  클래스: SysTabControl32
+  보임: x
+
+[686] (타이틀 없음)  HWND (16진수): 0x308F8
+  HWND (10진수): 198904
+  클래스: #32770
+  보임: x
+
+[687] (타이틀 없음)  HWND (16진수): 0x29081A
+  HWND (10진수): 2689050
+  클래스: Edit
+  보임: x
+
+[688] (타이틀 없음)  HWND (16진수): 0xB08D4
+  HWND (10진수): 723156
+  클래스: SysListView32
+  보임: x
+
+[689] (타이틀 없음)  HWND (16진수): 0x30910
+  HWND (10진수): 198928
+  클래스: SysHeader32
+  보임: x
+
+[690] (타이틀 없음)  HWND (16진수): 0x4090C
+  HWND (10진수): 264460
+  클래스: Edit
+  보임: x
+
+[691] (타이틀 없음)  HWND (16진수): 0xB0EEA
+  HWND (10진수): 724714
+  클래스: #32770
+  보임: x
+
+[692] (타이틀 없음)  HWND (16진수): 0x30A9A
+  HWND (10진수): 199322
+  클래스: #32770
+  보임: x
+
+[693] (타이틀 없음)  HWND (16진수): 0x30A9C
+  HWND (10진수): 199324
+  클래스: ComboBox
+  보임: x
+
+[694] (타이틀 없음)  HWND (16진수): 0x30AA2
+  HWND (10진수): 199330
+  클래스: Edit
+  보임: x
+
+[695] Tab1  HWND (16진수): 0x30A92
+  HWND (10진수): 199314
+  클래스: SysTabControl32
+  보임: x
+
+[696] (타이틀 없음)  HWND (16진수): 0xA0696
+  HWND (10진수): 657046
+  클래스: msctls_updown32
+  보임: x
+
+[697] (타이틀 없음)  HWND (16진수): 0x30A90
+  HWND (10진수): 199312
+  클래스: ComboBox
+  보임: x
+
+[698] Tree1  HWND (16진수): 0x30A8E
+  HWND (10진수): 199310
+  클래스: SysTreeView32
+  보임: x
+
+[699] List1  HWND (16진수): 0x30A6C
+  HWND (10진수): 199276
+  클래스: SysListView32
+  보임: x
+
+[700] (타이틀 없음)  HWND (16진수): 0x30A70
+  HWND (10진수): 199280
+  클래스: SysHeader32
+  보임: x
+
+[701] (타이틀 없음)  HWND (16진수): 0x30A74
+  HWND (10진수): 199284
+  클래스: SysListView32
+  보임: x
+
+[702] (타이틀 없음)  HWND (16진수): 0x30A72
+  HWND (10진수): 199282
+  클래스: SysHeader32
+  보임: x
+
+[703]  화면 검색 결과  HWND (16진수): 0x40978
+  HWND (10진수): 264568
+  클래스: Static
+  보임: x
+
+[704] List1  HWND (16진수): 0x2E0920
+  HWND (10진수): 3016992
+  클래스: SysListView32
+  보임: x
+
+[705] (타이틀 없음)  HWND (16진수): 0x150932
+  HWND (10진수): 1378610
+  클래스: SysHeader32
+  보임: x
+
+[706] 자동숨김  HWND (16진수): 0x308FE
+  HWND (10진수): 198910
+  클래스: Button
+  보임: x
+
+[707] (타이틀 없음)  HWND (16진수): 0x60A82
+  HWND (10진수): 395906
+  클래스: AfxControlBar90
+  보임: v
+
+[708] (타이틀 없음)  HWND (16진수): 0x20B9E
+  HWND (10진수): 134046
+  클래스: ComboLBox
+  보임: x
+
+[709] (타이틀 없음)  HWND (16진수): 0x20B9A
+  HWND (10진수): 134042
+  클래스: ComboLBox
+  보임: x
+
+[710] (타이틀 없음)  HWND (16진수): 0x20B94
+  HWND (10진수): 134036
+  클래스: ComboLBox
+  보임: x
+
+[711] (타이틀 없음)  HWND (16진수): 0x20B90
+  HWND (10진수): 134032
+  클래스: ComboLBox
+  보임: x
+
+[712] (타이틀 없음)  HWND (16진수): 0x20B8A
+  HWND (10진수): 134026
+  클래스: ComboLBox
+  보임: x
+
+[713] (타이틀 없음)  HWND (16진수): 0x20B86
+  HWND (10진수): 134022
+  클래스: ComboLBox
+  보임: x
+
+[714] (타이틀 없음)  HWND (16진수): 0x20B80
+  HWND (10진수): 134016
+  클래스: ComboLBox
+  보임: x
+
+[715] (타이틀 없음)  HWND (16진수): 0x20B7C
+  HWND (10진수): 134012
+  클래스: ComboLBox
+  보임: x
+
+[716] (타이틀 없음)  HWND (16진수): 0x4093E
+  HWND (10진수): 264510
+  클래스: tooltips_class32
+  보임: x
+
+[717] (타이틀 없음)  HWND (16진수): 0x40942
+  HWND (10진수): 264514
+  클래스: Afx:60200000:8
+  보임: x
+
+[718] (타이틀 없음)  HWND (16진수): 0x4093C
+  HWND (10진수): 264508
+  클래스: AfxWnd90
+  보임: x
+
+[719] (타이틀 없음)  HWND (16진수): 0x40966
+  HWND (10진수): 264550
+  클래스: AfxWnd90
+  보임: x
+
+[720] (타이틀 없음)  HWND (16진수): 0x20D18
+  HWND (10진수): 134424
+  클래스: ComboLBox
+  보임: x
+
+[721] (타이틀 없음)  HWND (16진수): 0x20D14
+  HWND (10진수): 134420
+  클래스: ComboLBox
+  보임: x
+
+[722] (타이틀 없음)  HWND (16진수): 0x20D0E
+  HWND (10진수): 134414
+  클래스: ComboLBox
+  보임: x
+
+[723] (타이틀 없음)  HWND (16진수): 0x20CFC
+  HWND (10진수): 134396
+  클래스: ComboLBox
+  보임: x
+
+[724] GDI+ Window (iMeritzMain.exe)  HWND (16진수): 0x20CF2
+  HWND (10진수): 134386
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[725] Default IME  HWND (16진수): 0x20CEA
+  HWND (10진수): 134378
+  클래스: IME
+  보임: x
+
+[726] (타이틀 없음)  HWND (16진수): 0x409EC
+  HWND (10진수): 264684
+  클래스: ComboLBox
+  보임: x
+
+[727] (타이틀 없음)  HWND (16진수): 0xB09D6
+  HWND (10진수): 723414
+  클래스: ComboLBox
+  보임: x
+
+[728] (타이틀 없음)  HWND (16진수): 0x30284
+  HWND (10진수): 197252
+  클래스: ComboLBox
+  보임: x
+
+[729] (타이틀 없음)  HWND (16진수): 0x409B0
+  HWND (10진수): 264624
+  클래스: Afx:60200000:8:00010003:00000000:00000000
+  보임: x
+
+[730] (타이틀 없음)  HWND (16진수): 0x409B4
+  HWND (10진수): 264628
+  클래스: tooltips_class32
+  보임: x
+
+[731] (타이틀 없음)  HWND (16진수): 0x20FBE
+  HWND (10진수): 135102
+  클래스: tooltips_class32
+  보임: x
+
+[732] (타이틀 없음)  HWND (16진수): 0x3008A
+  HWND (10진수): 196746
+  클래스: Afx:60200000:0
+  보임: x
+
+[733] (타이틀 없음)  HWND (16진수): 0x40956
+  HWND (10진수): 264534
+  클래스: tooltips_class32
+  보임: x
+
+[734] (타이틀 없음)  HWND (16진수): 0x39038C
+  HWND (10진수): 3736460
+  클래스: tooltips_class32
+  보임: x
+
+[735] (타이틀 없음)  HWND (16진수): 0x30A7A
+  HWND (10진수): 199290
+  클래스: tooltips_class32
+  보임: x
+
+[736] (타이틀 없음)  HWND (16진수): 0x30AA4
+  HWND (10진수): 199332
+  클래스: ComboLBox
+  보임: x
+
+[737] (타이틀 없음)  HWND (16진수): 0x30A9E
+  HWND (10진수): 199326
+  클래스: ComboLBox
+  보임: x
+
+[738] (타이틀 없음)  HWND (16진수): 0x4091C
+  HWND (10진수): 264476
+  클래스: tooltips_class32
+  보임: x
+
+[739] IntrAlarmManager  HWND (16진수): 0x3092A
+  HWND (10진수): 198954
+  클래스: IntrAlarmManageClass
+  보임: x
+
+[740] IntrAlarmManager  HWND (16진수): 0x908E2
+  HWND (10진수): 592098
+  클래스: IntrAlarmManageClass
+  보임: x
+
+[741] IntrGroupApp Wnd  HWND (16진수): 0x30924
+  HWND (10진수): 198948
+  클래스: IntrMngrAppWnd
+  보임: x
+
+[742] IntrGroupExApp Wnd  HWND (16진수): 0x70FAE
+  HWND (10진수): 462766
+  클래스: IntrMngrExAppWnd
+  보임: x
+
+[743] IntrGroupApp Wnd  HWND (16진수): 0xB0AB0
+  HWND (10진수): 723632
+  클래스: IntrMngrAppWnd
+  보임: x
+
+[744] 종목마스터 통신윈도우  HWND (16진수): 0x30922
+  HWND (10진수): 198946
+  클래스: __Item Master Window
+  보임: x
+
+[745] (타이틀 없음)  HWND (16진수): 0x40A94
+  HWND (10진수): 264852
+  클래스: MyKeyDefense 2.5 Tray Notify Handler Class 728156
+  보임: x
+
+[746] Default IME  HWND (16진수): 0x30A96
+  HWND (10진수): 199318
+  클래스: IME
+  보임: x
+
+[747] (타이틀 없음)  HWND (16진수): 0x80EE4
+  HWND (10진수): 528100
+  클래스: StSdkMainWndCN
+  보임: x
+
+[748] CommHelper Sise Proc Wnd  HWND (16진수): 0x70A7C
+  HWND (10진수): 461436
+  클래스: CommHelper Sise Process Window
+  보임: x
+
+[749] (타이틀 없음)  HWND (16진수): 0x50AAC
+  HWND (10진수): 330412
+  클래스: Static
+  보임: x
+
+[750] (타이틀 없음)  HWND (16진수): 0x70232
+  HWND (10진수): 459314
+  클래스: AfxWnd90
+  보임: x
+
+[751] SysIndicator  HWND (16진수): 0x70A84
+  HWND (10진수): 461444
+  클래스: AfxWnd90
+  보임: x
+
+[752] STActor  HWND (16진수): 0x80AB4
+  HWND (10진수): 527028
+  클래스: AfxWnd90
+  보임: x
+
+[753] ApQurier  HWND (16진수): 0x50AAA
+  HWND (10진수): 330410
+  클래스: AfxWnd90
+  보임: x
+
+[754] Default IME  HWND (16진수): 0x70A50
+  HWND (10진수): 461392
+  클래스: IME
+  보임: x
+
+[755] XGEN_MRZSEC CommAgent Window  HWND (16진수): 0x90F2A
+  HWND (10진수): 593706
+  클래스: XGEN_MRZSEC CommAgent Class
+  보임: x
+
+[756] Default IME  HWND (16진수): 0x5030E
+  HWND (10진수): 328462
+  클래스: IME
+  보임: x
+
+[757] (타이틀 없음)  HWND (16진수): 0x20F60
+  HWND (10진수): 135008
+  클래스: ATL:00007FFE0D21EAD0
+  보임: x
+
+[758] (타이틀 없음)  HWND (16진수): 0x60246
+  HWND (10진수): 393798
+  클래스: MKSVChanHelperWindow
+  보임: x
+
+[759] Default IME  HWND (16진수): 0x20F12
+  HWND (10진수): 134930
+  클래스: IME
+  보임: x
+
+[760] (타이틀 없음)  HWND (16진수): 0x20062
+  HWND (10진수): 131170
+  클래스: ATL:00007FFE0B36E650
+  보임: x
+
+[761] Default IME  HWND (16진수): 0x2005E
+  HWND (10진수): 131166
+  클래스: IME
+  보임: x
+
+[762] (타이틀 없음)  HWND (16진수): 0x20F10
+  HWND (10진수): 134928
+  클래스: ATL:00007FFE08394570
+  보임: x
+
+[763] (타이틀 없음)  HWND (16진수): 0x30F22
+  HWND (10진수): 200482
+  클래스: ATL:00007FFE0B36E650
+  보임: x
+
+[764] Default IME  HWND (16진수): 0x20F14
+  HWND (10진수): 134932
+  클래스: IME
+  보임: x
+
+[765] (타이틀 없음)  HWND (16진수): 0x20F18
+  HWND (10진수): 134936
+  클래스: ATL:00007FFE0B36E650
+  보임: x
+
+[766] Default IME  HWND (16진수): 0x20F16
+  HWND (10진수): 134934
+  클래스: IME
+  보임: x
+
+[767] (타이틀 없음)  HWND (16진수): 0x20F1E
+  HWND (10진수): 134942
+  클래스: ATL:00007FFE0B36E650
+  보임: x
+
+[768] (타이틀 없음)  HWND (16진수): 0x20F20
+  HWND (10진수): 134944
+  클래스: ATL:00007FFE0B36E650
+  보임: x
+
+[769] Default IME  HWND (16진수): 0x20F1A
+  HWND (10진수): 134938
+  클래스: IME
+  보임: x
+
+[770] Default IME  HWND (16진수): 0x20F1C
+  HWND (10진수): 134940
+  클래스: IME
+  보임: x
+
+[771] (타이틀 없음)  HWND (16진수): 0x20F26
+  HWND (10진수): 134950
+  클래스: VideoDevMonitorWin
+  보임: x
+
+[772] Default IME  HWND (16진수): 0x20F24
+  HWND (10진수): 134948
+  클래스: IME
+  보임: x
+
+[773] Hidden Window  HWND (16진수): 0x30F32
+  HWND (10진수): 200498
+  클래스: HwndWrapper[Horizon.Client.UI;;01b09b5c-ddb0-4d0b-96c3-8379d6553f58]
+  보임: x
+
+[774] MKSInvisibleWindow  HWND (16진수): 0x20E3A
+  HWND (10진수): 134714
+  클래스: MKSEmbedded
+  보임: x
+
+[775] Default IME  HWND (16진수): 0x30DB0
+  HWND (10진수): 200112
+  클래스: IME
+  보임: x
+
+[776] (타이틀 없음)  HWND (16진수): 0x40DB2
+  HWND (10진수): 265650
+  클래스: VMware.Horizon.Client.Sdk:DriveWatcher Class
+  보임: x
+
+[777] Default IME  HWND (16진수): 0x20DD6
+  HWND (10진수): 134614
+  클래스: IME
+  보임: x
+
+[778] .NET-BroadcastEventWindow.bbc8e7.0  HWND (16진수): 0x30F36
+  HWND (10진수): 200502
+  클래스: .NET-BroadcastEventWindow.bbc8e7.0
+  보임: x
+
+[779] Default IME  HWND (16진수): 0x30F3A
+  HWND (10진수): 200506
+  클래스: IME
+  보임: x
+
+[780] (타이틀 없음)  HWND (16진수): 0x10FAA
+  HWND (10진수): 69546
+  클래스: Horizon_RdeClient_BatStatMon_Class
+  보임: x
+
+[781] GDI+ Window (horizon-protocol.exe)  HWND (16진수): 0x10FA6
+  HWND (10진수): 69542
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[782] Default IME  HWND (16진수): 0x10FA8
+  HWND (10진수): 69544
+  클래스: IME
+  보임: x
+
+[783] (타이틀 없음)  HWND (16진수): 0x10FA2
+  HWND (10진수): 69538
+  클래스: ATL:00007FFE0B36E650
+  보임: x
+
+[784] Default IME  HWND (16진수): 0x10FA4
+  HWND (10진수): 69540
+  클래스: IME
+  보임: x
+
+[785] MSCTFIME UI  HWND (16진수): 0x10ECE
+  HWND (10진수): 69326
+  클래스: MSCTFIME UI
+  보임: x
+
+[786] Default IME  HWND (16진수): 0x10EAC
+  HWND (10진수): 69292
+  클래스: IME
+  보임: x
+
+[787] Radeonsoftware  HWND (16진수): 0x10EC8
+  HWND (10진수): 69320
+  클래스: Qt641QWindowIcon
+  보임: x
+
+[788] Radeonsoftware  HWND (16진수): 0x10EC2
+  HWND (10진수): 69314
+  클래스: Qt641QWindowIcon
+  보임: x
+
+[789] (타이틀 없음)  HWND (16진수): 0x10EBA
+  HWND (10진수): 69306
+  클래스: Qt641ScreenChangeObserverWindow
+  보임: x
+
+[790] Default IME  HWND (16진수): 0x10EBC
+  HWND (10진수): 69308
+  클래스: IME
+  보임: x
+
+[791] (타이틀 없음)  HWND (16진수): 0x10EAA
+  HWND (10진수): 69290
+  클래스: Qt641ScreenChangeObserverWindow
+  보임: x
+
+[792] Microsoft OneDrive Sync Service  HWND (16진수): 0x10E92
+  HWND (10진수): 69266
+  클래스: Nucleus Auth Window
+  보임: x
+
+[793] Default IME  HWND (16진수): 0x10E94
+  HWND (10진수): 69268
+  클래스: IME
+  보임: x
+
+[794] (타이틀 없음)  HWND (16진수): 0x10E8E
+  HWND (10진수): 69262
+  클래스: ATL:00007FFEB3CED0D0
+  보임: x
+
+[795] Default IME  HWND (16진수): 0x10E90
+  HWND (10진수): 69264
+  클래스: IME
+  보임: x
+
+[796] GDI+ Window (Notepad.exe)  HWND (16진수): 0x20E30
+  HWND (10진수): 134704
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[797] Default IME  HWND (16진수): 0x20E32
+  HWND (10진수): 134706
+  클래스: IME
+  보임: x
+
+[798] (타이틀 없음)  HWND (16진수): 0x10E12
+  HWND (10진수): 69138
+  클래스: WorkerW
+  보임: x
+
+[799] Default IME  HWND (16진수): 0x10E14
+  HWND (10진수): 69140
+  클래스: IME
+  보임: x
+
+[800] (타이틀 없음)  HWND (16진수): 0x10DAA
+  HWND (10진수): 69034
+  클래스: ATL:00007FFEB6485900
+  보임: x
+
+[801] (타이틀 없음)  HWND (16진수): 0x3022C
+  HWND (10진수): 197164
+  클래스: WorkerW
+  보임: x
+
+[802] WebrtcSharedlibSysMonWindow  HWND (16진수): 0x10F98
+  HWND (10진수): 69528
+  클래스: WebrtcSharedlibSysMonWindow
+  보임: x
+
+[803] Default IME  HWND (16진수): 0x10F9A
+  HWND (10진수): 69530
+  클래스: IME
+  보임: x
+
+[804] (타이틀 없음)  HWND (16진수): 0x10F8E
+  HWND (10진수): 69518
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[805] (타이틀 없음)  HWND (16진수): 0x10F8C
+  HWND (10진수): 69516
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[806] Default IME  HWND (16진수): 0x10F90
+  HWND (10진수): 69520
+  클래스: IME
+  보임: x
+
+[807] Default IME  HWND (16진수): 0x10F92
+  HWND (10진수): 69522
+  클래스: IME
+  보임: x
+
+[808] (타이틀 없음)  HWND (16진수): 0x20F76
+  HWND (10진수): 135030
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[809] (타이틀 없음)  HWND (16진수): 0x20F72
+  HWND (10진수): 135026
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[810] (타이틀 없음)  HWND (16진수): 0xB0F3C
+  HWND (10진수): 724796
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[811] (타이틀 없음)  HWND (16진수): 0x20F58
+  HWND (10진수): 135000
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[812] Default IME  HWND (16진수): 0x20F6E
+  HWND (10진수): 135022
+  클래스: IME
+  보임: x
+
+[813] Default IME  HWND (16진수): 0x20F70
+  HWND (10진수): 135024
+  클래스: IME
+  보임: x
+
+[814] (타이틀 없음)  HWND (16진수): 0x20F4E
+  HWND (10진수): 134990
+  클래스: ATL:00007FFE08394270
+  보임: x
+
+[815] (타이틀 없음)  HWND (16진수): 0x20F54
+  HWND (10진수): 134996
+  클래스: ATL:00007FFE08394270
+  보임: x
+
+[816] Default IME  HWND (16진수): 0x20F62
+  HWND (10진수): 135010
+  클래스: IME
+  보임: x
+
+[817] MSCTFIME UI  HWND (16진수): 0x206C6
+  HWND (10진수): 132806
+  클래스: MSCTFIME UI
+  보임: x
+
+[818] Default IME  HWND (16진수): 0x1064C
+  HWND (10진수): 67148
+  클래스: IME
+  보임: x
+
+[819] (타이틀 없음)  HWND (16진수): 0x107BE
+  HWND (10진수): 67518
+  클래스: SDL_app
+  보임: x
+
+[820] (타이틀 없음)  HWND (16진수): 0x107C0
+  HWND (10진수): 67520
+  클래스: CefBrowserWindow
+  보임: x
+
+[821] (타이틀 없음)  HWND (16진수): 0x107C2
+  HWND (10진수): 67522
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[822] (타이틀 없음)  HWND (16진수): 0x107C8
+  HWND (10진수): 67528
+  클래스: Intermediate D3D Window
+  보임: x
+
+[823] (타이틀 없음)  HWND (16진수): 0x107CA
+  HWND (10진수): 67530
+  클래스: SDL_app
+  보임: x
+
+[824] (타이틀 없음)  HWND (16진수): 0x107CC
+  HWND (10진수): 67532
+  클래스: CefBrowserWindow
+  보임: x
+
+[825] (타이틀 없음)  HWND (16진수): 0x107CE
+  HWND (10진수): 67534
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[826] (타이틀 없음)  HWND (16진수): 0x107D4
+  HWND (10진수): 67540
+  클래스: Intermediate D3D Window
+  보임: x
+
+[827] (타이틀 없음)  HWND (16진수): 0x10766
+  HWND (10진수): 67430
+  클래스: SDL_app
+  보임: x
+
+[828] (타이틀 없음)  HWND (16진수): 0x10768
+  HWND (10진수): 67432
+  클래스: CefBrowserWindow
+  보임: x
+
+[829] (타이틀 없음)  HWND (16진수): 0x1076A
+  HWND (10진수): 67434
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[830] Chrome Legacy Window  HWND (16진수): 0x1076C
+  HWND (10진수): 67436
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[831] (타이틀 없음)  HWND (16진수): 0x1076E
+  HWND (10진수): 67438
+  클래스: Intermediate D3D Window
+  보임: x
+
+[832] (타이틀 없음)  HWND (16진수): 0x10774
+  HWND (10진수): 67444
+  클래스: SDL_app
+  보임: x
+
+[833] (타이틀 없음)  HWND (16진수): 0x10776
+  HWND (10진수): 67446
+  클래스: CefBrowserWindow
+  보임: x
+
+[834] (타이틀 없음)  HWND (16진수): 0x10778
+  HWND (10진수): 67448
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[835] Chrome Legacy Window  HWND (16진수): 0x1077A
+  HWND (10진수): 67450
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[836] (타이틀 없음)  HWND (16진수): 0x1077E
+  HWND (10진수): 67454
+  클래스: Intermediate D3D Window
+  보임: x
+
+[837] (타이틀 없음)  HWND (16진수): 0x10780
+  HWND (10진수): 67456
+  클래스: SDL_app
+  보임: x
+
+[838] (타이틀 없음)  HWND (16진수): 0x30714
+  HWND (10진수): 198420
+  클래스: CefBrowserWindow
+  보임: x
+
+[839] (타이틀 없음)  HWND (16진수): 0x10782
+  HWND (10진수): 67458
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[840] Chrome Legacy Window  HWND (16진수): 0x10784
+  HWND (10진수): 67460
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[841] (타이틀 없음)  HWND (16진수): 0x10788
+  HWND (10진수): 67464
+  클래스: Intermediate D3D Window
+  보임: x
+
+[842] (타이틀 없음)  HWND (16진수): 0x1078A
+  HWND (10진수): 67466
+  클래스: SDL_app
+  보임: x
+
+[843] (타이틀 없음)  HWND (16진수): 0x10790
+  HWND (10진수): 67472
+  클래스: CefBrowserWindow
+  보임: x
+
+[844] (타이틀 없음)  HWND (16진수): 0x10792
+  HWND (10진수): 67474
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[845] Chrome Legacy Window  HWND (16진수): 0x10794
+  HWND (10진수): 67476
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[846] (타이틀 없음)  HWND (16진수): 0x10798
+  HWND (10진수): 67480
+  클래스: Intermediate D3D Window
+  보임: x
+
+[847] (타이틀 없음)  HWND (16진수): 0x1079A
+  HWND (10진수): 67482
+  클래스: SDL_app
+  보임: x
+
+[848] (타이틀 없음)  HWND (16진수): 0x1079C
+  HWND (10진수): 67484
+  클래스: CefBrowserWindow
+  보임: x
+
+[849] (타이틀 없음)  HWND (16진수): 0x1079E
+  HWND (10진수): 67486
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[850] Chrome Legacy Window  HWND (16진수): 0x107A0
+  HWND (10진수): 67488
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[851] (타이틀 없음)  HWND (16진수): 0x107A4
+  HWND (10진수): 67492
+  클래스: Intermediate D3D Window
+  보임: x
+
+[852] (타이틀 없음)  HWND (16진수): 0x107A6
+  HWND (10진수): 67494
+  클래스: SDL_app
+  보임: x
+
+[853] (타이틀 없음)  HWND (16진수): 0x107A8
+  HWND (10진수): 67496
+  클래스: CefBrowserWindow
+  보임: x
+
+[854] (타이틀 없음)  HWND (16진수): 0x107AA
+  HWND (10진수): 67498
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[855] Chrome Legacy Window  HWND (16진수): 0x107AC
+  HWND (10진수): 67500
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[856] (타이틀 없음)  HWND (16진수): 0x107B0
+  HWND (10진수): 67504
+  클래스: Intermediate D3D Window
+  보임: x
+
+[857] (타이틀 없음)  HWND (16진수): 0x107B2
+  HWND (10진수): 67506
+  클래스: SDL_app
+  보임: x
+
+[858] (타이틀 없음)  HWND (16진수): 0x107B4
+  HWND (10진수): 67508
+  클래스: CefBrowserWindow
+  보임: x
+
+[859] (타이틀 없음)  HWND (16진수): 0x107B6
+  HWND (10진수): 67510
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[860] Chrome Legacy Window  HWND (16진수): 0x107B8
+  HWND (10진수): 67512
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[861] (타이틀 없음)  HWND (16진수): 0x107BC
+  HWND (10진수): 67516
+  클래스: Intermediate D3D Window
+  보임: x
+
+[862] (타이틀 없음)  HWND (16진수): 0x107D6
+  HWND (10진수): 67542
+  클래스: SDL_app
+  보임: x
+
+[863] (타이틀 없음)  HWND (16진수): 0x107D8
+  HWND (10진수): 67544
+  클래스: CefBrowserWindow
+  보임: x
+
+[864] (타이틀 없음)  HWND (16진수): 0x107DA
+  HWND (10진수): 67546
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[865] Chrome Legacy Window  HWND (16진수): 0x107DC
+  HWND (10진수): 67548
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[866] (타이틀 없음)  HWND (16진수): 0x107E4
+  HWND (10진수): 67556
+  클래스: Intermediate D3D Window
+  보임: x
+
+[867] (타이틀 없음)  HWND (16진수): 0x107E6
+  HWND (10진수): 67558
+  클래스: SDL_app
+  보임: x
+
+[868] (타이틀 없음)  HWND (16진수): 0x107E8
+  HWND (10진수): 67560
+  클래스: CefBrowserWindow
+  보임: x
+
+[869] (타이틀 없음)  HWND (16진수): 0x107EA
+  HWND (10진수): 67562
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[870] Chrome Legacy Window  HWND (16진수): 0x107EC
+  HWND (10진수): 67564
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[871] (타이틀 없음)  HWND (16진수): 0x107F0
+  HWND (10진수): 67568
+  클래스: Intermediate D3D Window
+  보임: x
+
+[872] Steam  HWND (16진수): 0x10726
+  HWND (10진수): 67366
+  클래스: SDL_app
+  보임: x
+
+[873] (타이틀 없음)  HWND (16진수): 0x10758
+  HWND (10진수): 67416
+  클래스: CefBrowserWindow
+  보임: x
+
+[874] (타이틀 없음)  HWND (16진수): 0x1075A
+  HWND (10진수): 67418
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[875] (타이틀 없음)  HWND (16진수): 0x10764
+  HWND (10진수): 67428
+  클래스: Intermediate D3D Window
+  보임: x
+
+[876] (타이틀 없음)  HWND (16진수): 0x10728
+  HWND (10진수): 67368
+  클래스: CefBrowserWindow
+  보임: x
+
+[877] (타이틀 없음)  HWND (16진수): 0x1072A
+  HWND (10진수): 67370
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[878] (타이틀 없음)  HWND (16진수): 0x10730
+  HWND (10진수): 67376
+  클래스: Intermediate D3D Window
+  보임: x
+
+[879] (타이틀 없음)  HWND (16진수): 0x8033E
+  HWND (10진수): 525118
+  클래스: tooltips_class32
+  보임: x
+
+[880] (타이틀 없음)  HWND (16진수): 0x50852
+  HWND (10진수): 329810
+  클래스: tooltips_class32
+  보임: x
+
+[881] (타이틀 없음)  HWND (16진수): 0x20804
+  HWND (10진수): 133124
+  클래스: tooltips_class32
+  보임: x
+
+[882] (타이틀 없음)  HWND (16진수): 0x20814
+  HWND (10진수): 133140
+  클래스: tooltips_class32
+  보임: x
+
+[883] (타이틀 없음)  HWND (16진수): 0x70266
+  HWND (10진수): 459366
+  클래스: tooltips_class32
+  보임: x
+
+[884] (타이틀 없음)  HWND (16진수): 0x206DE
+  HWND (10진수): 132830
+  클래스: tooltips_class32
+  보임: x
+
+[885] (타이틀 없음)  HWND (16진수): 0x206E2
+  HWND (10진수): 132834
+  클래스: tooltips_class32
+  보임: x
+
+[886] (타이틀 없음)  HWND (16진수): 0x206F4
+  HWND (10진수): 132852
+  클래스: tooltips_class32
+  보임: x
+
+[887] (타이틀 없음)  HWND (16진수): 0x206EE
+  HWND (10진수): 132846
+  클래스: tooltips_class32
+  보임: x
+
+[888] (타이틀 없음)  HWND (16진수): 0x206DA
+  HWND (10진수): 132826
+  클래스: tooltips_class32
+  보임: x
+
+[889] (타이틀 없음)  HWND (16진수): 0x20680
+  HWND (10진수): 132736
+  클래스: tooltips_class32
+  보임: x
+
+[890] (타이틀 없음)  HWND (16진수): 0x206A6
+  HWND (10진수): 132774
+  클래스: tooltips_class32
+  보임: x
+
+[891] (타이틀 없음)  HWND (16진수): 0x2066C
+  HWND (10진수): 132716
+  클래스: tooltips_class32
+  보임: x
+
+[892] (타이틀 없음)  HWND (16진수): 0x2068C
+  HWND (10진수): 132748
+  클래스: tooltips_class32
+  보임: x
+
+[893] MSCTFIME UI  HWND (16진수): 0x2084A
+  HWND (10진수): 133194
+  클래스: MSCTFIME UI
+  보임: x
+
+[894] Default IME  HWND (16진수): 0x606B2
+  HWND (10진수): 394930
+  클래스: IME
+  보임: x
+
+[895] (타이틀 없음)  HWND (16진수): 0x40710
+  HWND (10진수): 263952
+  클래스: tooltips_class32
+  보임: x
+
+[896] (타이틀 없음)  HWND (16진수): 0x40414
+  HWND (10진수): 263188
+  클래스: tooltips_class32
+  보임: x
+
+[897] (타이틀 없음)  HWND (16진수): 0x50866
+  HWND (10진수): 329830
+  클래스: tooltips_class32
+  보임: x
+
+[898] (타이틀 없음)  HWND (16진수): 0x40712
+  HWND (10진수): 263954
+  클래스: tooltips_class32
+  보임: x
+
+[899] (타이틀 없음)  HWND (16진수): 0x50262
+  HWND (10진수): 328290
+  클래스: EVA_Window_Dblclk
+  보임: x
+
+[900] (타이틀 없음)  HWND (16진수): 0x50850
+  HWND (10진수): 329808
+  클래스: EVA_ChildWindow
+  보임: x
+
+[901] (타이틀 없음)  HWND (16진수): 0x50368
+  HWND (10진수): 328552
+  클래스: EVA_ChildWindow
+  보임: x
+
+[902] (타이틀 없음)  HWND (16진수): 0x401FC
+  HWND (10진수): 262652
+  클래스: EVA_ChildWindow
+  보임: x
+
+[903] (타이틀 없음)  HWND (16진수): 0x5086A
+  HWND (10진수): 329834
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[904] MOMENT 광고  HWND (16진수): 0x408C0
+  HWND (10진수): 264384
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[905] Chrome Legacy Window  HWND (16진수): 0x108E0
+  HWND (10진수): 67808
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[906] (타이틀 없음)  HWND (16진수): 0x108DE
+  HWND (10진수): 67806
+  클래스: Intermediate D3D Window
+  보임: x
+
+[907] 카카오톡  HWND (16진수): 0x305E6
+  HWND (10진수): 198118
+  클래스: EVA_Window_Dblclk
+  보임: x
+
+[908] OnlineMainView_0x00090672  HWND (16진수): 0x90672
+  HWND (10진수): 591474
+  클래스: EVA_ChildWindow
+  보임: x
+
+[909] ContactListView_0x000206ae  HWND (16진수): 0x206AE
+  HWND (10진수): 132782
+  클래스: EVA_Window
+  보임: x
+
+[910] SearchListCtrl_0x0002068a  HWND (16진수): 0x2068A
+  HWND (10진수): 132746
+  클래스: EVA_VH_ListControl_Dblclk
+  보임: x
+
+[911] (타이틀 없음)  HWND (16진수): 0x2068E
+  HWND (10진수): 132750
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[912] ContactListCtrl_0x0002066e  HWND (16진수): 0x2066E
+  HWND (10진수): 132718
+  클래스: EVA_VH_ListControl_Dblclk
+  보임: x
+
+[913] (타이틀 없음)  HWND (16진수): 0x2067C
+  HWND (10진수): 132732
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[914] (타이틀 없음)  HWND (16진수): 0xD07DE
+  HWND (10진수): 853982
+  클래스: EVA_ChildWindow
+  보임: x
+
+[915] (타이틀 없음)  HWND (16진수): 0x50870
+  HWND (10진수): 329840
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[916] (타이틀 없음)  HWND (16진수): 0x206A4
+  HWND (10진수): 132772
+  클래스: Edit
+  보임: x
+
+[917] ChatRoomListView_0x0002067e  HWND (16진수): 0x2067E
+  HWND (10진수): 132734
+  클래스: EVA_Window
+  보임: x
+
+[918] ChatRoomListCtrl_0x000206a8  HWND (16진수): 0x206A8
+  HWND (10진수): 132776
+  클래스: EVA_VH_ListControl_Dblclk
+  보임: x
+
+[919] (타이틀 없음)  HWND (16진수): 0x20682
+  HWND (10진수): 132738
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[920] SearchListCtrl_0x00020684  HWND (16진수): 0x20684
+  HWND (10진수): 132740
+  클래스: EVA_VH_ListControl_Dblclk
+  보임: x
+
+[921] (타이틀 없음)  HWND (16진수): 0x206F2
+  HWND (10진수): 132850
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[922] (타이틀 없음)  HWND (16진수): 0x206F0
+  HWND (10진수): 132848
+  클래스: EVA_Window_Dblclk
+  보임: x
+
+[923] (타이틀 없음)  HWND (16진수): 0x206EC
+  HWND (10진수): 132844
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[924] (타이틀 없음)  HWND (16진수): 0x306E8
+  HWND (10진수): 198376
+  클래스: Edit
+  보임: x
+
+[925] MoreView_0x000206d6  HWND (16진수): 0x206D6
+  HWND (10진수): 132822
+  클래스: EVA_Window
+  보임: x
+
+[926] (타이틀 없음)  HWND (16진수): 0x206E0
+  HWND (10진수): 132832
+  클래스: _EVA_CustomScrollCtrl
+  보임: x
+
+[927] LockModeView_0x000206dc  HWND (16진수): 0x206DC
+  HWND (10진수): 132828
+  클래스: EVA_ChildWindow_Dblclk
+  보임: x
+
+[928] (타이틀 없음)  HWND (16진수): 0x207F6
+  HWND (10진수): 133110
+  클래스: EVA_ChildWindow
+  보임: x
+
+[929] (타이틀 없음)  HWND (16진수): 0x207F4
+  HWND (10진수): 133108
+  클래스: Edit
+  보임: x
+
+[930] (타이틀 없음)  HWND (16진수): 0x2080A
+  HWND (10진수): 133130
+  클래스: Edit
+  보임: x
+
+[931] (타이틀 없음)  HWND (16진수): 0x20808
+  HWND (10진수): 133128
+  클래스: Edit
+  보임: x
+
+[932] (타이틀 없음)  HWND (16진수): 0x20806
+  HWND (10진수): 133126
+  클래스: Edit
+  보임: x
+
+[933] (타이틀 없음)  HWND (16진수): 0x60260
+  HWND (10진수): 393824
+  클래스: EVA_ChildWindow
+  보임: x
+
+[934] (타이틀 없음)  HWND (16진수): 0x6075C
+  HWND (10진수): 395100
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[935] Default IME  HWND (16진수): 0x108D6
+  HWND (10진수): 67798
+  클래스: IME
+  보임: x
+
+[936] (타이틀 없음)  HWND (16진수): 0x108DA
+  HWND (10진수): 67802
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[937] (타이틀 없음)  HWND (16진수): 0x308BC
+  HWND (10진수): 198844
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[938] (타이틀 없음)  HWND (16진수): 0x108B6
+  HWND (10진수): 67766
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[939] Default IME  HWND (16진수): 0x108B8
+  HWND (10진수): 67768
+  클래스: IME
+  보임: x
+
+[940] (타이틀 없음)  HWND (16진수): 0x20090
+  HWND (10진수): 131216
+  클래스: crashpad_SessionEndWatcher
+  보임: x
+
+[941] Default IME  HWND (16진수): 0x205AE
+  HWND (10진수): 132526
+  클래스: IME
+  보임: x
+
+[942] _eva_Win32Timer_Window  HWND (16진수): 0x4070E
+  HWND (10진수): 263950
+  클래스: _eva_Win32Timer_WinClass
+  보임: x
+
+[943] _eva_Win32Timer_Window  HWND (16진수): 0x4086E
+  HWND (10진수): 264302
+  클래스: _eva_Win32Timer_WinClass
+  보임: x
+
+[944] _eva_Win32Timer_Window  HWND (16진수): 0xB0860
+  HWND (10진수): 723040
+  클래스: _eva_Win32Timer_WinClass
+  보임: x
+
+[945] (타이틀 없음)  HWND (16진수): 0x20838
+  HWND (10진수): 133176
+  클래스: SIMPLE00400000
+  보임: x
+
+[946] Default IME  HWND (16진수): 0x20834
+  HWND (10진수): 133172
+  클래스: IME
+  보임: x
+
+[947] _eva_Win32Timer_Window  HWND (16진수): 0x2083E
+  HWND (10진수): 133182
+  클래스: _eva_Win32Timer_WinClass
+  보임: x
+
+[948] (타이틀 없음)  HWND (16진수): 0x406B0
+  HWND (10진수): 263856
+  클래스: tooltips_class32
+  보임: x
+
+[949] (타이틀 없음)  HWND (16진수): 0x706BA
+  HWND (10진수): 460474
+  클래스: EVA_Window_Dblclk
+  보임: x
+
+[950] (타이틀 없음)  HWND (16진수): 0x3008E
+  HWND (10진수): 196750
+  클래스: TPUtilWindow
+  보임: x
+
+[951] REPORTXSvc  HWND (16진수): 0x206AC
+  HWND (10진수): 132780
+  클래스: TREPORTXSvc_MainForm
+  보임: x
+
+[952] (타이틀 없음)  HWND (16진수): 0x20686
+  HWND (10진수): 132742
+  클래스: TPUtilWindow
+  보임: x
+
+[953] (타이틀 없음)  HWND (16진수): 0x20670
+  HWND (10진수): 132720
+  클래스: TPUtilWindow
+  보임: x
+
+[954] (타이틀 없음)  HWND (16진수): 0x202A6
+  HWND (10진수): 131750
+  클래스: SDL_app
+  보임: x
+
+[955] (타이틀 없음)  HWND (16진수): 0x206C4
+  HWND (10진수): 132804
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[956] (타이틀 없음)  HWND (16진수): 0x20678
+  HWND (10진수): 132728
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[957] Default IME  HWND (16진수): 0x2069A
+  HWND (10진수): 132762
+  클래스: IME
+  보임: x
+
+[958] (타이틀 없음)  HWND (16진수): 0x206EA
+  HWND (10진수): 132842
+  클래스: crashpad_SessionEndWatcher
+  보임: x
+
+[959] Default IME  HWND (16진수): 0x206E6
+  HWND (10진수): 132838
+  클래스: IME
+  보임: x
+
+[960] (타이틀 없음)  HWND (16진수): 0x30184
+  HWND (10진수): 196996
+  클래스: MessageWindowClass
+  보임: x
+
+[961] Default IME  HWND (16진수): 0x306D2
+  HWND (10진수): 198354
+  클래스: IME
+  보임: x
+
+[962] REPORTXSvc  HWND (16진수): 0x303F2
+  HWND (10진수): 197618
+  클래스: TApplication
+  보임: x
+
+[963] Default IME  HWND (16진수): 0x303EA
+  HWND (10진수): 197610
+  클래스: IME
+  보임: x
+
+[964] SystemResourceNotifyWindow  HWND (16진수): 0x2041C
+  HWND (10진수): 132124
+  클래스: HwndWrapper[HncUpdateTray.exe;;fc0ea453-0edd-4518-bfa2-c42f57855242]
+  보임: x
+
+[965] MediaContextNotificationWindow  HWND (16진수): 0x403E2
+  HWND (10진수): 263138
+  클래스: HwndWrapper[HncUpdateTray.exe;;06efc8ed-cba6-436c-8c66-5e72de3a4158]
+  보임: x
+
+[966] (타이틀 없음)  HWND (16진수): 0x5022E
+  HWND (10진수): 328238
+  클래스: HwndWrapper[HncUpdateTray.exe;;fc2cdfce-9203-40c8-abc6-d9e9955b6f53]
+  보임: x
+
+[967] Default IME  HWND (16진수): 0x5038A
+  HWND (10진수): 328586
+  클래스: IME
+  보임: x
+
+[968] .NET-BroadcastEventWindow.18c20e5.0  HWND (16진수): 0x300CE
+  HWND (10진수): 196814
+  클래스: .NET-BroadcastEventWindow.18c20e5.0
+  보임: x
+
+[969] Default IME  HWND (16진수): 0x206D4
+  HWND (10진수): 132820
+  클래스: IME
+  보임: x
+
+[970] GDI+ Window (Copilot.exe)  HWND (16진수): 0x206D0
+  HWND (10진수): 132816
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[971] Default IME  HWND (16진수): 0x4074E
+  HWND (10진수): 264014
+  클래스: IME
+  보임: x
+
+[972] (타이틀 없음)  HWND (16진수): 0xD0014
+  HWND (10진수): 851988
+  클래스: CopilotTrayIcon_e9b7a67f-cb23-4014-b07e-9198ccf18048
+  보임: x
+
+[973] (타이틀 없음)  HWND (16진수): 0x30742
+  HWND (10진수): 198466
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[974] (타이틀 없음)  HWND (16진수): 0x20820
+  HWND (10진수): 133152
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[975] (타이틀 없음)  HWND (16진수): 0x20442
+  HWND (10진수): 132162
+  클래스: crashpad_SessionEndWatcher
+  보임: x
+
+[976] Default IME  HWND (16진수): 0x20836
+  HWND (10진수): 133174
+  클래스: IME
+  보임: x
+
+[977] Rtc Video PnP Listener  HWND (16진수): 0x108A2
+  HWND (10진수): 67746
+  클래스: RtcPalVideoPnPMonitorHWND
+  보임: x
+
+[978] Default IME  HWND (16진수): 0x108A4
+  HWND (10진수): 67748
+  클래스: IME
+  보임: x
+
+[979] (타이틀 없음)  HWND (16진수): 0x1089C
+  HWND (10진수): 67740
+  클래스: SkyLibWindowsReactor
+  보임: x
+
+[980] Default IME  HWND (16진수): 0x1089E
+  HWND (10진수): 67742
+  클래스: IME
+  보임: x
+
+[981] (타이틀 없음)  HWND (16진수): 0x10894
+  HWND (10진수): 67732
+  클래스: TeamsMessageWindow
+  보임: x
+
+[982] Default IME  HWND (16진수): 0x10896
+  HWND (10진수): 67734
+  클래스: IME
+  보임: x
+
+[983] (타이틀 없음)  HWND (16진수): 0x10888
+  HWND (10진수): 67720
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[984] Default IME  HWND (16진수): 0x1088A
+  HWND (10진수): 67722
+  클래스: IME
+  보임: x
+
+[985] (타이틀 없음)  HWND (16진수): 0x10874
+  HWND (10진수): 67700
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[986] (타이틀 없음)  HWND (16진수): 0x305DA
+  HWND (10진수): 198106
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[987] Default IME  HWND (16진수): 0x10872
+  HWND (10진수): 67698
+  클래스: IME
+  보임: x
+
+[988] (타이틀 없음)  HWND (16진수): 0x30108
+  HWND (10진수): 196872
+  클래스: crashpad_SessionEndWatcher
+  보임: x
+
+[989] Default IME  HWND (16진수): 0x50048
+  HWND (10진수): 327752
+  클래스: IME
+  보임: x
+
+[990] GDI+ Window (KakaoTalk.exe)  HWND (16진수): 0x4078E
+  HWND (10진수): 264078
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[991] Default IME  HWND (16진수): 0x207E0
+  HWND (10진수): 133088
+  클래스: IME
+  보임: x
+
+[992] DDE Server Window  HWND (16진수): 0x3075E
+  HWND (10진수): 198494
+  클래스: OleDdeWndClass
+  보임: x
+
+[993] (타이틀 없음)  HWND (16진수): 0x30752
+  HWND (10진수): 198482
+  클래스: TeamsMessageWindow
+  보임: x
+
+[994] Default IME  HWND (16진수): 0x30746
+  HWND (10진수): 198470
+  클래스: IME
+  보임: x
+
+[995] (타이틀 없음)  HWND (16진수): 0x107EE
+  HWND (10진수): 67566
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[996] (타이틀 없음)  HWND (16진수): 0x107E2
+  HWND (10진수): 67554
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[997] (타이틀 없음)  HWND (16진수): 0x107D2
+  HWND (10진수): 67538
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[998] (타이틀 없음)  HWND (16진수): 0x107C6
+  HWND (10진수): 67526
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[999] (타이틀 없음)  HWND (16진수): 0x107BA
+  HWND (10진수): 67514
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1000] (타이틀 없음)  HWND (16진수): 0x107AE
+  HWND (10진수): 67502
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1001] (타이틀 없음)  HWND (16진수): 0x107A2
+  HWND (10진수): 67490
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1002] (타이틀 없음)  HWND (16진수): 0x10796
+  HWND (10진수): 67478
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1003] (타이틀 없음)  HWND (16진수): 0x10786
+  HWND (10진수): 67462
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1004] (타이틀 없음)  HWND (16진수): 0x1077C
+  HWND (10진수): 67452
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1005] (타이틀 없음)  HWND (16진수): 0x20750
+  HWND (10진수): 132944
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1006] (타이틀 없음)  HWND (16진수): 0x10762
+  HWND (10진수): 67426
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1007] (타이틀 없음)  HWND (16진수): 0x1073C
+  HWND (10진수): 67388
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1008] (타이틀 없음)  HWND (16진수): 0x10734
+  HWND (10진수): 67380
+  클래스: vguiPopupWindow
+  보임: x
+
+[1009] 제목 없음  HWND (16진수): 0x10732
+  HWND (10진수): 67378
+  클래스: vguiPopupWindow
+  보임: x
+
+[1010] Default IME  HWND (16진수): 0x3001C
+  HWND (10진수): 196636
+  클래스: IME
+  보임: x
+
+[1011] (타이틀 없음)  HWND (16진수): 0x1072E
+  HWND (10진수): 67374
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1012] (타이틀 없음)  HWND (16진수): 0x10724
+  HWND (10진수): 67364
+  클래스: HwndWrapper[HNetCom.Agent.exe;;13d01bbb-bac1-4042-8e3e-1785d2e25f8a]
+  보임: x
+
+[1013] (타이틀 없음)  HWND (16진수): 0x10722
+  HWND (10진수): 67362
+  클래스: HwndWrapper[HNetCom.Agent.exe;;9a7cb66a-3d03-47e0-8fe8-6eff5bfd405a]
+  보임: x
+
+[1014] Hidden Window  HWND (16진수): 0x10720
+  HWND (10진수): 67360
+  클래스: HwndWrapper[HNetCom.Agent.exe;;a766699a-84a7-4439-803a-f6d3ceb96524]
+  보임: x
+
+[1015] (타이틀 없음)  HWND (16진수): 0x1070C
+  HWND (10진수): 67340
+  클래스: WindowsForms10.Window.0.app.0.141b42a_r7_ad1
+  보임: x
+
+[1016] AMD:DVR-CapturingWindow  HWND (16진수): 0x20600
+  HWND (10진수): 132608
+  클래스: DVREventWindowClass
+  보임: x
+
+[1017] Default IME  HWND (16진수): 0x10602
+  HWND (10진수): 67074
+  클래스: IME
+  보임: x
+
+[1018] GDI+ Window (HNetCom.Agent.exe)  HWND (16진수): 0x10708
+  HWND (10진수): 67336
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[1019] Default IME  HWND (16진수): 0x1070A
+  HWND (10진수): 67338
+  클래스: IME
+  보임: x
+
+[1020] .NET-BroadcastEventWindow.4.0.0.0.141b42a.0  HWND (16진수): 0x10706
+  HWND (10진수): 67334
+  클래스: .NET-BroadcastEventWindow.4.0.0.0.141b42a.0
+  보임: x
+
+[1021] SystemResourceNotifyWindow  HWND (16진수): 0x10704
+  HWND (10진수): 67332
+  클래스: HwndWrapper[HNetCom.Agent.exe;;fb4bbb41-03c0-4b63-90ca-8a2681272cb2]
+  보임: x
+
+[1022] MediaContextNotificationWindow  HWND (16진수): 0x10702
+  HWND (10진수): 67330
+  클래스: HwndWrapper[HNetCom.Agent.exe;;d0dcc94c-2b8e-46dc-bf9e-4efbdc4df9a8]
+  보임: x
+
+[1023] (타이틀 없음)  HWND (16진수): 0x106FE
+  HWND (10진수): 67326
+  클래스: HwndWrapper[HNetCom.Agent.exe;;b276e139-1be1-44d8-8c32-a815f4f5e80e]
+  보임: x
+
+[1024] Default IME  HWND (16진수): 0x10700
+  HWND (10진수): 67328
+  클래스: IME
+  보임: x
+
+[1025] (타이틀 없음)  HWND (16진수): 0x2065E
+  HWND (10진수): 132702
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1026] Chrome Legacy Window  HWND (16진수): 0x20862
+  HWND (10진수): 133218
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[1027] Chrome Legacy Window  HWND (16진수): 0x1072C
+  HWND (10진수): 67372
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[1028] Chrome Legacy Window  HWND (16진수): 0x107C4
+  HWND (10진수): 67524
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[1029] Chrome Legacy Window  HWND (16진수): 0x107D0
+  HWND (10진수): 67536
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[1030] Chrome Legacy Window  HWND (16진수): 0x1073A
+  HWND (10진수): 67386
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[1031] (타이틀 없음)  HWND (16진수): 0x1065A
+  HWND (10진수): 67162
+  클래스: Chrome_StatusTrayWindow
+  보임: x
+
+[1032] (타이틀 없음)  HWND (16진수): 0x1064E
+  HWND (10진수): 67150
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1033] (타이틀 없음)  HWND (16진수): 0x1064A
+  HWND (10진수): 67146
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[1034] (타이틀 없음)  HWND (16진수): 0x1063A
+  HWND (10진수): 67130
+  클래스: crashpad_SessionEndWatcher
+  보임: x
+
+[1035] Default IME  HWND (16진수): 0x1063C
+  HWND (10진수): 67132
+  클래스: IME
+  보임: x
+
+[1036] (타이틀 없음)  HWND (16진수): 0x10636
+  HWND (10진수): 67126
+  클래스: vguiPopupWindow
+  보임: x
+
+[1037] Default IME  HWND (16진수): 0x10638
+  HWND (10진수): 67128
+  클래스: IME
+  보임: x
+
+[1038] AMD:CCC-AEMCapturingWindow  HWND (16진수): 0x205FA
+  HWND (10진수): 132602
+  클래스: CNEventWindowClass
+  보임: x
+
+[1039] Default IME  HWND (16진수): 0x205FC
+  HWND (10진수): 132604
+  클래스: IME
+  보임: x
+
+[1040] DesktopWindowXamlSource  HWND (16진수): 0x105EA
+  HWND (10진수): 67050
+  클래스: Windows.UI.Core.CoreWindow
+  보임: x
+
+[1041] Default IME  HWND (16진수): 0x105EC
+  HWND (10진수): 67052
+  클래스: IME
+  보임: x
+
+[1042] AMD:CN-MetricsCapturingWindow  HWND (16진수): 0x205E2
+  HWND (10진수): 132578
+  클래스: CNCPUMetricsWindowClass
+  보임: x
+
+[1043] Default IME  HWND (16진수): 0x205E4
+  HWND (10진수): 132580
+  클래스: IME
+  보임: x
+
+[1044] (타이틀 없음)  HWND (16진수): 0x105D6
+  HWND (10진수): 67030
+  클래스: Protect Browser Tower Class 46328
+  보임: x
+
+[1045] Default IME  HWND (16진수): 0x105D8
+  HWND (10진수): 67032
+  클래스: IME
+  보임: x
+
+[1046] SystemResourceNotifyWindow  HWND (16진수): 0x105D4
+  HWND (10진수): 67028
+  클래스: HwndWrapper[GraphicsCardEngine.exe;;0668b56f-94a9-4090-8e08-eea2713004ba]
+  보임: x
+
+[1047] MediaContextNotificationWindow  HWND (16진수): 0x105D2
+  HWND (10진수): 67026
+  클래스: HwndWrapper[GraphicsCardEngine.exe;;6aeb9dca-a60f-49ad-8ebe-1f16ccbdbb83]
+  보임: x
+
+[1048] (타이틀 없음)  HWND (16진수): 0x105CE
+  HWND (10진수): 67022
+  클래스: HwndWrapper[GraphicsCardEngine.exe;;ee889596-82af-4d5a-8441-19e43981f6bb]
+  보임: x
+
+[1049] Default IME  HWND (16진수): 0x105D0
+  HWND (10진수): 67024
+  클래스: IME
+  보임: x
+
+[1050] DDE Server Window  HWND (16진수): 0x10590
+  HWND (10진수): 66960
+  클래스: OleDdeWndClass
+  보임: x
+
+[1051] (타이틀 없음)  HWND (16진수): 0x1058E
+  HWND (10진수): 66958
+  클래스: ContextSwitcherImpl
+  보임: x
+
+[1052] (타이틀 없음)  HWND (16진수): 0x1058A
+  HWND (10진수): 66954
+  클래스: ATL:00007FFEB3CED0D0
+  보임: x
+
+[1053] Default IME  HWND (16진수): 0x1058C
+  HWND (10진수): 66956
+  클래스: IME
+  보임: x
+
+[1054] (타이틀 없음)  HWND (16진수): 0x10584
+  HWND (10진수): 66948
+  클래스: ATL:00007FFEB3CED0D0
+  보임: x
+
+[1055] Default IME  HWND (16진수): 0x10586
+  HWND (10진수): 66950
+  클래스: IME
+  보임: x
+
+[1056] (타이틀 없음)  HWND (16진수): 0x1057E
+  HWND (10진수): 66942
+  클래스: ATL:00007FFEB3CED0D0
+  보임: x
+
+[1057] Default IME  HWND (16진수): 0x10580
+  HWND (10진수): 66944
+  클래스: IME
+  보임: x
+
+[1058] OneDrive - 개인  HWND (16진수): 0x203D4
+  HWND (10진수): 132052
+  클래스: SkyDrive Class Name {090B42FF-7B26-4416-99B6-CB17896CF07C}-Personal
+  보임: x
+
+[1059] (타이틀 없음)  HWND (16진수): 0x203E0
+  HWND (10진수): 132064
+  클래스: ATL:00007FFEB3CED0D0
+  보임: x
+
+[1060] (타이틀 없음)  HWND (16진수): 0x10578
+  HWND (10진수): 66936
+  클래스: VanguardTrayWindowClass
+  보임: x
+
+[1061] Default IME  HWND (16진수): 0x1057A
+  HWND (10진수): 66938
+  클래스: IME
+  보임: x
+
+[1062] (타이틀 없음)  HWND (16진수): 0x10576
+  HWND (10진수): 66934
+  클래스: ATL:00007FFE786FE000
+  보임: x
+
+[1063] SecurityHealthSystray  HWND (16진수): 0x10572
+  HWND (10진수): 66930
+  클래스: SecHealth Window Class
+  보임: x
+
+[1064] Default IME  HWND (16진수): 0x10574
+  HWND (10진수): 66932
+  클래스: IME
+  보임: x
+
+[1065] (타이틀 없음)  HWND (16진수): 0x1056C
+  HWND (10진수): 66924
+  클래스: WindowsForms10.Window.0.app.0.20a9ef0_r3_ad1
+  보임: x
+
+[1066] WUIconWindow  HWND (16진수): 0x20556
+  HWND (10진수): 132438
+  클래스: WUIconClass
+  보임: x
+
+[1067] Default IME  HWND (16진수): 0x1056A
+  HWND (10진수): 66922
+  클래스: IME
+  보임: x
+
+[1068] GDI+ Window (Malwarebytes.exe)  HWND (16진수): 0x3054E
+  HWND (10진수): 197966
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[1069] Default IME  HWND (16진수): 0x201E4
+  HWND (10진수): 131556
+  클래스: IME
+  보임: x
+
+[1070] .NET-BroadcastEventWindow.20a9ef0.0  HWND (16진수): 0x20446
+  HWND (10진수): 132166
+  클래스: .NET-BroadcastEventWindow.20a9ef0.0
+  보임: x
+
+[1071] Default IME  HWND (16진수): 0x3042C
+  HWND (10진수): 197676
+  클래스: IME
+  보임: x
+
+[1072] (타이틀 없음)  HWND (16진수): 0x1054C
+  HWND (10진수): 66892
+  클래스: tooltips_class32
+  보임: x
+
+[1073] (타이틀 없음)  HWND (16진수): 0x1054A
+  HWND (10진수): 66890
+  클래스: tooltips_class32
+  보임: x
+
+[1074] (타이틀 없음)  HWND (16진수): 0x10548
+  HWND (10진수): 66888
+  클래스: tooltips_class32
+  보임: x
+
+[1075] (타이틀 없음)  HWND (16진수): 0x10546
+  HWND (10진수): 66886
+  클래스: tooltips_class32
+  보임: x
+
+[1076] (타이틀 없음)  HWND (16진수): 0x10544
+  HWND (10진수): 66884
+  클래스: tooltips_class32
+  보임: x
+
+[1077] (타이틀 없음)  HWND (16진수): 0x10542
+  HWND (10진수): 66882
+  클래스: tooltips_class32
+  보임: x
+
+[1078] (타이틀 없음)  HWND (16진수): 0x10540
+  HWND (10진수): 66880
+  클래스: tooltips_class32
+  보임: x
+
+[1079] (타이틀 없음)  HWND (16진수): 0x1053E
+  HWND (10진수): 66878
+  클래스: tooltips_class32
+  보임: x
+
+[1080] (타이틀 없음)  HWND (16진수): 0x1053C
+  HWND (10진수): 66876
+  클래스: tooltips_class32
+  보임: x
+
+[1081] (타이틀 없음)  HWND (16진수): 0x1053A
+  HWND (10진수): 66874
+  클래스: tooltips_class32
+  보임: x
+
+[1082] (타이틀 없음)  HWND (16진수): 0x10538
+  HWND (10진수): 66872
+  클래스: tooltips_class32
+  보임: x
+
+[1083] (타이틀 없음)  HWND (16진수): 0x10536
+  HWND (10진수): 66870
+  클래스: tooltips_class32
+  보임: x
+
+[1084] (타이틀 없음)  HWND (16진수): 0x10534
+  HWND (10진수): 66868
+  클래스: tooltips_class32
+  보임: x
+
+[1085] (타이틀 없음)  HWND (16진수): 0x10532
+  HWND (10진수): 66866
+  클래스: tooltips_class32
+  보임: x
+
+[1086] (타이틀 없음)  HWND (16진수): 0x10530
+  HWND (10진수): 66864
+  클래스: tooltips_class32
+  보임: x
+
+[1087] (타이틀 없음)  HWND (16진수): 0x1052E
+  HWND (10진수): 66862
+  클래스: tooltips_class32
+  보임: x
+
+[1088] (타이틀 없음)  HWND (16진수): 0x1052C
+  HWND (10진수): 66860
+  클래스: tooltips_class32
+  보임: x
+
+[1089] (타이틀 없음)  HWND (16진수): 0x1052A
+  HWND (10진수): 66858
+  클래스: tooltips_class32
+  보임: x
+
+[1090] nProtect Online Security  HWND (16진수): 0x204D0
+  HWND (10진수): 132304
+  클래스: npendlg
+  보임: x
+
+[1091] Firewall  HWND (16진수): 0x30136
+  HWND (10진수): 196918
+  클래스: Static
+  보임: x
+
+[1092] KeyCrypt  HWND (16진수): 0x2048A
+  HWND (10진수): 132234
+  클래스: Static
+  보임: x
+
+[1093] (타이틀 없음)  HWND (16진수): 0x104D2
+  HWND (10진수): 66770
+  클래스: msctls_trackbar32
+  보임: x
+
+[1094] (타이틀 없음)  HWND (16진수): 0x104D4
+  HWND (10진수): 66772
+  클래스: msctls_trackbar32
+  보임: x
+
+[1095] Help  HWND (16진수): 0x104D6
+  HWND (10진수): 66774
+  클래스: Button
+  보임: x
+
+[1096] Detail  HWND (16진수): 0x104D8
+  HWND (10진수): 66776
+  클래스: Button
+  보임: x
+
+[1097] DNS Check  HWND (16진수): 0x104DA
+  HWND (10진수): 66778
+  클래스: Button
+  보임: x
+
+[1098] Scanner  HWND (16진수): 0x104DC
+  HWND (10진수): 66780
+  클래스: Button
+  보임: x
+
+[1099] OTP  HWND (16진수): 0x104DE
+  HWND (10진수): 66782
+  클래스: Button
+  보임: x
+
+[1100] RTD  HWND (16진수): 0x104E2
+  HWND (10진수): 66786
+  클래스: Static
+  보임: x
+
+[1101] (타이틀 없음)  HWND (16진수): 0x104E4
+  HWND (10진수): 66788
+  클래스: msctls_trackbar32
+  보임: x
+
+[1102] (타이틀 없음)  HWND (16진수): 0x104CE
+  HWND (10진수): 66766
+  클래스: tooltips_class32
+  보임: x
+
+[1103] (타이틀 없음)  HWND (16진수): 0x104CC
+  HWND (10진수): 66764
+  클래스: tooltips_class32
+  보임: x
+
+[1104] (타이틀 없음)  HWND (16진수): 0x104CA
+  HWND (10진수): 66762
+  클래스: tooltips_class32
+  보임: x
+
+[1105] (타이틀 없음)  HWND (16진수): 0x104C8
+  HWND (10진수): 66760
+  클래스: tooltips_class32
+  보임: x
+
+[1106] nProtect Online Security  HWND (16진수): 0x204AC
+  HWND (10진수): 132268
+  클래스: #32770
+  보임: x
+
+[1107] X  HWND (16진수): 0x104AE
+  HWND (10진수): 66734
+  클래스: Button
+  보임: x
+
+[1108] 전체 종료  HWND (16진수): 0x104B0
+  HWND (10진수): 66736
+  클래스: Button
+  보임: x
+
+[1109] 선택 항목 종료  HWND (16진수): 0x104B2
+  HWND (10진수): 66738
+  클래스: Button
+  보임: x
+
+[1110] _Process Monitoring Image  HWND (16진수): 0x104B4
+  HWND (10진수): 66740
+  클래스: Static
+  보임: x
+
+[1111] _시스템 보호  HWND (16진수): 0x104B6
+  HWND (10진수): 66742
+  클래스: Static
+  보임: x
+
+[1112] _프로세스 감시  HWND (16진수): 0x104B8
+  HWND (10진수): 66744
+  클래스: Static
+  보임: x
+
+[1113] _2010-05-22 12:25:35  HWND (16진수): 0x104BA
+  HWND (10진수): 66746
+  클래스: Static
+  보임: x
+
+[1114] help  HWND (16진수): 0x104BC
+  HWND (10진수): 66748
+  클래스: Button
+  보임: x
+
+[1115] (타이틀 없음)  HWND (16진수): 0x104BE
+  HWND (10진수): 66750
+  클래스: SysListView32
+  보임: x
+
+[1116] (타이틀 없음)  HWND (16진수): 0x104C0
+  HWND (10진수): 66752
+  클래스: SysHeader32
+  보임: x
+
+[1117] _Warning Image  HWND (16진수): 0x204C4
+  HWND (10진수): 132292
+  클래스: Static
+  보임: x
+
+[1118] _아래의 원격 프로세스를 발견하였습니다.  HWND (16진수): 0x104C6
+  HWND (10진수): 66758
+  클래스: Static
+  보임: x
+
+[1119] (타이틀 없음)  HWND (16진수): 0x104AA
+  HWND (10진수): 66730
+  클래스: tooltips_class32
+  보임: x
+
+[1120] (타이틀 없음)  HWND (16진수): 0x104A8
+  HWND (10진수): 66728
+  클래스: tooltips_class32
+  보임: x
+
+[1121] (타이틀 없음)  HWND (16진수): 0x204A6
+  HWND (10진수): 132262
+  클래스: tooltips_class32
+  보임: x
+
+[1122] nProtect Online Security  HWND (16진수): 0x1048C
+  HWND (10진수): 66700
+  클래스: #32770
+  보임: x
+
+[1123] X  HWND (16진수): 0x10490
+  HWND (10진수): 66704
+  클래스: Button
+  보임: x
+
+[1124] 전체 복원  HWND (16진수): 0x10492
+  HWND (10진수): 66706
+  클래스: Button
+  보임: x
+
+[1125] 선택 항목 복원  HWND (16진수): 0x10494
+  HWND (10진수): 66708
+  클래스: Button
+  보임: x
+
+[1126] _Process Monitoring Image  HWND (16진수): 0x10496
+  HWND (10진수): 66710
+  클래스: Static
+  보임: x
+
+[1127] _시스템 보호  HWND (16진수): 0x10498
+  HWND (10진수): 66712
+  클래스: Static
+  보임: x
+
+[1128] _프로세스 감시  HWND (16진수): 0x1049A
+  HWND (10진수): 66714
+  클래스: Static
+  보임: x
+
+[1129] _2010-05-22 12:25:35  HWND (16진수): 0x1049C
+  HWND (10진수): 66716
+  클래스: Static
+  보임: x
+
+[1130] help  HWND (16진수): 0x1049E
+  HWND (10진수): 66718
+  클래스: Button
+  보임: x
+
+[1131] (타이틀 없음)  HWND (16진수): 0x104A0
+  HWND (10진수): 66720
+  클래스: SysListView32
+  보임: x
+
+[1132] (타이틀 없음)  HWND (16진수): 0x104A2
+  HWND (10진수): 66722
+  클래스: SysHeader32
+  보임: x
+
+[1133] (타이틀 없음)  HWND (16진수): 0x10484
+  HWND (10진수): 66692
+  클래스: tooltips_class32
+  보임: x
+
+[1134] (타이틀 없음)  HWND (16진수): 0x10482
+  HWND (10진수): 66690
+  클래스: tooltips_class32
+  보임: x
+
+[1135] (타이틀 없음)  HWND (16진수): 0x10480
+  HWND (10진수): 66688
+  클래스: tooltips_class32
+  보임: x
+
+[1136] (타이틀 없음)  HWND (16진수): 0x2047E
+  HWND (10진수): 132222
+  클래스: tooltips_class32
+  보임: x
+
+[1137] nProtect Online Security  HWND (16진수): 0x20460
+  HWND (10진수): 132192
+  클래스: #32770
+  보임: x
+
+[1138] X  HWND (16진수): 0x30464
+  HWND (10진수): 197732
+  클래스: Button
+  보임: x
+
+[1139] 전체 치료  HWND (16진수): 0x10466
+  HWND (10진수): 66662
+  클래스: Button
+  보임: x
+
+[1140] 선택 항목 치료  HWND (16진수): 0x10468
+  HWND (10진수): 66664
+  클래스: Button
+  보임: x
+
+[1141] _Process Monitoring Image  HWND (16진수): 0x1046A
+  HWND (10진수): 66666
+  클래스: Static
+  보임: x
+
+[1142] _시스템 보호  HWND (16진수): 0x1046C
+  HWND (10진수): 66668
+  클래스: Static
+  보임: x
+
+[1143] _프로세스 감시  HWND (16진수): 0x1046E
+  HWND (10진수): 66670
+  클래스: Static
+  보임: x
+
+[1144] _2010-05-22 12:25:35  HWND (16진수): 0x10470
+  HWND (10진수): 66672
+  클래스: Static
+  보임: x
+
+[1145] help  HWND (16진수): 0x10472
+  HWND (10진수): 66674
+  클래스: Button
+  보임: x
+
+[1146] _Warning Image  HWND (16진수): 0x10474
+  HWND (10진수): 66676
+  클래스: Static
+  보임: x
+
+[1147] _아래의 악성코드의 동작을 발견하였습니다.  HWND (16진수): 0x10476
+  HWND (10진수): 66678
+  클래스: Static
+  보임: x
+
+[1148] (타이틀 없음)  HWND (16진수): 0x10478
+  HWND (10진수): 66680
+  클래스: SysListView32
+  보임: x
+
+[1149] (타이틀 없음)  HWND (16진수): 0x1047A
+  HWND (10진수): 66682
+  클래스: SysHeader32
+  보임: x
+
+[1150] nProtect Online Security     HWND (16진수): 0x20454
+  HWND (10진수): 132180
+  클래스: nosstarterdlg
+  보임: x
+
+[1151] Button1  HWND (16진수): 0x20452
+  HWND (10진수): 132178
+  클래스: Button
+  보임: x
+
+[1152] 확인  HWND (16진수): 0x10456
+  HWND (10진수): 66646
+  클래스: Button
+  보임: x
+
+[1153] 적용  HWND (16진수): 0x10458
+  HWND (10진수): 66648
+  클래스: Button
+  보임: x
+
+[1154] (타이틀 없음)  HWND (16진수): 0x10462
+  HWND (10진수): 66658
+  클래스: AfxWnd80su
+  보임: x
+
+[1155] (타이틀 없음)  HWND (16진수): 0x20488
+  HWND (10진수): 132232
+  클래스: #32770
+  보임: x
+
+[1156] (타이틀 없음)  HWND (16진수): 0x2048E
+  HWND (10진수): 132238
+  클래스: msctls_trackbar32
+  보임: x
+
+[1157] (타이틀 없음)  HWND (16진수): 0x104E6
+  HWND (10진수): 66790
+  클래스: msctls_trackbar32
+  보임: x
+
+[1158] Static  HWND (16진수): 0x104E8
+  HWND (10진수): 66792
+  클래스: Static
+  보임: x
+
+[1159] Static  HWND (16진수): 0x104EA
+  HWND (10진수): 66794
+  클래스: Static
+  보임: x
+
+[1160] Static  HWND (16진수): 0x104EC
+  HWND (10진수): 66796
+  클래스: Static
+  보임: x
+
+[1161] Static  HWND (16진수): 0x104EE
+  HWND (10진수): 66798
+  클래스: Static
+  보임: x
+
+[1162] Static  HWND (16진수): 0x104F0
+  HWND (10진수): 66800
+  클래스: Static
+  보임: x
+
+[1163] (타이틀 없음)  HWND (16진수): 0x104F2
+  HWND (10진수): 66802
+  클래스: msctls_trackbar32
+  보임: x
+
+[1164] Static  HWND (16진수): 0x104F4
+  HWND (10진수): 66804
+  클래스: Static
+  보임: x
+
+[1165] Static  HWND (16진수): 0x104F6
+  HWND (10진수): 66806
+  클래스: Static
+  보임: x
+
+[1166] 이전 Hosts 파일로...  HWND (16진수): 0x104F8
+  HWND (10진수): 66808
+  클래스: Button
+  보임: x
+
+[1167] 초기화  HWND (16진수): 0x104FA
+  HWND (10진수): 66810
+  클래스: Button
+  보임: x
+
+[1168] (타이틀 없음)  HWND (16진수): 0x104FC
+  HWND (10진수): 66812
+  클래스: msctls_trackbar32
+  보임: x
+
+[1169] (타이틀 없음)  HWND (16진수): 0x104FE
+  HWND (10진수): 66814
+  클래스: msctls_trackbar32
+  보임: x
+
+[1170] LAST UPDATE  HWND (16진수): 0x10500
+  HWND (10진수): 66816
+  클래스: Static
+  보임: x
+
+[1171] (타이틀 없음)  HWND (16진수): 0x10502
+  HWND (10진수): 66818
+  클래스: msctls_trackbar32
+  보임: x
+
+[1172] 0  HWND (16진수): 0x10504
+  HWND (10진수): 66820
+  클래스: Button
+  보임: x
+
+[1173] 0  HWND (16진수): 0x10506
+  HWND (10진수): 66822
+  클래스: Button
+  보임: x
+
+[1174] 0  HWND (16진수): 0x10508
+  HWND (10진수): 66824
+  클래스: Button
+  보임: x
+
+[1175] 제품정보  HWND (16진수): 0x1050A
+  HWND (10진수): 66826
+  클래스: Button
+  보임: x
+
+[1176] 피싱보고  HWND (16진수): 0x1050C
+  HWND (10진수): 66828
+  클래스: Button
+  보임: x
+
+[1177] PROTECT  HWND (16진수): 0x1050E
+  HWND (10진수): 66830
+  클래스: Static
+  보임: x
+
+[1178] PROTECT COUNT  HWND (16진수): 0x10510
+  HWND (10진수): 66832
+  클래스: Static
+  보임: x
+
+[1179] 상세정보  HWND (16진수): 0x10512
+  HWND (10진수): 66834
+  클래스: Button
+  보임: x
+
+[1180] ILLEGAL  HWND (16진수): 0x10514
+  HWND (10진수): 66836
+  클래스: Static
+  보임: x
+
+[1181] ILLEGAL COUNT  HWND (16진수): 0x10516
+  HWND (10진수): 66838
+  클래스: Static
+  보임: x
+
+[1182] 상세정보  HWND (16진수): 0x10518
+  HWND (10진수): 66840
+  클래스: Button
+  보임: x
+
+[1183] SECURE  HWND (16진수): 0x1051A
+  HWND (10진수): 66842
+  클래스: Static
+  보임: x
+
+[1184] SECURE GUIDE  HWND (16진수): 0x1051C
+  HWND (10진수): 66844
+  클래스: Static
+  보임: x
+
+[1185] PROTECT UNIT  HWND (16진수): 0x1051E
+  HWND (10진수): 66846
+  클래스: Static
+  보임: x
+
+[1186] ILLEGAL UNIT  HWND (16진수): 0x10520
+  HWND (10진수): 66848
+  클래스: Static
+  보임: x
+
+[1187] (타이틀 없음)  HWND (16진수): 0x10522
+  HWND (10진수): 66850
+  클래스: Button
+  보임: x
+
+[1188] (타이틀 없음)  HWND (16진수): 0x10524
+  HWND (10진수): 66852
+  클래스: Button
+  보임: x
+
+[1189] STYPE_NAME  HWND (16진수): 0x10526
+  HWND (10진수): 66854
+  클래스: Static
+  보임: x
+
+[1190] STYPE_MEMO  HWND (16진수): 0x10528
+  HWND (10진수): 66856
+  클래스: Static
+  보임: x
+
+[1191] (타이틀 없음)  HWND (16진수): 0x10552
+  HWND (10진수): 66898
+  클래스: ComboBox
+  보임: x
+
+[1192] (타이틀 없음)  HWND (16진수): 0x10558
+  HWND (10진수): 66904
+  클래스: #32770
+  보임: x
+
+[1193] 로그  HWND (16진수): 0x1055A
+  HWND (10진수): 66906
+  클래스: Static
+  보임: x
+
+[1194] (타이틀 없음)  HWND (16진수): 0x1055C
+  HWND (10진수): 66908
+  클래스: Edit
+  보임: x
+
+[1195] (타이틀 없음)  HWND (16진수): 0x1055E
+  HWND (10진수): 66910
+  클래스: SysListView32
+  보임: x
+
+[1196] (타이틀 없음)  HWND (16진수): 0x10560
+  HWND (10진수): 66912
+  클래스: SysHeader32
+  보임: x
+
+[1197] (타이틀 없음)  HWND (16진수): 0x20566
+  HWND (10진수): 132454
+  클래스: ComboBox
+  보임: x
+
+[1198] (타이틀 없음)  HWND (16진수): 0x20562
+  HWND (10진수): 132450
+  클래스: tooltips_class32
+  보임: x
+
+[1199] (타이틀 없음)  HWND (16진수): 0x20564
+  HWND (10진수): 132452
+  클래스: tooltips_class32
+  보임: x
+
+[1200] (타이틀 없음)  HWND (16진수): 0x20550
+  HWND (10진수): 132432
+  클래스: Afx:00A00000:0
+  보임: x
+
+[1201] nProtect Online Security  HWND (16진수): 0x30264
+  HWND (10진수): 197220
+  클래스: #32770
+  보임: x
+
+[1202] X  HWND (16진수): 0x4026E
+  HWND (10진수): 262766
+  클래스: Button
+  보임: x
+
+[1203] (타이틀 없음)  HWND (16진수): 0x10568
+  HWND (10진수): 66920
+  클래스: ComboLBox
+  보임: x
+
+[1204] (타이틀 없음)  HWND (16진수): 0x10554
+  HWND (10진수): 66900
+  클래스: ComboLBox
+  보임: x
+
+[1205] delfino  HWND (16진수): 0x104E0
+  HWND (10진수): 66784
+  클래스: QWidget
+  보임: x
+
+[1206] (타이틀 없음)  HWND (16진수): 0x204C2
+  HWND (10진수): 132290
+  클래스: tooltips_class32
+  보임: x
+
+[1207] (타이틀 없음)  HWND (16진수): 0x204A4
+  HWND (10진수): 132260
+  클래스: tooltips_class32
+  보임: x
+
+[1208] (타이틀 없음)  HWND (16진수): 0x2047C
+  HWND (10진수): 132220
+  클래스: tooltips_class32
+  보임: x
+
+[1209] (타이틀 없음)  HWND (16진수): 0x60026
+  HWND (10진수): 393254
+  클래스: NzSessTrayWndCN
+  보임: x
+
+[1210] (타이틀 없음)  HWND (16진수): 0x20448
+  HWND (10진수): 132168
+  클래스: QEventDispatcherWin32_Internal_Widget272303552
+  보임: x
+
+[1211] Default IME  HWND (16진수): 0x1044A
+  HWND (10진수): 66634
+  클래스: IME
+  보임: x
+
+[1212] StSess32  HWND (16진수): 0x10438
+  HWND (10진수): 66616
+  클래스: NzSess32MainWndCN
+  보임: x
+
+[1213] Default IME  HWND (16진수): 0x1043C
+  HWND (10진수): 66620
+  클래스: IME
+  보임: x
+
+[1214] .NET-BroadcastEventWindow.bf7771.0  HWND (16진수): 0x10428
+  HWND (10진수): 66600
+  클래스: .NET-BroadcastEventWindow.bf7771.0
+  보임: x
+
+[1215] Default IME  HWND (16진수): 0x1042A
+  HWND (10진수): 66602
+  클래스: IME
+  보임: x
+
+[1216] (타이틀 없음)  HWND (16진수): 0x2035C
+  HWND (10진수): 131932
+  클래스: tooltips_class32
+  보임: x
+
+[1217] Default IME  HWND (16진수): 0x103FE
+  HWND (10진수): 66558
+  클래스: IME
+  보임: x
+
+[1218] MSCTFIME UI  HWND (16진수): 0x10410
+  HWND (10진수): 66576
+  클래스: MSCTFIME UI
+  보임: x
+
+[1219] wizvera-veraport-x64-handler  HWND (16진수): 0x103FC
+  HWND (10진수): 66556
+  클래스: Afx:00007FF770D40000:0
+  보임: x
+
+[1220] (타이틀 없음)  HWND (16진수): 0x10400
+  HWND (10진수): 66560
+  클래스: #32770
+  보임: x
+
+[1221] (타이틀 없음)  HWND (16진수): 0x10402
+  HWND (10진수): 66562
+  클래스: Edit
+  보임: x
+
+[1222] (타이틀 없음)  HWND (16진수): 0x10404
+  HWND (10진수): 66564
+  클래스: SysListView32
+  보임: x
+
+[1223] (타이틀 없음)  HWND (16진수): 0x10406
+  HWND (10진수): 66566
+  클래스: SysHeader32
+  보임: x
+
+[1224] Detail  HWND (16진수): 0x10408
+  HWND (10진수): 66568
+  클래스: Button
+  보임: x
+
+[1225] Log  HWND (16진수): 0x1040A
+  HWND (10진수): 66570
+  클래스: Button
+  보임: x
+
+[1226] Clear  HWND (16진수): 0x1040C
+  HWND (10진수): 66572
+  클래스: Button
+  보임: x
+
+[1227] (타이틀 없음)  HWND (16진수): 0x10412
+  HWND (10진수): 66578
+  클래스: msctls_statusbar32
+  보임: x
+
+[1228] Windows 입력 환경  HWND (16진수): 0x3009C
+  HWND (10진수): 196764
+  클래스: Windows.UI.Core.CoreWindow
+  보임: v
+
+[1229] Default IME  HWND (16진수): 0x20144
+  HWND (10진수): 131396
+  클래스: IME
+  보임: x
+
+[1230] CiceroUIWndFrame  HWND (16진수): 0x20092
+  HWND (10진수): 131218
+  클래스: CiceroUIWndFrame
+  보임: x
+
+[1231] (타이틀 없음)  HWND (16진수): 0x400B0
+  HWND (10진수): 262320
+  클래스: MSCTFComposition
+  보임: x
+
+[1232] GDI+ Window (nosstarter.npe)  HWND (16진수): 0x20318
+  HWND (10진수): 131864
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[1233] Default IME  HWND (16진수): 0x20042
+  HWND (10진수): 131138
+  클래스: IME
+  보임: x
+
+[1234] MSCTFIME UI  HWND (16진수): 0x20044
+  HWND (10진수): 131140
+  클래스: MSCTFIME UI
+  보임: x
+
+[1235] Default IME  HWND (16진수): 0x1018E
+  HWND (10진수): 65934
+  클래스: IME
+  보임: x
+
+[1236] (타이틀 없음)  HWND (16진수): 0x201F8
+  HWND (10진수): 131576
+  클래스: WindowsForms10.Window.0.app.0.3fbab22_r7_ad1
+  보임: x
+
+[1237] APP Center  HWND (16진수): 0x5009A
+  HWND (10진수): 327834
+  클래스: HwndWrapper[ApCent.exe;;93e4224c-203f-4a4e-a5f7-6cfcbfbde391]
+  보임: v
+
+[1238] Hidden Window  HWND (16진수): 0x150038
+  HWND (10진수): 1376312
+  클래스: HwndWrapper[ApCent.exe;;61def20a-9ab1-4359-9d79-d4c2845a71df]
+  보임: x
+
+[1239] (타이틀 없음)  HWND (16진수): 0x2026C
+  HWND (10진수): 131692
+  클래스: HwndWrapper[ApCent.exe;;3d986765-1b9c-429e-bfce-d6e99662a3f4]
+  보임: x
+
+[1240] MiracastConnectionWindow  HWND (16진수): 0x10308
+  HWND (10진수): 66312
+  클래스: MiracastConnectionWindow
+  보임: x
+
+[1241] BluetoothNotificationAreaIconWindowClass  HWND (16진수): 0x10306
+  HWND (10진수): 66310
+  클래스: BluetoothNotificationAreaIconWindowClass
+  보임: x
+
+[1242] MS_WebcheckMonitor  HWND (16진수): 0x102FC
+  HWND (10진수): 66300
+  클래스: MS_WebcheckMonitor
+  보임: x
+
+[1243] (타이틀 없음)  HWND (16진수): 0x102E4
+  HWND (10진수): 66276
+  클래스: WorkerW
+  보임: x
+
+[1244] Default IME  HWND (16진수): 0x102E6
+  HWND (10진수): 66278
+  클래스: IME
+  보임: x
+
+[1245] (타이틀 없음)  HWND (16진수): 0x202B2
+  HWND (10진수): 131762
+  클래스: WorkerW
+  보임: x
+
+[1246] Default IME  HWND (16진수): 0x102B4
+  HWND (10진수): 66228
+  클래스: IME
+  보임: x
+
+[1247] StSess  HWND (16진수): 0x10256
+  HWND (10진수): 66134
+  클래스: NzSessMainWndCN
+  보임: x
+
+[1248] Default IME  HWND (16진수): 0x1025A
+  HWND (10진수): 66138
+  클래스: IME
+  보임: x
+
+[1249] MediaContextNotificationWindow  HWND (16진수): 0x10200
+  HWND (10진수): 66048
+  클래스: HwndWrapper[ApCent.exe;;beac2698-c0cf-4b3c-b57e-6541b077efbe]
+  보임: x
+
+[1250] GDI+ Window (ApCent.exe)  HWND (16진수): 0x101F2
+  HWND (10진수): 66034
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[1251] Default IME  HWND (16진수): 0x101F4
+  HWND (10진수): 66036
+  클래스: IME
+  보임: x
+
+[1252] .NET-BroadcastEventWindow.4.0.0.0.3fbab22.0  HWND (16진수): 0x20176
+  HWND (10진수): 131446
+  클래스: .NET-BroadcastEventWindow.4.0.0.0.3fbab22.0
+  보임: x
+
+[1253] (타이틀 없음)  HWND (16진수): 0x101C6
+  HWND (10진수): 65990
+  클래스: Postures Broadcast Listener Class
+  보임: x
+
+[1254] (타이틀 없음)  HWND (16진수): 0x101DE
+  HWND (10진수): 66014
+  클래스: TabletModeCoverWindow
+  보임: x
+
+[1255] (타이틀 없음)  HWND (16진수): 0x20116
+  HWND (10진수): 131350
+  클래스: WorkerW
+  보임: x
+
+[1256] (타이틀 없음)  HWND (16진수): 0x300FA
+  HWND (10진수): 196858
+  클래스: WorkerW
+  보임: x
+
+[1257] (타이틀 없음)  HWND (16진수): 0x101E0
+  HWND (10진수): 66016
+  클래스: DummyDWMListenerWindow
+  보임: v
+
+[1258] (타이틀 없음)  HWND (16진수): 0x101D8
+  HWND (10진수): 66008
+  클래스: EdgeUiInputTopWndClass
+  보임: v
+
+[1259] (타이틀 없음)  HWND (16진수): 0x101BC
+  HWND (10진수): 65980
+  클래스: DummyDWMListenerWindow
+  보임: v
+
+[1260] (타이틀 없음)  HWND (16진수): 0x101BA
+  HWND (10진수): 65978
+  클래스: DummyDWMListenerWindow
+  보임: v
+
+[1261] (타이틀 없음)  HWND (16진수): 0x101B8
+  HWND (10진수): 65976
+  클래스: DummyDWMListenerWindow
+  보임: v
+
+[1262] (타이틀 없음)  HWND (16진수): 0x101B6
+  HWND (10진수): 65974
+  클래스: DummyDWMListenerWindow
+  보임: v
+
+[1263] DesktopWindowXamlSource  HWND (16진수): 0xE0FDC
+  HWND (10진수): 921564
+  클래스: Windows.UI.Core.CoreWindow
+  보임: x
+
+[1264] (타이틀 없음)  HWND (16진수): 0x101B0
+  HWND (10진수): 65968
+  클래스: GamingFallbackWindow
+  보임: x
+
+[1265] (타이틀 없음)  HWND (16진수): 0x101A0
+  HWND (10진수): 65952
+  클래스: WorkerW
+  보임: x
+
+[1266] (타이틀 없음)  HWND (16진수): 0x1019E
+  HWND (10진수): 65950
+  클래스: WorkerW
+  보임: x
+
+[1267] (타이틀 없음)  HWND (16진수): 0x10198
+  HWND (10진수): 65944
+  클래스: HwndWrapper[ApCent.exe;;e08169e3-f365-4cc4-b091-33ba50518855]
+  보임: x
+
+[1268] SystemResourceNotifyWindow  HWND (16진수): 0x2017E
+  HWND (10진수): 131454
+  클래스: HwndWrapper[ApCent.exe;;86b5dae5-12a4-415f-bfab-0436134ada2a]
+  보임: x
+
+[1269] (타이틀 없음)  HWND (16진수): 0x10194
+  HWND (10진수): 65940
+  클래스: WorkerW
+  보임: x
+
+[1270] (타이틀 없음)  HWND (16진수): 0x1015A
+  HWND (10진수): 65882
+  클래스: WorkerW
+  보임: x
+
+[1271] Default IME  HWND (16진수): 0x1015C
+  HWND (10진수): 65884
+  클래스: IME
+  보임: x
+
+[1272] (타이틀 없음)  HWND (16진수): 0x10156
+  HWND (10진수): 65878
+  클래스: WorkerW
+  보임: x
+
+[1273] CrossDeviceResumeWindow  HWND (16진수): 0x100F2
+  HWND (10진수): 65778
+  클래스: CrossDeviceResumeWindowClass
+  보임: x
+
+[1274] Default IME  HWND (16진수): 0x100F4
+  HWND (10진수): 65780
+  클래스: IME
+  보임: x
+
+[1275] CrossEXService  HWND (16진수): 0x20088
+  HWND (10진수): 131208
+  클래스: CrossEXService
+  보임: x
+
+[1276] Default IME  HWND (16진수): 0x200DC
+  HWND (10진수): 131292
+  클래스: IME
+  보임: x
+
+[1277] SKCertService  HWND (16진수): 0x100D4
+  HWND (10진수): 65748
+  클래스: SignKoreaTray
+  보임: x
+
+[1278] Default IME  HWND (16진수): 0x100D6
+  HWND (10진수): 65750
+  클래스: IME
+  보임: x
+
+[1279] DesktopWindowXamlSource  HWND (16진수): 0x100D2
+  HWND (10진수): 65746
+  클래스: Windows.UI.Core.CoreWindow
+  보임: x
+
+[1280] (타이틀 없음)  HWND (16진수): 0x100A6
+  HWND (10진수): 65702
+  클래스: DDEMLEvent
+  보임: x
+
+[1281] (타이틀 없음)  HWND (16진수): 0x100A2
+  HWND (10진수): 65698
+  클래스: DDEMLMom
+  보임: x
+
+[1282] Windows Push Notifications Platform  HWND (16진수): 0x2007A
+  HWND (10진수): 131194
+  클래스: PushNotificationsPowerManagement
+  보임: x
+
+[1283] Default IME  HWND (16진수): 0x10086
+  HWND (10진수): 65670
+  클래스: IME
+  보임: x
+
+[1284] Task Host Window  HWND (16진수): 0x20024
+  HWND (10진수): 131108
+  클래스: COMTASKSWINDOWCLASS
+  보임: x
+
+[1285] SmartDC  HWND (16진수): 0x1007E
+  HWND (10진수): 65662
+  클래스: SmartDC
+  보임: x
+
+[1286] Default IME  HWND (16진수): 0x10080
+  HWND (10진수): 65664
+  클래스: IME
+  보임: x
+
+[1287] AMD EEU Client  HWND (16진수): 0x10066
+  HWND (10진수): 65638
+  클래스: AMD EEU Client
+  보임: x
+
+[1288] Default IME  HWND (16진수): 0x10068
+  HWND (10진수): 65640
+  클래스: IME
+  보임: x
+
+[1289] DWM Notification Window  HWND (16진수): 0x1004A
+  HWND (10진수): 65610
+  클래스: Dwm
+  보임: x
+
+[1290] (타이틀 없음)  HWND (16진수): 0x10070
+  HWND (10진수): 65648
+  클래스: CicLoaderWndClass
+  보임: x
+
+[1291] npkfxnaxServerWindow_0  HWND (16진수): 0x203E8
+  HWND (10진수): 132072
+  클래스: npkfxnaxServerWindow_0
+  보임: x
+
+[1292] Default IME  HWND (16진수): 0x203F4
+  HWND (10진수): 132084
+  클래스: IME
+  보임: x
+
+[1293] (타이틀 없음)  HWND (16진수): 0x40126
+  HWND (10진수): 262438
+  클래스: HwndWrapper[Malwarebytes;;15ff8dcf-ce79-4750-a645-6314e8a80d7a]
+  보임: x
+
+[1294] SystemResourceNotifyWindow  HWND (16진수): 0x40154
+  HWND (10진수): 262484
+  클래스: HwndWrapper[Malwarebytes;;c7f5e8ca-42cf-4d9a-bba3-c6dc0c6e3525]
+  보임: x
+
+[1295] Default IME  HWND (16진수): 0x4012A
+  HWND (10진수): 262442
+  클래스: IME
+  보임: x
+
+[1296] MSCTFIME UI  HWND (16진수): 0x105A2
+  HWND (10진수): 66978
+  클래스: MSCTFIME UI
+  보임: x
+
+[1297] Default IME  HWND (16진수): 0x203DC
+  HWND (10진수): 132060
+  클래스: IME
+  보임: x
+
+[1298] (타이틀 없음)  HWND (16진수): 0x1059A
+  HWND (10진수): 66970
+  클래스: OneDriveReactNativeWin32WindowClass
+  보임: x
+
+[1299] DesktopWindowXamlSource  HWND (16진수): 0x1059C
+  HWND (10진수): 66972
+  클래스: Windows.UI.Composition.DesktopWindowContentBridge
+  보임: x
+
+[1300] (타이틀 없음)  HWND (16진수): 0x1059E
+  HWND (10진수): 66974
+  클래스: Windows.UI.Input.InputSite.WindowClass
+  보임: x
+
+[1301] DesktopWindowXamlSource  HWND (16진수): 0x10592
+  HWND (10진수): 66962
+  클래스: Windows.UI.Core.CoreWindow
+  보임: x
+
+[1302] (타이틀 없음)  HWND (16진수): 0x20692
+  HWND (10진수): 132754
+  클래스: MessageWindowClass
+  보임: x
+
+[1303] (타이틀 없음)  HWND (16진수): 0x20690
+  HWND (10진수): 132752
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1304] Default IME  HWND (16진수): 0x206B8
+  HWND (10진수): 132792
+  클래스: IME
+  보임: x
+
+[1305] (타이틀 없음)  HWND (16진수): 0x206A2
+  HWND (10진수): 132770
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1306] Chrome Legacy Window  HWND (16진수): 0x206A0
+  HWND (10진수): 132768
+  클래스: Chrome_RenderWidgetHostHWND
+  보임: x
+
+[1307] 위젯  HWND (16진수): 0x206CA
+  HWND (10진수): 132810
+  클래스: Chrome_WidgetWin_1
+  보임: x
+
+[1308] (타이틀 없음)  HWND (16진수): 0x206B6
+  HWND (10진수): 132790
+  클래스: Intermediate D3D Window
+  보임: x
+
+[1309] (타이틀 없음)  HWND (16진수): 0x10ED4
+  HWND (10진수): 69332
+  클래스: Base_PowerMessageWindow
+  보임: x
+
+[1310] (타이틀 없음)  HWND (16진수): 0x20ED8
+  HWND (10진수): 134872
+  클래스: Chrome_WidgetWin_0
+  보임: x
+
+[1311] (타이틀 없음)  HWND (16진수): 0x20EDA
+  HWND (10진수): 134874
+  클래스: Chrome_SystemMessageWindow
+  보임: x
+
+[1312] Radeonsoftware  HWND (16진수): 0x20ECA
+  HWND (10진수): 134858
+  클래스: Qt641QWindowIcon
+  보임: x
+
+[1313] GDI+ Window (horizon-client.exe)  HWND (16진수): 0x20EF4
+  HWND (10진수): 134900
+  클래스: GDI+ Hook Window Class
+  보임: x
+
+[1314] Default IME  HWND (16진수): 0x40F44
+  HWND (10진수): 266052
+  클래스: IME
+  보임: x
+
+[1315] MediaContextNotificationWindow  HWND (16진수): 0x20F00
+  HWND (10진수): 134912
+  클래스: HwndWrapper[Horizon.Client.UI;;fffe674b-27df-4ad8-9751-80de6ade9b7b]
+  보임: x
+
+[1316] (타이틀 없음)  HWND (16진수): 0x20F02
+  HWND (10진수): 134914
+  클래스: HwndWrapper[Horizon.Client.UI;;0d112981-ed25-4454-9d3a-e2962fccb7d6]
+  보임: x
+
+[1317] CiceroUIWndFrame  HWND (16진수): 0x20EFA
+  HWND (10진수): 134906
+  클래스: CiceroUIWndFrame
+  보임: x
+
+[1318] (타이틀 없음)  HWND (16진수): 0x20EF6
+  HWND (10진수): 134902
+  클래스: MSCTFComposition
+  보임: x
+
+[1319] (타이틀 없음)  HWND (16진수): 0x20EF2
+  HWND (10진수): 134898
+  클래스: CdkMainWindowClass
+  보임: x
+
+[1320] (타이틀 없음)  HWND (16진수): 0xC0114
+  HWND (10진수): 786708
+  클래스: HwndWrapper[Horizon.Client.UI;;cc76bbed-81ef-4400-beb1-7227112017c6]
+  보임: x
+
+[1321] SystemResourceNotifyWindow  HWND (16진수): 0x30EF0
+  HWND (10진수): 200432
+  클래스: HwndWrapper[Horizon.Client.UI;;21cc4a42-ace9-442e-9f2b-5089d11364a8]
+  보임: x
+
+[1322] (타이틀 없음)  HWND (16진수): 0x20F0E
+  HWND (10진수): 134926
+  클래스: HwndWrapper[Horizon.Client.UI;;8f37f5f8-18ad-4981-8bb2-fc0d850b04db]
+  보임: x
+
+[1323] Omnissa Horizon Client  HWND (16진수): 0x20F04
+  HWND (10진수): 134916
+  클래스: HwndWrapper[Horizon.Client.UI;;21bc3640-e932-439e-b3ef-8fdd2f02cdd0]
+  보임: v
+
+[1324] MSCTFIME UI  HWND (16진수): 0xA091A
+  HWND (10진수): 657690
+  클래스: MSCTFIME UI
+  보임: x
+
+[1325] Default IME  HWND (16진수): 0x2078C
+  HWND (10진수): 133004
+  클래스: IME
+  보임: x
+
+[1326] 가격 | Claude 외 페이지 1개 - 프로필 1 - Microsoft​ Edge  HWND (16진수): 0x16028E
+  HWND (10진수): 1442446
+  클래스: Chrome_WidgetWin_1
+  보임: v
+
+[1327] (타이틀 없음)  HWND (16진수): 0x20B0C
+  HWND (10진수): 133900
+  클래스: Intermediate D3D Window
+  보임: v
+
+[1328] MSCTFIME UI  HWND (16진수): 0x10190
+  HWND (10진수): 65936
+  클래스: MSCTFIME UI
+  보임: x
+
+[1329] Default IME  HWND (16진수): 0x100A4
+  HWND (10진수): 65700
+  클래스: IME
+  보임: x
+
+[1330] Program Manager  HWND (16진수): 0x10162
+  HWND (10진수): 65890
+  클래스: Progman
+  보임: v
+
+[1331] (타이틀 없음)  HWND (16진수): 0x1016E
+  HWND (10진수): 65902
+  클래스: SHELLDLL_DefView
+  보임: v
+
+[1332] FolderView  HWND (16진수): 0x10172
+  HWND (10진수): 65906
+  클래스: SysListView32
+  보임: v
+
+[1333] (타이틀 없음)  HWND (16진수): 0x1017A
+  HWND (10진수): 65914
+  클래스: SysHeader32
+  보임: x
