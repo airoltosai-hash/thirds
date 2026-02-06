@@ -4,6 +4,16 @@
     "class": "ITGEN_SCREEN_WINDOW"
   },
   "controls": {
+    "account_number": {
+      "id": 3780,
+      "class": "AfxWnd90",
+      "desc": "계좌선택"
+    },
+    "password": {
+      "id": 3790,
+      "class": "iMeritz MaskEdit",
+      "desc": "비밀번호"
+    },
     "stock_code": {
       "id": 3860,
       "class": "iMeritz MaskEdit2",
@@ -14,10 +24,15 @@
       "class": "iMeritz MaskEdit",
       "desc": "주문유형"
     },
-    "order_price": {
+    "buy_button": {
+      "id": 3875,
+      "class": "Button",
+      "desc": "현금매수(F1)"
+    },
+    "order_quantity": {
       "id": 3900,
       "class": "iMeritz MaskEdit",
-      "desc": "주문가격"
+      "desc": "주문수량"
     },
     "limit_price": {
       "id": 3930,
@@ -29,30 +44,10 @@
       "class": "iMeritz MaskEdit",
       "desc": "주문수량비율"
     },
-    "order_quantity": {
-      "id": 3900,
-      "class": "iMeritz MaskEdit",
-      "desc": "주문수량"
-    },
-    "account_type": {
-      "id": 4370,
-      "class": "iMeritz MaskEdit",
-      "desc": "계좌구분"
-    },
-    "stock_name": {
-      "id": 4425,
-      "class": "iMeritz MaskEdit",
-      "desc": "종목명"
-    },
-    "currency": {
-      "id": 3805,
-      "class": "iMeritz MaskEdit",
-      "desc": "통화"
-    },
-    "buy_button": {
-      "id": 3785,
-      "class": "Button",
-      "desc": "현금매수(F1)"
-    }
+    "order_type_tab": {
+    "id": 3810,
+    "class": "SysTabControl32",
+    "desc": "매수/매도/정정/취소 탭"
+  }
   }
 }
