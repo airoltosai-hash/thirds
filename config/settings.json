@@ -1,0 +1,42 @@
+{
+  "main_settings": {
+    "meritz_hts_path": "C:\\HTS\\iMERITZ\\Main\\a.bat",
+    "google_sheet_path": "https://docs.google.com/spreadsheets/d/1G3eyghbVkI9TB2wLsKrr7ZlYcDQlJ1QSYXPUWn_ormw/edit?gid=0#gid=0",
+    "google_service_account_json": "config/service_account.json"
+  },
+  "tasks": [
+    {
+      "type": "auto_login",
+      "nickname": "자동로그인",
+      "start_time": "10:47:00",
+      "cert_password": "password1!"
+    },
+    {
+      "type": "new_task",
+      "nickname": "test2",
+      "status": "활성",
+      "sheet_name": "arar",
+      "start_time": "12:42:00",
+      "end_time": "12:42:15",
+      "interval": 5
+    },
+    {
+      "type": "new_task",
+      "nickname": "avatat",
+      "status": "비활성",
+      "sheet_name": "tesetsta",
+      "start_time": "00:06:00",
+      "end_time": "10:20:59",
+      "interval": 40
+    },
+    {
+      "type": "new_task",
+      "nickname": "신규작업 4",
+      "status": "비활성",
+      "sheet_name": "sheet",
+      "start_time": "22:00:00",
+      "end_time": "09:00:00",
+      "interval": 70
+    }
+  ]
+}

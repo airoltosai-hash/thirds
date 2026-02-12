@@ -4,7 +4,8 @@
     "class": "ITGEN_SCREEN_WINDOW"
   },
   "controls": {
-    "account_number": {
+
+    "account_combo": {
       "id": 3780,
       "class": "AfxWnd90",
       "desc": "계좌선택"
@@ -48,6 +49,6 @@
     "id": 3810,
     "class": "SysTabControl32",
     "desc": "매수/매도/정정/취소 탭"
-  }
+    }
   }
 }

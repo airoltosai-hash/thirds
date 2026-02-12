@@ -1,4 +1,4 @@
-# automation/win_input.py
+# core/win_input.py
 import ctypes
 import time
 from ctypes import wintypes
