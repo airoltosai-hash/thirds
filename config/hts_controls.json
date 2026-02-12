@@ -4,7 +4,7 @@
     "class": "ITGEN_SCREEN_WINDOW"
   },
   "controls": {
-    "account_number": {
+    "account_combo": {
       "id": 3780,
       "class": "AfxWnd90",
       "desc": "계좌선택"
