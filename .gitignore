@@ -22,6 +22,6 @@ dist/
 Thumbs.db
 
 # Config (비밀번호 등)
-# service_account.json
-# settings.json
+service_account.json
+settings.json
 

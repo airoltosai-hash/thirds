@@ -934,7 +934,39 @@ class GridCell(tk.Frame):
         print("[STEP 1] 메인 로그인 완료 대기")
         self._set_login_info("메인 로그인 진행 중...", fg="khaki")
         # 사용자가 ID/PW 입력 할 시간 제공 (3초 대기)
-        self.after(3000, self._step2_select_certificate)
+        self.after(3000, self._step1_check_update)
+
+    def _step1_check_update(self):
+        """ Step 1-1 : 업데이트 팝업 확인 """
+        from core.login_manager import find_update_popup, wait_for_update_completion
+        
+        print("[STEP 1-1] 업데이트 팝업 확인 중...")
+        
+        # 업데이트 팝업이 있는지 확인 (2초 대기)
+        hwnd = find_update_popup(timeout_sec=2.0)
+        
+        if hwnd:
+            print("[INFO] 업데이트 팝업 발견! 완료 대기 시작...")
+            self._set_login_info("업데이트 진행 중...", fg="orange")
+            
+            # 별도 스레드에서 대기 (UI 블로킹 방지)
+            import threading
+            def wait_thread():
+                success = wait_for_update_completion(max_wait_sec=120.0)
+                
+                if success:
+                    # UI 스레드에서 다음 단계 실행
+                    self.after(0, self._step2_select_certificate)
+                else:
+                    # 타임아웃
+                    self._login_error_active = True
+                    self.after(0, lambda: self._set_login_info("업데이트 대기 시간 초과", fg="tomato"))
+            
+            threading.Thread(target=wait_thread, daemon=True).start()
+        else:
+            # 업데이트 없음 -> 바로 다음 단계
+            print("[INFO] 업데이트 팝업 없음")
+            self.after(1000, self._step2_select_certificate)
 
     def _step2_select_certificate(self):
         """ Step 2 : 인증서 자동 선택 """

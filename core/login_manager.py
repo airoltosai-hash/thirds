@@ -32,6 +32,92 @@ SETTINGS_FILE = "config/settings.json"
 WM_SETTEXT = 0x000C
 WM_CHAR    = 0x0102
 
+def find_update_popup(timeout_sec: float = 3.0) -> int | None:
+    """
+    HTS 업데이트 팝업을 찾습니다.
+    
+    Returns : 업데이트 팝업 핸들 또는 None
+    """
+    t0 = time.time()
+    
+    while time.time() - t0 < timeout_sec:
+        found = wintypes.HWND(0)
+        
+        @ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, ctypes.c_void_p)
+        def enum_proc(hwnd, lp):
+            try:
+                # 보이는 창만 체크
+                if not user32.IsWindowVisible(hwnd):
+                    return True
+                
+                # 타이틀 확인
+                length = GetWindowTextLengthW(hwnd)
+                if length > 0:
+                    buf_title = ctypes.create_unicode_buffer(length + 1)
+                    GetWindowTextW(hwnd, buf_title, length + 1)
+                    title = buf_title.value
+                    
+                    # "iMeritz 업데이트" 정확히 매칭
+                    if "iMeritz 업데이트" in title or "iMeritz Update" in title:
+                        # 클래스명 확인 (#32770 = 다이얼로그)
+                        buf_class = ctypes.create_unicode_buffer(256)
+                        GetClassNameW(hwnd, buf_class, 256)
+                        class_name = buf_class.value
+                        
+                        if "#32770" in class_name:
+                            print(f"[DEBUG] 업데이트 창 발견: HWND=0x{hwnd:X}, Title='{title}'")
+                            found.value = hwnd
+                            return False
+            except:
+                pass
+            return True
+        
+        EnumWindows(enum_proc, 0)
+        
+        if found.value:
+            return found.value
+        
+        time.sleep(0.3)
+    
+    return None
+
+
+def wait_for_update_completion(max_wait_sec: float = 120.0) -> bool:
+    """
+    업데이트 팝업이 사라질 때까지 대기합니다.
+    
+    Args:
+        max_wait_sec : 최대 대기 시간(초, 기본 2분)
+    
+    Returns : 업데이트 완료 여부 (True: 정상 완료, False: 타임아웃)
+    """
+    print("[INFO] 업데이트 완료 대기 중...")
+    t0 = time.time()
+    last_check_time = 0
+    
+    while time.time() - t0 < max_wait_sec:
+        hwnd = find_update_popup(timeout_sec=1.0)
+        
+        if hwnd:
+            # 업데이트 창이 여전히 존재
+            elapsed = int(time.time() - t0)
+            
+            # 5초마다 상태 출력
+            if elapsed - last_check_time >= 5:
+                print(f"[WAIT] 업데이트 진행 중... ({elapsed}초 경과)")
+                last_check_time = elapsed
+            
+            time.sleep(2.0)
+        else:
+            # 업데이트 창이 사라짐
+            print("[SUCCESS] 업데이트 완료 확인")
+            time.sleep(2.0)  # 안정화 대기
+            return True
+    
+    print(f"[WARNING] 업데이트 대기 시간 초과 ({max_wait_sec}초)")
+    return False
+
+
 def load_hts_config():
     """ 설정 파일에서 HTS 로그인 창 설정 로드 """
     if not os.path.exists(SETTINGS_FILE):
