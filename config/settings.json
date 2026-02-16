@@ -8,13 +8,13 @@
     {
       "type": "auto_login",
       "nickname": "자동로그인",
-      "start_time": "10:47:00",
+      "start_time": "12:55:00",
       "cert_password": "password1!"
     },
     {
       "type": "new_task",
       "nickname": "test2",
-      "status": "활성",
+      "status": "비활성",
       "sheet_name": "arar",
       "start_time": "12:42:00",
       "end_time": "12:42:15",
@@ -37,6 +37,11 @@
       "start_time": "22:00:00",
       "end_time": "09:00:00",
       "interval": 70
+    },
+    {
+      "type": "new_task",
+      "nickname": "신규작업 4",
+      "status": "대기"
     }
   ]
 }

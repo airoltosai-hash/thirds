@@ -421,19 +421,19 @@ class HamburgerMenu(tk.Frame):
         top_frame = tk.Frame(self, bg='black')
         top_frame.pack(fill=tk.X, pady=10)
 
-        icon = tk.Label(top_frame, text="★", font=("Arial", 24), bg='black', fg='white')
+        icon = tk.Label(top_frame, text="★", font=("Segoe UI", 24), bg='black', fg='white')
         icon.pack(side=tk.LEFT, padx=10)
-        title = tk.Label(top_frame, text="Thirds v1.0", font=("Arial", 16), bg='black', fg='white')
+        title = tk.Label(top_frame, text="Thirds v1.0", font=("Segoe UI", 16), bg='black', fg='white')
         title.pack(side=tk.LEFT, padx=10)
 
         # 메뉴 버튼
-        btn_home = tk.Button(self, text="Home", font=("Arial", 14), bg='gray30', fg='white', command=self.slide_out)
+        btn_home = tk.Button(self, text="🏠 Home", font=("Segoe UI", 14), bg='gray30', fg='white', command=self.slide_out)
         btn_home.pack(fill=tk.X, padx=10, pady=5)
 
-        btn_settings = tk.Button(self, text="Settings", font=("Arial", 14), bg='gray30', fg='white', command=self.open_settings)
+        btn_settings = tk.Button(self, text="⚙️ Settings", font=("Segoe UI", 14), bg='gray30', fg='white', command=self.open_settings)
         btn_settings.pack(fill=tk.X, padx=10, pady=5)
         
-        btn_about = tk.Button(self, text="About", font=("Arial", 14), bg='gray30', fg='white')
+        btn_about = tk.Button(self, text="About", font=("Segoe UI", 14), bg='gray30', fg='white')
         btn_about.pack(fill=tk.X, padx=10, pady=5)
 
     def open_settings(self):
@@ -474,19 +474,19 @@ class HamburgerMenu(tk.Frame):
             self.expanded = False
 
 class GridCell(tk.Frame):
-    def __init__(self, parent, task_data, delete_callback, on_change_callback=None):
+    def __init__(self, parent, task_data, delete_callback, on_change_callback=None, app_instance=None):
         super().__init__(parent, bg='black')
         self.configure(highlightbackground="gray", highlightthickness=1)
         self.task_data = task_data
 
         self.delete_callback = delete_callback # 삭제를 위한 콜백 함수
         self.on_change_callback = on_change_callback # 저장을 위한 콜백 함수
+        self.app_instance = app_instance  # **추가: TestApp 인스턴스 저장**
 
         # 1 영역
         self.text_left=tk.Label(self, text=self.task_data.get("nickname", "신규작업"), anchor='w', fg='white', bg='black')
         self.text_left.grid(row=0, column=0, sticky="w", padx=5)
         
-
         # 3영역
         self.text_right=tk.Label(self, text="Right Text", anchor='e', fg='white', bg='black')
         self.text_right.grid(row=0, column=2, sticky="e", padx=5)
@@ -523,16 +523,16 @@ class GridCell(tk.Frame):
             # 시작시간 스케줄링
             self.restart_auto_login_schedule()
 
-
         else:
             # 일반 작업 분기 초기화
             self._cycle_running = False     # 타이머 반복 실행 중 여부
             self._timer_id = None           # 타이머 after id
             self._start_after_id = None     # 시작시간 예약 id
             self._stop_after_id = None      # 종료시간 예약 id
+            self._login_retry_count = 0     # **추가: 로그인 재시도 카운터**
 
-            self.ICON_TIMER = "⏳"
-            self.ICON_START = "⏰"
+            self.ICON_TIMER = "⌛"
+            self.ICON_START = "🕒"
             self.ICON_END = "🌙"
             self.ICON_INT = "🔄"
             emoji_font = ("Segoe UI Emoji", 10)
@@ -554,13 +554,15 @@ class GridCell(tk.Frame):
         # 9영역
         self.btn_frame=tk.Frame(self, bg='black')
         self.btn_frame.grid(row=2, column=2, sticky="e", padx=5)
-        self.btn1=tk.Button(self.btn_frame, text="🔎", width=3, command=self.open_task_settings)
-        self.btn1.pack(side=tk.LEFT, padx=(0,5))
-        self.btn2=tk.Button(self.btn_frame, text="⋯", width=3, command=self.open_action_menu)
-        self.btn2.pack(side=tk.LEFT)
 
+        self.btn1=tk.Button(self.btn_frame, text="🔍",font=("Segoe UI", 10), width=3, command=self.open_task_settings)
+        self.btn1.pack(side=tk.LEFT, padx=(0,1), pady=1)
+
+        self.btn2=tk.Button(self.btn_frame, text="⋯", font=("Segoe UI", 10), width=3, command=self.open_action_menu, bg='gray30', fg='white')
+        self.btn2.pack(side=tk.LEFT, padx=(0,1), pady=1)
+        
         # 빈 영역 없이 column 1 공간 확보 (사용 미사용 판단 필요)
-        self.grid_columnconfigure(1, weight=1)    
+        self.grid_columnconfigure(1, weight=1)
 
 
     # 4 영역 라벨(정보 라인) 갱신 헬퍼
@@ -603,18 +605,45 @@ class GridCell(tk.Frame):
 
         delay_stop_ms = int((end_dt - now).total_seconds() * 1000)
         self._stop_after_id = self.after(delay_stop_ms, self._stop_and_settle)
-    
+
     def _is_login_ready(self) -> bool:
         """
-        로그인 대체(메모장) 준비 여부를 확인.
-        - 최상위 로그인 창(메모장) 이 존재하면 True
+        HTS 로그인 완료 여부를 확인.
+        - 실제 HTS 메인 창이 존재하면 True
         """
         try:
-            from core.login_manager import _find_login_top_hwnd
-            hwnd = _find_login_top_hwnd(timeout_sec=0.0)
-            return bool(hwnd)
+            # HTS 메인 창 클래스명 (실제 HTS에 맞게 수정 필요)
+            # 예: "iMeritzMainFrame" 또는 실제 클래스명
+            hwnd = user32.FindWindowW("iMeritzMainFrame", None)
+            if hwnd:
+                return True
+            
+            # 대체: 타이틀로 찾기
+            found = wintypes.HWND(0)
+            
+            @ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, ctypes.c_void_p)
+            def enum_proc(hwnd, lp):
+                try:
+                    length = user32.GetWindowTextLengthW(hwnd)
+                    if length > 0:
+                        buf = ctypes.create_unicode_buffer(length + 1)
+                        user32.GetWindowTextW(hwnd, buf, length + 1)
+                        title = buf.value
+                        
+                        # HTS 메인 창 타이틀 패턴 (실제에 맞게 수정)
+                        if "iMeritz" in title or "메리츠" in title:
+                            found.value = hwnd
+                            return False
+                except:
+                    pass
+                return True
+            
+            user32.EnumWindows(enum_proc, 0)
+            return bool(found.value)
+            
         except Exception:
             return False
+
 
     def _start_cycle_with_login(self):
         """
@@ -622,31 +651,162 @@ class GridCell(tk.Frame):
         필요 시 자동 로그인을 선행한 뒤 사이클을 시작.
         """
         if self._is_login_ready():
-            # 로그인 준비 완료 : 즉시 사이클 시작
             self.start_cycle()
             return
 
-        # 로그인 준비 안됨 : 자동 로그인 선행
-        self.execute_auto_login()
-
-        # 1차 재확인(예: 1300ms 후)
-        def _check_then_start():
-            if self._is_login_ready():
-                self.start_cycle()
-            else:
-                # 2차 재확인(예: 700ms 후)
-                self.after(700, _final_check)
+        cert_password = self._get_auto_login_password()
         
-        def _final_check():
-            if self._is_login_ready():
-                self.start_cycle()
+        if not cert_password:
+            messagebox.showwarning(
+                "자동로그인",
+                "자동로그인 작업의 인증서 비밀번호가 설정되지 않았습니다.",
+                parent=self.winfo_toplevel()
+            )
+            return
+        
+        # **수정: 기존 자동로그인 로직 재사용 + 콜백으로 사이클 시작**
+        self._set_info("HTS 실행 중...", fg="khaki")
+        self._execute_auto_login_with_callback(cert_password, on_complete=self._on_login_complete_start_cycle)
+
+    def _execute_auto_login_with_callback(self, cert_password: str, on_complete=None):
+        """
+        자동 로그인 실행 (콜백 지원)
+        """
+        try:
+            path = "C:\\HTS\\iMERITZ\\Main\\a.bat"
+            if not os.path.exists(path):
+                raise FileNotFoundError(f"경로 없음: {path}")
+            
+            print(f"[DEBUG] HTS 실행 : {path}")
+            subprocess.Popen([path])
+
+            # 단계별 자동화 (콜백 전달)
+            self._login_complete_callback = on_complete
+            self.after(3000, lambda: self._step1_wait_main_login_with_callback(cert_password))
+
+        except Exception as e:
+            messagebox.showerror("실행 오류", f"HTS 실행 실패: {e}", parent=self.winfo_toplevel())
+
+    def _step1_wait_main_login_with_callback(self, cert_password: str):
+        print("[STEP 1] 메인 로그인 완료 대기")
+        self._set_info("메인 로그인 대기 중...", fg="khaki")
+        self.after(3000, lambda: self._step1_check_update_with_callback(cert_password))
+
+    def _on_login_complete_start_cycle(self):
+        """로그인 완료 후 호출되는 콜백"""
+        print("[INFO] 로그인 완료, 사이클 시작")
+        self._set_info("로그인 완료, 사이클 시작", fg="lightgreen")
+        self.start_cycle()
+
+    def _get_auto_login_password(self) -> str:
+        """
+        자동로그인 작업에서 인증서 비밀번호를 가져옵니다.
+        """
+        # **수정: app_instance 사용**
+        if not self.app_instance:
+            print("[ERROR] TestApp 인스턴스를 찾을 수 없음")
+            return ""
+        
+        for task in self.app_instance.tasks_data:
+            if task.get("type") == "auto_login":
+                pwd = task.get("cert_password", "")
+                if pwd:
+                    print(f"[DEBUG] 자동로그인 비밀번호 찾음: {len(pwd)}자")
+                    return pwd
+        
+        print("[WARNING] 자동로그인 작업을 찾을 수 없거나 비밀번호가 설정되지 않음")
+        return ""
+
+    
+    def _check_and_start_cycle(self):
+        """
+        로그인 완료 확인 후 사이클 시작
+        """
+        if self._is_login_ready():
+            self.start_cycle()
+        else:
+            # 추가 대기 (최대 3회)
+            retry_count = getattr(self, "_login_retry_count", 0)
+            
+            if retry_count < 3:
+                self._login_retry_count = retry_count + 1
+                print(f"[INFO] 로그인 대기 중... ({self._login_retry_count}/3)")
+                self.after(3000, self._check_and_start_cycle)
             else:
+                self._login_retry_count = 0
                 messagebox.showwarning(
                     "자동로그인",
-                    "로그인(메모장) 준비에 실패하여 사이클을 시작하지 않습니다.",
+                    "로그인 준비에 실패하여 사이클을 시작하지 않습니다.",
                     parent=self.winfo_toplevel()
                 )
-        self.after(1300, _check_then_start)
+
+    def execute_auto_login_for_task(self, cert_password: str):
+        """
+        일반 작업에서 호출하는 자동 로그인 (비밀번호 전달)
+        """
+        try:
+            # HTS 실행
+            path = "C:\\HTS\\iMERITZ\\Main\\a.bat"
+            if not os.path.exists(path):
+                raise FileNotFoundError(f"경로 없음: {path}")
+            
+            print(f"[DEBUG] HTS 실행 : {path}")
+            subprocess.Popen([path])
+
+            # 단계별 자동화 (비밀번호 전달)
+            self.after(3000, lambda: self._step1_wait_main_login_with_pwd(cert_password))
+
+        except Exception as e:
+            messagebox.showerror("실행 오류", f"HTS 실행 실패: {e}", parent=self.winfo_toplevel())
+
+    def _step1_wait_main_login_with_pwd(self, cert_password: str):
+        """ Step 1 : 메인 로그인 완료 대기 (비밀번호 전달) """
+        print("[STEP 1] 메인 로그인 완료 대기")
+        self.after(3000, lambda: self._step1_check_update_with_pwd(cert_password))
+
+    def _step1_check_update_with_pwd(self, cert_password: str):
+        """ Step 1-1 : 업데이트 팝업 확인 (비밀번호 전달) """
+        from core.login_manager import find_update_popup, wait_for_update_completion
+        
+        print("[STEP 1-1] 업데이트 팝업 확인 중...")
+        hwnd = find_update_popup(timeout_sec=2.0)
+        
+        if hwnd:
+            print("[INFO] 업데이트 팝업 발견! 완료 대기 시작...")
+            
+            import threading
+            def wait_thread():
+                success = wait_for_update_completion(max_wait_sec=120.0)
+                if success:
+                    self.after(0, lambda: self._step2_select_certificate_with_pwd(cert_password))
+                else:
+                    print("[ERROR] 업데이트 대기 시간 초과")
+            
+            threading.Thread(target=wait_thread, daemon=True).start()
+        else:
+            print("[INFO] 업데이트 팝업 없음")
+            self.after(1000, lambda: self._step2_select_certificate_with_pwd(cert_password))
+
+    def _step2_select_certificate_with_pwd(self, cert_password: str):
+        """ Step 2 : 인증서 자동 선택 (비밀번호 전달) """
+        print("[STEP 2] 인증서 선택")
+
+        try:
+            from core.login_manager import select_certificate_auto
+            success = select_certificate_auto()
+
+            if success:
+                self.after(2000, lambda: self._step3_input_password_with_pwd(cert_password))
+            else:
+                print("[ERROR] 인증서 선택 실패")
+
+        except Exception as e:
+            print(f"[ERROR] 오류: {e}")
+
+    def _step3_input_password_with_pwd(self, cert_password: str):
+        """ Step 3: 비밀번호 입력 (전달받은 비밀번호 사용) """
+        print(f"[STEP 3] 비밀번호 입력 (길이: {len(cert_password)}자)")
+        self._do_login_attempt(cert_password)
 
 
     def start_cycle(self):
@@ -708,7 +868,7 @@ class GridCell(tk.Frame):
     def _update_countdown_label(self):
         if hasattr(self, "lbl_countdown"):
             if self._cycle_running and self._remaining > 0:
-                self.lbl_countdown.config(text=f"⏳ {self._remaining}s")
+                self.lbl_countdown.config(text=f"⌛ {self._remaining}s")
             else:
                 self.lbl_countdown.config(text="")
 
@@ -769,7 +929,7 @@ class GridCell(tk.Frame):
         if self.task_data.get("type") == "auto_login":
             # 3 영역에 시작시간 표시 (제거 가능)
             start_time = (self.task_data.get("start_time") or "00:00:00")
-            self.text_right.config(text=f"\U0001F552 {start_time}") #⏰
+            self.text_right.config(text=f"\U0001F552 {start_time}") #🕒
 
             # 항상 Ready 로 시작(저장값 무시)
             self.runtime_status = "Ready"
@@ -1162,23 +1322,23 @@ class TestApp:
         # 햄버거 버튼 (왼쪽, 흰 글씨)
         self.menu = HamburgerMenu(root, app=self) # 햄버거 메뉴 프레임 생성
         
-        self.hamburger_btn = tk.Button(header_frame, text="☰", font=("Arial", 14), width=3,
+        self.hamburger_btn = tk.Button(header_frame, text="☰", font=("Segoe UI", 14), width=3,
                                        fg="white", bg="black", bd=0, activebackground="gray20", activeforeground="white",
                                        command=self.menu.toggle)
         self.hamburger_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
         # 프로그램명 (햄버거 버튼 우측, 흰 글씨)
-        self.title_label = tk.Label(header_frame, text="Test", font=("Arial", 16), fg="white", bg="black")
+        self.title_label = tk.Label(header_frame, text="Thirds v1.0", font=("Segoe UI", 16), fg="white", bg="black")
         self.title_label.pack(side=tk.LEFT, padx=5)
 
         # 종료 버튼
-        close_btn = tk.Button(header_frame, text="×", font=("Arial", 14, "bold"), width=3,
+        close_btn = tk.Button(header_frame, text="❌", font=("Segoe UI", 14, "bold"), width=3,
                             fg="white", bg="black", bd=0, command=self.close_window,
                             activebackground="red", activeforeground="white")
         close_btn.pack(side=tk.RIGHT, padx=2, pady=2)
 
         # 최소화 버튼
-        min_btn = tk.Button(header_frame, text="―", font=("Arial", 14, "bold"), width=3,
+        min_btn = tk.Button(header_frame, text="➖", font=("Segoe UI", 14, "bold"), width=3,
                             fg="white", bg="black", bd=0, command=self.minimize_window,
                             activebackground="gray20", activeforeground="white")
         min_btn.pack(side=tk.RIGHT, padx=2, pady=2)
@@ -1224,10 +1384,9 @@ class TestApp:
         self.start_stop_btn.pack(pady=10) # 중앙에 배치
 
         # '+' 버튼 추가 (우측 하단)
-        add_btn = tk.Button(footer_frame, text="+", font=("Arial", 20, "bold"), width=3, fg="white", bg="gray20", bd=0,
+        add_btn = tk.Button(footer_frame, text="+", font=("Segoe UI", 20, "bold"), width=3, fg="white", bg="gray20", bd=0,
                             command=self.add_new_task, activebackground="gray40", activeforeground="white")
         add_btn.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor='se') #우측 하단에 배치        
-
 
         # 모든 설정을 담을 중앙 딕셔너리
         self.settings = {"main_settings": {}, "tasks": []}
@@ -1269,8 +1428,14 @@ class TestApp:
         if task_data is None or new_task_data not in self.tasks_data:
             self.tasks_data.append(new_task_data)
 
-        # GridCell 위젯 생성 및 배치, 삭제 콜백도 넘김
-        grid_cell = GridCell(self.grid_frame, new_task_data, self.remove_task, on_change_callback=self.save_all_settings)
+        # **수정: app_instance=self 전달**
+        grid_cell = GridCell(
+            self.grid_frame, 
+            new_task_data, 
+            self.remove_task, 
+            on_change_callback=self.save_all_settings,
+            app_instance=self  # TestApp 인스턴스 전달
+        )
         grid_cell.pack(side=tk.TOP, fill=tk.X, pady=(0,5))
         self.rows.append(grid_cell)
 
