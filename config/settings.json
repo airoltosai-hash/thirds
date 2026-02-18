@@ -9,7 +9,8 @@
       "type": "auto_login",
       "nickname": "자동로그인",
       "start_time": "12:55:00",
-      "cert_password": "password1!"
+      "cert_password": "password1!",
+      "account_password": "0079"
     },
     {
       "type": "new_task",
@@ -41,7 +42,7 @@
     {
       "type": "new_task",
       "nickname": "신규작업 4",
-      "status": "대기"
+      "status": "활성"
     }
   ]
 }

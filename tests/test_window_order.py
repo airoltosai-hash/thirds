@@ -59,6 +59,231 @@ class OverseasOrderWindow:
         self.sell_order_type_id = config['controls']['sell']['order_type']['id']
         self.sell_quantity_id = config['controls']['sell']['quantity']['id']
         self.sell_price_id = config['controls']['sell']['limit_price']['id']
+    
+        # 계좌 비밀번호 필드 추가 (JSON에서 읽어오기)
+        self.account_password_id = config['controls']['common'].get('account_password', {}).get('id', 3790)
+
+
+    def check_and_handle_account_password(self, account_password):
+        """계좌 비밀번호 필드 확인 및 자동 처리
+        
+        Args:
+            account_password: 저장할 계좌 비밀번호 (4자리)
+        
+        Returns:
+            bool: 성공 여부
+        """
+        if not self.hwnd:
+            print("❌ 주문 창을 찾을 수 없습니다!")
+            return False
+        
+        print(f"\n[계좌 비밀번호 필드 확인 및 저장]")
+        print(f"{'='*60}")
+        
+        print(f"1) 계좌 비밀번호 입력창(ID: {self.account_password_id}) 찾는 중...")
+        acc_pwd_hwnd = self._find_control_by_id(self.account_password_id)
+        
+        if not acc_pwd_hwnd:
+            print(f"❌ 계좌 비밀번호 입력창을 찾을 수 없습니다!")
+            return False
+        
+        print(f"✓ 계좌 비밀번호 입력창 찾음: HWND={hex(acc_pwd_hwnd)}")
+        
+        # 현재 값 확인
+        print(f"\n2) 현재 값 확인 중...")
+        buffer = ctypes.create_unicode_buffer(256)
+        self.user32.SendMessageW(acc_pwd_hwnd, 0x000D, 256, buffer)
+        current_text = buffer.value.strip()
+        
+        print(f"   현재 값: '{current_text}'")
+        
+        # 값이 비어있으면 ESC → 9507 팝업 처리
+        if not current_text:
+            print(f"\n3) ✓ 값이 비어있음 → ESC 키 입력")
+            
+            # 주문 창 활성화
+            self.user32.ShowWindow(self.hwnd, 9)
+            time.sleep(0.2)
+            
+            VK_MENU = 0x12
+            self.user32.keybd_event(VK_MENU, 0, 0, 0)
+            time.sleep(0.05)
+            self.user32.SetForegroundWindow(self.hwnd)
+            time.sleep(0.1)
+            self.user32.keybd_event(VK_MENU, 0, 2, 0)
+            time.sleep(0.3)
+            
+            # ESC 입력
+            win32api.keybd_event(win32con.VK_ESCAPE, 0, 0, 0)
+            time.sleep(0.05)
+            win32api.keybd_event(win32con.VK_ESCAPE, 0, win32con.KEYEVENTF_KEYUP, 0)
+            time.sleep(0.3)
+            
+            print(f"✓ ESC 키 입력 완료")
+            
+            # ========== 9507 팝업 처리 시작 ==========
+            print(f"\n4) 9507 입력 중...")
+            
+            # 9507 입력
+            for char in "9507":
+                vk_code = ord(char)
+                win32api.keybd_event(vk_code, 0, 0, 0)
+                time.sleep(0.05)
+                win32api.keybd_event(vk_code, 0, win32con.KEYEVENTF_KEYUP, 0)
+                time.sleep(0.05)
+            
+            # Enter
+            win32api.keybd_event(win32con.VK_RETURN, 0, 0, 0)
+            time.sleep(0.05)
+            win32api.keybd_event(win32con.VK_RETURN, 0, win32con.KEYEVENTF_KEYUP, 0)
+            
+            print(f"✓ 9507 입력 완료")
+            time.sleep(2.0)  # 팝업 로딩 대기
+            
+            # 5. 팝업 찾기
+            print(f"\n5) 비밀번호 저장 팝업 찾는 중...")
+            popup_hwnd = None
+            
+            def find_popup(hwnd, lparam):
+                nonlocal popup_hwnd
+                length = self.user32.GetWindowTextLengthW(hwnd)
+                if length > 0:
+                    buf = ctypes.create_unicode_buffer(length + 1)
+                    self.user32.GetWindowTextW(hwnd, buf, length + 1)
+                    title = buf.value
+                    
+                    if '09507' in title or '비밀번호 저장' in title:
+                        if self.user32.IsWindowVisible(hwnd):
+                            popup_hwnd = hwnd
+                            return False
+                return True
+            
+            EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+            self.user32.EnumWindows(EnumWindowsProc(find_popup), 0)
+            
+            if not popup_hwnd:
+                print(f"❌ 비밀번호 저장 팝업을 찾을 수 없습니다!")
+                return False
+            
+            print(f"✓ 팝업 찾음: HWND={hex(popup_hwnd)}")
+            
+            # 6. 팝업 활성화
+            print(f"\n6) 팝업 활성화 중...")
+            self.user32.ShowWindow(popup_hwnd, 9)
+            time.sleep(0.2)
+            
+            VK_MENU = 0x12
+            self.user32.keybd_event(VK_MENU, 0, 0, 0)
+            time.sleep(0.05)
+            self.user32.SetForegroundWindow(popup_hwnd)
+            time.sleep(0.1)
+            self.user32.keybd_event(VK_MENU, 0, 2, 0)
+            time.sleep(0.3)
+            
+            # 7. 비밀번호 입력 필드 찾기 (Control ID: 3795)
+            print(f"\n7) 비밀번호 입력 필드(ID: 3795) 찾는 중...")
+            password_hwnd = None
+            
+            def find_password_field(hwnd, lparam):
+                nonlocal password_hwnd
+                if self.user32.GetDlgCtrlID(hwnd) == 3795:
+                    password_hwnd = hwnd
+                    return False
+                return True
+            
+            EnumChildWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, wintypes.LPARAM)
+            self.user32.EnumChildWindows(popup_hwnd, EnumChildWindowsProc(find_password_field), 0)
+            
+            if not password_hwnd:
+                print(f"❌ 비밀번호 입력 필드를 찾을 수 없습니다!")
+                return False
+            
+            print(f"✓ 비밀번호 입력 필드 찾음: HWND={hex(password_hwnd)}")
+            
+            # 8. 비밀번호 입력
+            print(f"\n8) 비밀번호 입력 중... (****)")
+            
+            # 필드 클릭
+            rect = wintypes.RECT()
+            self.user32.GetWindowRect(password_hwnd, ctypes.byref(rect))
+            center_x = (rect.left + rect.right) // 2
+            center_y = (rect.top + rect.bottom) // 2
+            
+            old_pos = wintypes.POINT()
+            self.user32.GetCursorPos(ctypes.byref(old_pos))
+            
+            self.user32.SetCursorPos(center_x, center_y)
+            time.sleep(0.2)
+            
+            self.user32.mouse_event(0x0002, 0, 0, 0, 0)
+            time.sleep(0.05)
+            self.user32.mouse_event(0x0004, 0, 0, 0, 0)
+            time.sleep(0.3)
+            
+            # Ctrl+A로 전체 선택
+            win32api.keybd_event(win32con.VK_CONTROL, 0, 0, 0)
+            time.sleep(0.05)
+            win32api.keybd_event(ord('A'), 0, 0, 0)
+            time.sleep(0.05)
+            win32api.keybd_event(ord('A'), 0, win32con.KEYEVENTF_KEYUP, 0)
+            time.sleep(0.05)
+            win32api.keybd_event(win32con.VK_CONTROL, 0, win32con.KEYEVENTF_KEYUP, 0)
+            time.sleep(0.2)
+            
+            # 비밀번호 입력
+            for char in account_password:
+                vk_code = ord(char)
+                win32api.keybd_event(vk_code, 0, 0, 0)
+                time.sleep(0.05)
+                win32api.keybd_event(vk_code, 0, win32con.KEYEVENTF_KEYUP, 0)
+                time.sleep(0.05)
+            
+            time.sleep(0.3)
+            print(f"✓ 비밀번호 입력 완료")
+            
+            # 9. 일괄입력 버튼 클릭 (Control ID: 3800)
+            print(f"\n9) 일괄입력 버튼(ID: 3800) 클릭 중...")
+            batch_btn_hwnd = self.user32.GetDlgItem(popup_hwnd, 3800)
+            
+            if not batch_btn_hwnd:
+                print(f"❌ 일괄입력 버튼을 찾을 수 없습니다!")
+                return False
+            
+            print(f"✓ 일괄입력 버튼 찾음: HWND={hex(batch_btn_hwnd)}")
+            
+            # 버튼 클릭
+            BM_CLICK = 0x00F5
+            self.user32.SendMessageW(batch_btn_hwnd, BM_CLICK, 0, 0)
+            time.sleep(0.5)
+            print(f"✓ 일괄입력 완료")
+            
+            # 10. 저장 버튼 클릭 (Control ID: 3810)
+            print(f"\n10) 저장 버튼(ID: 3810) 클릭 중...")
+            save_btn_hwnd = self.user32.GetDlgItem(popup_hwnd, 3810)
+            
+            if not save_btn_hwnd:
+                print(f"❌ 저장 버튼을 찾을 수 없습니다!")
+                return False
+            
+            print(f"✓ 저장 버튼 찾음: HWND={hex(save_btn_hwnd)}")
+            
+            # 버튼 클릭
+            self.user32.SendMessageW(save_btn_hwnd, BM_CLICK, 0, 0)
+            time.sleep(0.5)
+            print(f"✓ 저장 완료")
+            
+            # 마우스 원위치
+            self.user32.SetCursorPos(old_pos.x, old_pos.y)
+            
+            print(f"\n✅ 계좌 비밀번호 저장 완료!")
+            print(f"{'='*60}")
+            return True
+            
+        else:
+            print(f"\n3) ✓ 값이 있음 → 처리 불필요")
+            print(f"✅ 계좌 비밀번호 확인 완료")
+            print(f"{'='*60}")
+            return True
         
     def open_popup_and_capture(self):
         """Ctrl+] 눌러서 팝업 열고 HWND 캡처"""
@@ -1021,19 +1246,20 @@ def show_menu():
     print("3. 비밀번호 입력")
     print("4. 계좌번호 목록 조회")
     print("5. 계좌 선택")
+    print("6. 계좌 비밀번호 입력 조회")
     print("")
     print("[매수]")
-    print("6. [매수] 현재가 가져오기")
-    print("7. [매수] 수량 입력")
+    print("7. [매수] 현재가 가져오기")
+    print("8. [매수] 수량 입력")
     print("")
     print("[매도]")
-    print("8. [매도] 현재가 가져오기")
-    print("9. [매도] 수량 입력")
+    print("9. [매도] 현재가 가져오기")
+    print("10. [매도] 수량 입력")
     print("")
     print("[탭 전환]")
-    print("10. 매수 탭으로 이동")
-    print("11. 매도 탭으로 이동")
-    print("12. 취소 탭으로 이동")
+    print("11. 매수 탭으로 이동")
+    print("12. 매도 탭으로 이동")
+    print("13. 취소 탭으로 이동")
     print("")
     print("0. 종료")
     print("="*60)
@@ -1101,49 +1327,53 @@ def main():
                 print("❌ 계좌 목록을 먼저 조회해주세요!")
         
         elif choice == '6':
-            print("\n[6. [매수] 현재가 가져오기]")
+            print("\n[6. 계좌 비밀번호 입력 조회]")
+            order_window.check_and_handle_account_password()
+
+        elif choice == '7':
+            print("\n[7. [매수] 현재가 가져오기]")
             price = order_window.get_buy_price()
             if price:
                 print(f"✅ [매수] 현재가: {price}")
         
-        elif choice == '7':
-            print("\n[7. [매수] 수량 입력]")
+        elif choice == '8':
+            print("\n[8. [매수] 수량 입력]")
             quantity = input("입력할 수량: ").strip()
             if quantity.isdigit():
                 order_window.set_buy_quantity(int(quantity))
             else:
                 print("❌ 올바른 숫자를 입력해주세요!")
         
-        elif choice == '8':
-            print("\n[8. [매도] 현재가 가져오기]")
+        elif choice == '9':
+            print("\n[9. [매도] 현재가 가져오기]")
             price = order_window.get_sell_price()
             if price:
                 print(f"✅ [매도] 현재가: {price}")
         
-        elif choice == '9':
-            print("\n[9. [매도] 수량 입력]")
+        elif choice == '10':
+            print("\n[10. [매도] 수량 입력]")
             quantity = input("입력할 수량: ").strip()
             if quantity.isdigit():
                 order_window.set_sell_quantity(int(quantity))
             else:
                 print("❌ 올바른 숫자를 입력해주세요!")
         
-        elif choice == '10':
-            print("\n[10. 매수 탭으로 이동]")
+        elif choice == '11':
+            print("\n[11. 매수 탭으로 이동]")
             if order_window.switch_tab("매수"):
                 print("✅ 매수 탭 이동 성공!")
             else:
                 print("❌ 매수 탭 이동 실패!")
         
-        elif choice == '11':
-            print("\n[11. 매도 탭으로 이동]")
+        elif choice == '12':
+            print("\n[12. 매도 탭으로 이동]")
             if order_window.switch_tab("매도"):
                 print("✅ 매도 탭 이동 성공!")
             else:
                 print("❌ 매도 탭 이동 실패!")
 
-        elif choice == '12':  # ← 추가!
-            print("\n[12. 취소 탭으로 이동]")
+        elif choice == '13':  # ← 추가!
+            print("\n[13. 취소 탭으로 이동]")
             if order_window.switch_tab("취소"):
                 print("✅ 취소 탭 이동 성공!")
             else:

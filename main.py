@@ -1,6 +1,7 @@
 # /main.py
 
 import ctypes
+from ctypes import wintypes
 import tkinter as tk
 import tkinter.font as font
 import tkinter.messagebox as messagebox
@@ -23,6 +24,25 @@ from core.login_manager import(
 )
 from core.hts_engine import HtsAutomation
 
+def is_first_login_today():
+    """오늘 첫 로그인인지 확인"""
+    try:
+        if os.path.exists("config/last_login.txt"):
+            with open("config/last_login.txt", "r") as f:
+                last_date = f.read().strip()
+            
+            today = datetime.datetime.now().strftime("%Y-%m-%d")
+            return last_date != today
+        return True
+    except:
+        return True
+
+def save_login_date():
+    """로그인 날짜 저장"""
+    os.makedirs("config", exist_ok=True)
+    with open("config/last_login.txt", "w") as f:
+        f.write(datetime.datetime.now().strftime("%Y-%m-%d"))
+        
 # Setting 값 저장
 SETTINGS_FILE = "config/settings.json"
 
@@ -38,7 +58,7 @@ class AutoLoginSettingsWindow(tk.Toplevel):
         self.parent_cell = parent_cell
         self.title("자동로그인 설정")
         self.configure(bg='black')
-        self.geometry("360x200")
+        self.geometry("360x280")  # 높이 증가 (200 → 280)
 
         self.transient(parent_cell.winfo_toplevel())
         self.grab_set()
@@ -59,11 +79,17 @@ class AutoLoginSettingsWindow(tk.Toplevel):
         self.entry_cert.grid(row=1, column=1, sticky="we", padx=5)
         self.entry_cert.insert(0, self.parent_cell.task_data.get("cert_password", ""))
 
+        # **추가: 계좌 비밀번호**
+        tk.Label(frame, text="계좌 비밀번호", fg="white", bg="black").grid(row=2, column=0, sticky="w", pady=5)
+        self.entry_account = tk.Entry(frame, bg="gray20", fg="white", insertbackground="white", show="*")
+        self.entry_account.grid(row=2, column=1, sticky="we", padx=5)
+        self.entry_account.insert(0, self.parent_cell.task_data.get("account_password", ""))
+
         frame.grid_columnconfigure(1, weight=1)
 
         # 버튼
         btns = tk.Frame(frame, bg="black", pady=10)
-        btns.grid(row=2, column=0, columnspan=2)
+        btns.grid(row=3, column=0, columnspan=2)  # row=2 → row=3
         tk.Button(btns, text="저장", width=10, command=self.save_and_close).pack(side=tk.LEFT, padx=8)
         tk.Button(btns, text="닫기", width=10, command=self.destroy).pack(side=tk.LEFT, padx=8)
 
@@ -77,11 +103,13 @@ class AutoLoginSettingsWindow(tk.Toplevel):
     def save_and_close(self):
         start = self.entry_start.get().strip() or "00:00:00"
         cert = self.entry_cert.get()
+        account = self.entry_account.get()  # **추가**
 
         self.parent_cell.task_data["start_time"] = start
         self.parent_cell.task_data["cert_password"] = cert
+        self.parent_cell.task_data["account_password"] = account  # **추가**
         
-        # 그리도 반영
+        # 그리드 반영
         self.parent_cell.render_from_data()
 
         # 영구 저장
@@ -650,10 +678,17 @@ class GridCell(tk.Frame):
         사이클 시작 전 로그인 준비 여부를 확인하고,
         필요 시 자동 로그인을 선행한 뒤 사이클을 시작.
         """
+        # **수정 1: HTS가 이미 켜져있으면 바로 사이클 시작**
         if self._is_login_ready():
+            print("[INFO] HTS 이미 실행 중, 바로 사이클 시작")
+            self._set_info("사이클 시작", fg="lightgreen")
             self.start_cycle()
             return
 
+        # HTS가 없으면 자동로그인 필요
+        print("[INFO] HTS 미실행, 자동로그인 수행")
+        self._set_info("HTS 실행 준비 중...", fg="khaki")
+        
         cert_password = self._get_auto_login_password()
         
         if not cert_password:
@@ -664,13 +699,36 @@ class GridCell(tk.Frame):
             )
             return
         
-        # **수정: 기존 자동로그인 로직 재사용 + 콜백으로 사이클 시작**
-        self._set_info("HTS 실행 중...", fg="khaki")
-        self._execute_auto_login_with_callback(cert_password, on_complete=self._on_login_complete_start_cycle)
-
-    def _execute_auto_login_with_callback(self, cert_password: str, on_complete=None):
+        # **수정 2: 자동로그인 상태 메시지를 자동로그인 셀에 표시**
+        auto_login_cell = self._get_auto_login_cell()
+        
+        # **수정 3: 콜백으로 사이클 시작 보장**
+        self._execute_auto_login_with_callback(
+            cert_password, 
+            auto_login_cell=auto_login_cell,
+            on_complete=self._on_login_complete_start_cycle
+        )
+    def _get_auto_login_cell(self):
         """
-        자동 로그인 실행 (콜백 지원)
+        자동로그인 GridCell 찾기
+        """
+        if not self.app_instance:
+            return None
+        
+        for row in self.app_instance.rows:
+            if row.task_data.get("type") == "auto_login":
+                return row
+        
+        return None
+
+    def _execute_auto_login_with_callback(self, cert_password: str, auto_login_cell=None, on_complete=None):
+        """
+        자동 로그인 실행 (콜백 지원 + 상태 메시지 분리)
+        
+        Args:
+            cert_password: 인증서 비밀번호
+            auto_login_cell: 상태 메시지를 표시할 자동로그인 셀 (None이면 현재 셀)
+            on_complete: 완료 후 호출할 콜백
         """
         try:
             path = "C:\\HTS\\iMERITZ\\Main\\a.bat"
@@ -680,23 +738,264 @@ class GridCell(tk.Frame):
             print(f"[DEBUG] HTS 실행 : {path}")
             subprocess.Popen([path])
 
-            # 단계별 자동화 (콜백 전달)
+            # **수정: 상태 표시 셀 저장**
+            self._login_status_cell = auto_login_cell if auto_login_cell else self
             self._login_complete_callback = on_complete
+            
+            # 상태 메시지 표시
+            if self._login_status_cell:
+                self._login_status_cell._set_login_info("HTS 실행 중...", fg="khaki")
+            
+            # 단계별 자동화
             self.after(3000, lambda: self._step1_wait_main_login_with_callback(cert_password))
 
         except Exception as e:
-            messagebox.showerror("실행 오류", f"HTS 실행 실패: {e}", parent=self.winfo_toplevel())
+            error_msg = f"HTS 실행 실패: {e}"
+            messagebox.showerror("실행 오류", error_msg, parent=self.winfo_toplevel())
+            
+            # 에러 메시지도 자동로그인 셀에 표시
+            if auto_login_cell:
+                auto_login_cell._login_error_active = True
+                auto_login_cell._set_login_info(error_msg, fg="tomato")
+
 
     def _step1_wait_main_login_with_callback(self, cert_password: str):
-        print("[STEP 1] 메인 로그인 완료 대기")
-        self._set_info("메인 로그인 대기 중...", fg="khaki")
-        self.after(3000, lambda: self._step1_check_update_with_callback(cert_password))
+        """Step 1: 메인 로그인 완료 대기 (폴링 방식)"""
+        print("[STEP 1] 메인 로그인 완료 대기 (폴링 시작)")
+        
+        # **수정: 상태 메시지를 저장된 셀에 표시**
+        if hasattr(self, "_login_status_cell") and self._login_status_cell:
+            self._login_status_cell._set_login_info("메인 로그인 대기 중...", fg="khaki")
+        
+        self._poll_for_update_or_cert(cert_password, max_wait_sec=30.0)
+
+
+    def _poll_for_update_or_cert(self, cert_password: str, max_wait_sec=30.0):
+        """
+        업데이트 팝업 또는 인증서 선택 창이 나타날 때까지 폴링
+        """
+        from core.login_manager import find_update_popup, find_cert_popup
+        
+        start_time = getattr(self, "_poll_start_time", None)
+        if start_time is None:
+            self._poll_start_time = datetime.datetime.now()
+            start_time = self._poll_start_time
+        
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        
+        # 타임아웃 체크
+        if elapsed > max_wait_sec:
+            print(f"[ERROR] 폴링 타임아웃 ({max_wait_sec}초)")
+            
+            # **수정: 상태 메시지를 저장된 셀에 표시**
+            if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                self._login_status_cell._login_error_active = True
+                self._login_status_cell._set_login_info("로그인 대기 시간 초과", fg="tomato")
+            
+            self._poll_start_time = None
+            return
+        
+        # 1. 업데이트 팝업 확인
+        update_hwnd = find_update_popup(timeout_sec=0.1)
+        if update_hwnd:
+            print("[INFO] 업데이트 팝업 발견!")
+            self._poll_start_time = None
+            
+            # **수정: 상태 메시지를 저장된 셀에 표시**
+            if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                self._login_status_cell._set_login_info("업데이트 진행 중...", fg="orange")
+            
+            # 업데이트 대기 (별도 스레드)
+            import threading
+            def wait_thread():
+                from core.login_manager import wait_for_update_completion
+                success = wait_for_update_completion(max_wait_sec=120.0)
+                if success:
+                    self.after(0, lambda: self._step2_select_certificate_with_callback(cert_password))
+                else:
+                    if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                        self._login_status_cell._login_error_active = True
+                        self.after(0, lambda: self._login_status_cell._set_login_info("업데이트 대기 시간 초과", fg="tomato"))
+            
+            threading.Thread(target=wait_thread, daemon=True).start()
+            return
+        
+        # 2. 인증서 선택 창 확인
+        cert_hwnd = find_cert_popup(timeout_sec=0.1)
+        if cert_hwnd:
+            print("[INFO] 인증서 선택 창 발견!")
+            self._poll_start_time = None
+            self.after(100, lambda: self._step2_select_certificate_with_callback(cert_password))
+            return
+        
+        # 3. 둘 다 없으면 0.3초 후 재시도
+        print(f"[POLL] 대기 중... ({elapsed:.1f}초)")
+        self.after(300, lambda: self._poll_for_update_or_cert(cert_password, max_wait_sec))
+
+    def _step2_select_certificate_with_callback(self, cert_password: str):
+        """Step 2: 인증서 자동 선택"""
+        print("[STEP 2] 인증서 선택")
+        
+        # **수정: 상태 메시지를 저장된 셀에 표시**
+        if hasattr(self, "_login_status_cell") and self._login_status_cell:
+            self._login_status_cell._set_login_info("인증서 선택 중...", fg="khaki")
+
+        try:
+            from core.login_manager import select_certificate_auto
+            success = select_certificate_auto()
+
+            if success:
+                self.after(2000, lambda: self._step3_input_password_with_callback(cert_password))
+            else:
+                print("[ERROR] 인증서 선택 실패")
+                if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                    self._login_status_cell._login_error_active = True
+                    self._login_status_cell._set_login_info("인증서 선택 실패", fg="tomato")
+
+        except Exception as e:
+            print(f"[ERROR] 오류: {e}")
+            if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                self._login_status_cell._login_error_active = True
+                self._login_status_cell._set_login_info(f"오류: {e}", fg="tomato")
+
+    def _step3_input_password_with_callback(self, cert_password: str):
+        """Step 3: 비밀번호 입력"""
+        print(f"[STEP 3] 비밀번호 입력 (길이: {len(cert_password)}자)")
+        
+        # **수정: 상태 메시지를 저장된 셀에 표시**
+        if hasattr(self, "_login_status_cell") and self._login_status_cell:
+            self._login_status_cell._set_login_info("비밀번호 입력 중...", fg="khaki")
+        
+        try:
+            from core.login_manager import type_password_in_login
+            ok, code, msg = type_password_in_login(cert_password, return_detail=True)
+        except Exception as e:
+            ok, code, msg = (False, "EXCEPTION", str(e))
+
+        if ok:
+            print("[SUCCESS] HTS 인증서 로그인 완료")
+            
+            # **수정: 상태 메시지를 저장된 셀에 표시**
+            if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                self._login_status_cell._login_error_active = False
+                self._login_status_cell._set_login_info("로그인 완료!", fg="lightgreen")
+            
+            # **수정 3: 콜백 호출 (사이클 시작)**
+            if hasattr(self, "_login_complete_callback") and self._login_complete_callback:
+                self._login_complete_callback()
+        else:
+            # 오류 처리
+            code_msg_map = {
+                "NO_PASSWORD_WINDOW": "비밀번호 입력 창을 찾지 못했습니다.",
+                "NO_INPUT_FIELD": "입력 필드를 찾지 못했습니다.",
+                "EXCEPTION": "예외 발생",
+            }
+            base = code_msg_map.get(code, "로그인 실패")
+            detail = f" ({msg})" if msg else ""
+            error_msg = base + detail
+            
+            print(f"[ERROR] {error_msg}")
+            
+            # **수정: 상태 메시지를 저장된 셀에 표시**
+            if hasattr(self, "_login_status_cell") and self._login_status_cell:
+                self._login_status_cell._login_error_active = True
+                self._login_status_cell._set_login_info(error_msg, fg="tomato")
+
 
     def _on_login_complete_start_cycle(self):
         """로그인 완료 후 호출되는 콜백"""
-        print("[INFO] 로그인 완료, 사이클 시작")
-        self._set_info("로그인 완료, 사이클 시작", fg="lightgreen")
-        self.start_cycle()
+        print("[INFO] 로그인 완료, HTS 메인 창 로드 대기")
+        self._set_info("HTS 로딩 중...", fg="khaki")
+        
+        # HTS 메인 창 완전 로드 대기
+        self._wait_for_hts_ready()
+
+    def _wait_for_hts_ready(self, max_wait_sec=30.0):
+        """
+        HTS 메인 창이 완전히 로드될 때까지 폴링
+        """
+        start_time = getattr(self, "_hts_ready_start_time", None)
+        if start_time is None:
+            self._hts_ready_start_time = datetime.datetime.now()
+            start_time = self._hts_ready_start_time
+        
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        
+        # 타임아웃 체크
+        if elapsed > max_wait_sec:
+            print(f"[ERROR] HTS 로드 대기 타임아웃 ({max_wait_sec}초)")
+            self._set_info("HTS 로드 시간 초과", fg="tomato")
+            self._hts_ready_start_time = None
+            return
+        
+        # HTS 메인 창 확인
+        if self._is_hts_main_window_ready():
+            print("[SUCCESS] HTS 메인 창 로드 완료!")
+            self._set_info("사이클 시작", fg="lightgreen")
+            self._hts_ready_start_time = None
+            self.start_cycle()
+            return
+        
+        # 0.5초 후 재시도
+        print(f"[WAIT] HTS 로딩 중... ({elapsed:.1f}초)")
+        self.after(500, lambda: self._wait_for_hts_ready(max_wait_sec))
+
+    def _is_hts_main_window_ready(self) -> bool:
+        """
+        HTS 메인 창이 완전히 로드되었는지 확인
+        
+        Returns:
+            True: 메인 창 로드 완료
+            False: 아직 로딩 중
+        """
+        try:
+            # 방법 1: 클래스명으로 찾기
+            hwnd = user32.FindWindowW("iMeritzMainFrame", None)
+            if hwnd and user32.IsWindowVisible(hwnd):
+                # 창이 최소화되지 않았는지 확인
+                if not user32.IsIconic(hwnd):
+                    print(f"[DEBUG] HTS 메인 창 발견: 0x{hwnd:X}")
+                    return True
+            
+            # 방법 2: 타이틀로 찾기 (클래스명이 안 맞을 경우 대비)
+            found = wintypes.HWND(0)
+            
+            @ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, ctypes.c_void_p)
+            def enum_proc(hwnd, lp):
+                try:
+                    if not user32.IsWindowVisible(hwnd):
+                        return True
+                    
+                    length = user32.GetWindowTextLengthW(hwnd)
+                    if length > 0:
+                        buf = ctypes.create_unicode_buffer(length + 1)
+                        user32.GetWindowTextW(hwnd, buf, length + 1)
+                        title = buf.value
+                        
+                        # HTS 메인 창 타이틀 패턴 (실제 타이틀에 맞게 수정)
+                        # 예: "iMeritz", "메리츠 HTS", "iMERITZ" 등
+                        keywords = ["iMeritz", "메리츠", "iMERITZ"]
+                        
+                        # 로그인 창/팝업 제외
+                        exclude = ["로그인", "인증서", "비밀번호", "업데이트"]
+                        
+                        if any(kw in title for kw in keywords) and not any(ex in title for ex in exclude):
+                            # 최소화되지 않은 창인지 확인
+                            if not user32.IsIconic(hwnd):
+                                found.value = hwnd
+                                print(f"[DEBUG] HTS 메인 창 발견 (타이틀): '{title}' (0x{hwnd:X})")
+                                return False
+                    
+                except:
+                    pass
+                return True
+            
+            user32.EnumWindows(enum_proc, 0)
+            return bool(found.value)
+            
+        except Exception as e:
+            print(f"[ERROR] HTS 메인 창 확인 중 오류: {e}")
+            return False
 
     def _get_auto_login_password(self) -> str:
         """
@@ -760,9 +1059,56 @@ class GridCell(tk.Frame):
             messagebox.showerror("실행 오류", f"HTS 실행 실패: {e}", parent=self.winfo_toplevel())
 
     def _step1_wait_main_login_with_pwd(self, cert_password: str):
-        """ Step 1 : 메인 로그인 완료 대기 (비밀번호 전달) """
-        print("[STEP 1] 메인 로그인 완료 대기")
-        self.after(3000, lambda: self._step1_check_update_with_pwd(cert_password))
+        """Step 1: 메인 로그인 완료 대기 (일반 작업용, 폴링 방식)"""
+        print("[STEP 1] 메인 로그인 완료 대기 (폴링 시작)")
+        self._poll_for_update_or_cert_pwd(cert_password, max_wait_sec=30.0)
+
+    def _poll_for_update_or_cert_pwd(self, cert_password: str, max_wait_sec=30.0):
+        """
+        업데이트 팝업 또는 인증서 선택 창이 나타날 때까지 폴링 (일반 작업용)
+        """
+        from core.login_manager import find_update_popup, find_cert_popup
+        
+        start_time = getattr(self, "_poll_start_time_pwd", None)
+        if start_time is None:
+            self._poll_start_time_pwd = datetime.datetime.now()
+            start_time = self._poll_start_time_pwd
+        
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        
+        if elapsed > max_wait_sec:
+            print(f"[ERROR] 폴링 타임아웃 ({max_wait_sec}초)")
+            self._poll_start_time_pwd = None
+            return
+        
+        # 1. 업데이트 팝업 확인
+        update_hwnd = find_update_popup(timeout_sec=0.1)
+        if update_hwnd:
+            print("[INFO] 업데이트 팝업 발견!")
+            self._poll_start_time_pwd = None
+            
+            import threading
+            def wait_thread():
+                from core.login_manager import wait_for_update_completion
+                success = wait_for_update_completion(max_wait_sec=120.0)
+                if success:
+                    self.after(0, lambda: self._step2_select_certificate_with_pwd(cert_password))
+            
+            threading.Thread(target=wait_thread, daemon=True).start()
+            return
+        
+        # 2. 인증서 선택 창 확인
+        cert_hwnd = find_cert_popup(timeout_sec=0.1)
+        if cert_hwnd:
+            print("[INFO] 인증서 선택 창 발견!")
+            self._poll_start_time_pwd = None
+            self.after(100, lambda: self._step2_select_certificate_with_pwd(cert_password))
+            return
+        
+        # 3. 둘 다 없으면 0.3초 후 재시도
+        print(f"[POLL] 대기 중... ({elapsed:.1f}초)")
+        self.after(300, lambda: self._poll_for_update_or_cert_pwd(cert_password, max_wait_sec))
+
 
     def _step1_check_update_with_pwd(self, cert_password: str):
         """ Step 1-1 : 업데이트 팝업 확인 (비밀번호 전달) """
@@ -1064,37 +1410,92 @@ class GridCell(tk.Frame):
             self.lbl_status.config(text=f"{icon} {current}")
 
     def execute_auto_login(self):
-        """ HTS 인증서 자동 로그인 실행 - 상태 ⭕ 로 전환 """
+        """자동로그인 실행"""
         self.set_status("Executing", persist=False)
         
+        # 첫 로그인 여부 확인
+        self._is_first_login = is_first_login_today()
+        
+        if self._is_first_login:
+            print("[INFO] 오늘 첫 로그인 - 사전 정리 모드")
+            self._set_login_info("첫 로그인 (사전 정리 모드)", fg="orange")
+        else:
+            print("[INFO] 재로그인 - 정상 작업 모드")
+            self._set_login_info("재로그인 (작업 모드)", fg="lightgreen")
+        
         try:
-            # HTS 실행
             path = "C:\\HTS\\iMERITZ\\Main\\a.bat"
             if not os.path.exists(path):
                 raise FileNotFoundError(f"경로 없음: {path}")
             
-            # 비동기 실행(UI 블로킹 없음)
-            print(f"[DEBUG] HTS 실행 : {path}")
+            print(f"[DEBUG] HTS 실행: {path}")
             subprocess.Popen([path])
 
-            # 단계별 자동화
-            self.after(3000, self._step1_wait_main_login)  # 메인 로그인 대기
+            # 단계별 자동화 시작
+            self.after(3000, self._step1_wait_main_login)
 
         except Exception as e:
-            # 오류 플래그 활성화 + 메시지 유지
             self._login_error_active = True
             self._set_login_info(f"HTS 실행 오류: {e}", fg="tomato")
             messagebox.showerror("실행 오류", f"HTS 실행 실패: {e}", parent=self.winfo_toplevel())
-        finally:
-            # 일정 시간 후 Ready(❌)로 복귀 , 3초 후 상태 복귀 , 오류상태면 문구를 덮어쓰지 않음
-            self.after(20000, lambda: self.set_status("Ready", persist=False))
-    
+
     def _step1_wait_main_login(self):
-        """ Step 1 : 메인 로그인 완료 대기 """
-        print("[STEP 1] 메인 로그인 완료 대기")
-        self._set_login_info("메인 로그인 진행 중...", fg="khaki")
-        # 사용자가 ID/PW 입력 할 시간 제공 (3초 대기)
-        self.after(3000, self._step1_check_update)
+        """Step 1: 메인 로그인 완료 대기 (자동로그인용, 폴링 방식)"""
+        print("[STEP 1] 메인 로그인 완료 대기 (폴링 시작)")
+        self._set_login_info("메인 로그인 대기 중...", fg="khaki")
+        self._poll_for_update_or_cert_auto(max_wait_sec=30.0)
+
+    def _poll_for_update_or_cert_auto(self, max_wait_sec=30.0):
+        """
+        업데이트 팝업 또는 인증서 선택 창이 나타날 때까지 폴링 (자동로그인용)
+        """
+        from core.login_manager import find_update_popup, find_cert_popup
+        
+        start_time = getattr(self, "_poll_start_time_auto", None)
+        if start_time is None:
+            self._poll_start_time_auto = datetime.datetime.now()
+            start_time = self._poll_start_time_auto
+        
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        
+        if elapsed > max_wait_sec:
+            print(f"[ERROR] 폴링 타임아웃 ({max_wait_sec}초)")
+            self._login_error_active = True
+            self._set_login_info("로그인 대기 시간 초과", fg="tomato")
+            self._poll_start_time_auto = None
+            return
+        
+        # 1. 업데이트 팝업 확인
+        update_hwnd = find_update_popup(timeout_sec=0.1)
+        if update_hwnd:
+            print("[INFO] 업데이트 팝업 발견!")
+            self._poll_start_time_auto = None
+            self._set_login_info("업데이트 진행 중...", fg="orange")
+            
+            import threading
+            def wait_thread():
+                from core.login_manager import wait_for_update_completion
+                success = wait_for_update_completion(max_wait_sec=120.0)
+                if success:
+                    self.after(0, self._step2_select_certificate)
+                else:
+                    self._login_error_active = True
+                    self.after(0, lambda: self._set_login_info("업데이트 대기 시간 초과", fg="tomato"))
+            
+            threading.Thread(target=wait_thread, daemon=True).start()
+            return
+        
+        # 2. 인증서 선택 창 확인
+        cert_hwnd = find_cert_popup(timeout_sec=0.1)
+        if cert_hwnd:
+            print("[INFO] 인증서 선택 창 발견!")
+            self._poll_start_time_auto = None
+            self.after(100, self._step2_select_certificate)
+            return
+        
+        # 3. 둘 다 없으면 0.3초 후 재시도
+        print(f"[POLL] 대기 중... ({elapsed:.1f}초)")
+        self.after(300, lambda: self._poll_for_update_or_cert_auto(max_wait_sec))
 
     def _step1_check_update(self):
         """ Step 1-1 : 업데이트 팝업 확인 """
@@ -1149,12 +1550,394 @@ class GridCell(tk.Frame):
             self._set_login_info(f"오류: {e}", fg="tomato")
 
     def _step3_input_password(self):
-        """ Step 3: 비밀번호 입력 """
-        print("[STEP 3] 비밀번호 입력")
+        """Step 3: 인증서 비밀번호 입력"""
+        print("[STEP 3] 인증서 비밀번호 입력")
         self._set_login_info("비밀번호 입력 중...", fg="khaki")
 
-        pwd = self.task_data.get("cert_password", "")
-        self._do_login_attempt(pwd)
+        cert_password = self.task_data.get("cert_password", "")
+
+        if not cert_password:
+            self._login_error_active = True
+            self._set_login_info("인증서 비밀번호 미설정", fg="tomato")
+            messagebox.showerror("오류", "인증서 비밀번호가 설정되지 않았습니다.", parent=self.winfo_toplevel())
+            return
+
+        try:
+            from core.login_manager import type_password_in_login
+            ok, code, msg = type_password_in_login(cert_password, return_detail=True)
+
+            if ok:
+                print("[SUCCESS] 비밀번호 입력 완료")
+                # **로그인 완료 후 처리**
+                self.after(5000, self._on_login_complete)
+            else:
+                self._login_error_active = True
+                self._set_login_info(f"비밀번호 입력 실패: {msg}", fg="tomato")
+                messagebox.showerror("오류", f"비밀번호 입력 실패:\n{msg}", parent=self.winfo_toplevel())
+
+        except Exception as e:
+            self._login_error_active = True
+            self._set_login_info(f"오류: {e}", fg="tomato")
+            messagebox.showerror("오류", f"비밀번호 입력 중 오류:\n{e}", parent=self.winfo_toplevel())
+
+    def _on_login_complete(self):
+        """로그인 완료 후 처리"""
+        
+        if self._is_first_login:
+            # 첫 로그인 → HTS 종료 → 로그인 날짜 저장 → 재실행
+            print("[INFO] 첫 로그인 완료 - HTS 종료 후 재실행")
+            self._set_login_info("첫 로그인 완료 - 재시작 중...", fg="orange")
+            
+            # 로그인 날짜 저장
+            save_login_date()
+            
+            # HTS 종료
+            self.after(2000, self._close_hts_and_relogin)
+        
+        else:
+            # 재로그인 → 정상 작업 진행
+            print("[SUCCESS] 재로그인 완료 - 작업 대기")
+            self._set_login_info("로그인 완료 ✓", fg="lightgreen")
+            self.set_status("Ready", persist=False)
+
+    def _close_hts_and_relogin(self):
+        """HTS 종료 후 재로그인"""
+        try:
+            print("[INFO] 5초 대기 후 HTS 종료...")
+            self._set_login_info("안정화 대기 중...", fg="khaki")
+            
+            # 5초 대기 (로그인 완전히 완료되도록)
+            self.after(5000, self._kill_hts_process)
+            
+        except Exception as e:
+            print(f"[ERROR] HTS 종료 실패: {e}")
+            self._login_error_active = True
+            self._set_login_info(f"HTS 종료 실패: {e}", fg="tomato")
+
+    
+    def enable_debug_privilege():
+        SE_DEBUG_NAME = "SeDebugPrivilege"
+        advapi32 = ctypes.windll.advapi32
+        kernel32 = ctypes.windll.kernel32
+        hToken = ctypes.wintypes.HANDLE()
+        TOKEN_ADJUST_PRIVILEGES = 0x20
+        TOKEN_QUERY = 0x8
+        if not advapi32.OpenProcessToken(kernel32.GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, ctypes.byref(hToken)):
+            return False
+        class LUID(ctypes.Structure):
+            _fields_ = [("LowPart", ctypes.wintypes.DWORD), ("HighPart", ctypes.wintypes.LONG)]
+        class LUID_AND_ATTRIBUTES(ctypes.Structure):
+            _fields_ = [("Luid", LUID), ("Attributes", ctypes.wintypes.DWORD)]
+        class TOKEN_PRIVILEGES(ctypes.Structure):
+            _fields_ = [("PrivilegeCount", ctypes.wintypes.DWORD), ("Privileges", LUID_AND_ATTRIBUTES)]
+        luid = LUID()
+        if not advapi32.LookupPrivilegeValueW(None, SE_DEBUG_NAME, ctypes.byref(luid)):
+            return False
+        tp = TOKEN_PRIVILEGES()
+        tp.PrivilegeCount = 1
+        tp.Privileges = LUID_AND_ATTRIBUTES(luid, 0x2)
+        if not advapi32.AdjustTokenPrivileges(hToken, False, ctypes.byref(tp), ctypes.sizeof(tp), None, None):
+            return False
+        return True
+
+    def force_terminate_by_name(exe_name: str) -> bool:
+        psapi = ctypes.windll.psapi
+        kernel32 = ctypes.windll.kernel32
+        PROCESS_QUERY_INFORMATION = 0x0400
+        PROCESS_TERMINATE = 0x0001
+        PROCESS_VM_READ = 0x0010
+        enable_debug_privilege()
+        arr = (ctypes.wintypes.DWORD * 4096)()
+        cb = ctypes.sizeof(arr)
+        needed = ctypes.wintypes.DWORD()
+        if not psapi.EnumProcesses(ctypes.byref(arr), cb, ctypes.byref(needed)):
+            return False
+        count = needed.value // ctypes.sizeof(ctypes.wintypes.DWORD)
+        killed_any = False
+        for i in range(count):
+            pid = arr[i]
+            if pid == 0:
+                continue
+            h = kernel32.OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_TERMINATE | PROCESS_VM_READ, False, pid)
+            if not h:
+                continue
+            buf = ctypes.create_unicode_buffer(260)
+            try:
+                psapi.GetModuleBaseNameW(h, None, buf, ctypes.sizeof(buf))
+                name = buf.value
+            except Exception:
+                name = ""
+            if name.lower() == exe_name.lower():
+                try:
+                    if kernel32.TerminateProcess(h, 1):
+                        killed_any = True
+                except Exception:
+                    pass
+            kernel32.CloseHandle(h)
+        return killed_any
+
+    def _kill_hts_process(self):
+        """HTS 메인 창 종료: WM_CLOSE -> 확인 다이얼로그 클릭 -> taskkill -> TerminateProcess 폴백"""
+        try:
+            import time, subprocess
+            from ctypes import wintypes, WINFUNCTYPE, c_bool, create_unicode_buffer
+            user32_local = ctypes.windll.user32
+            WM_CLOSE = 0x0010
+
+            print("[INFO] HTS 메인 창 검색 중...")
+            self._set_login_info("HTS 종료 중...", fg="orange")
+
+            # 윈도우 탐색 기준
+            found = wintypes.HWND(0)
+            keywords = ["iMeritz", "메리츠", "iMERITZ"]
+            exclude = ["로그인", "인증서", "비밀번호", "업데이트"]
+
+            @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+            def enum_proc(hwnd, lp):
+                try:
+                    if not user32_local.IsWindowVisible(hwnd):
+                        return True
+                    length = user32_local.GetWindowTextLengthW(hwnd)
+                    if length == 0:
+                        return True
+                    buf = create_unicode_buffer(length + 1)
+                    user32_local.GetWindowTextW(hwnd, buf, length + 1)
+                    title = buf.value
+                    if any(kw in title for kw in keywords) and not any(ex in title for ex in exclude):
+                        found.value = hwnd
+                        return False
+                except:
+                    pass
+                return True
+
+            user32_local.EnumWindows(enum_proc, 0)
+            hwnd = found.value
+            if not hwnd:
+                print("[WARNING] HTS 메인 창을 찾을 수 없음")
+                self._set_login_info("HTS 창 없음 - 재시작", fg="yellow")
+                self.after(3000, self._restart_login)
+                return
+
+            print(f"[DEBUG] HTS 메인 창 찾음: 0x{hwnd:X}")
+            self._set_login_info("HTS 정상 종료 시도...", fg="orange")
+
+            # 1) WM_CLOSE 시도
+            try:
+                user32_local.PostMessageW(hwnd, WM_CLOSE, 0, 0)
+            except Exception as e:
+                print(f"[ERROR] WM_CLOSE 전송 실패: {e}")
+
+            # helper: 윈도우가 사라졌는지 확인
+            def window_gone(timeout=8.0):
+                t0 = time.time()
+                while time.time() - t0 < timeout:
+                    tmp = wintypes.HWND(0)
+                    @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+                    def enum_check(h, lp):
+                        try:
+                            if not user32_local.IsWindowVisible(h):
+                                return True
+                            l = user32_local.GetWindowTextLengthW(h)
+                            if l == 0:
+                                return True
+                            buf2 = create_unicode_buffer(l + 1)
+                            user32_local.GetWindowTextW(h, buf2, l + 1)
+                            t = buf2.value
+                            if any(kw in t for kw in keywords) and not any(ex in t for ex in exclude):
+                                tmp.value = h
+                                return False
+                        except:
+                            pass
+                        return True
+                    user32_local.EnumWindows(enum_check, 0)
+                    if not tmp.value:
+                        return True
+                    time.sleep(0.5)
+                return False
+
+            if window_gone(timeout=6.0):
+                print("[SUCCESS] WM_CLOSE로 종료됨")
+                self._set_login_info("HTS 정상 종료 완료 ✓", fg="lightgreen")
+                self.after(3000, self._restart_login)
+                return
+            
+            # 종료 팝업 찾기 & '종료' 버튼 클릭 (클래스 #32770, 버튼 텍스트 '종료')
+            BM_CLICK = 0x00F5
+            found = wintypes.HWND(0)
+
+            @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+            def enum_dialog_for_close(hwnd, lparam):
+                try:
+                    # 클래스명 확인
+                    buf_cls = create_unicode_buffer(256)
+                    user32_local.GetClassNameW(hwnd, buf_cls, 256)
+                    cls = buf_cls.value
+                    if cls and ("#32770" in cls or cls == "#32770"):
+                        # 가시성 체크(팝업인지)
+                        if user32_local.IsWindowVisible(hwnd):
+                            found.value = hwnd
+                            return False
+                except:
+                    pass
+                return True
+
+            user32_local.EnumWindows(enum_dialog_for_close, 0)
+            dlg = found.value
+            if dlg:
+                btn_hwnd = wintypes.HWND(0)
+
+                @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+                def enum_child_for_close(h, lparam):
+                    nonlocal btn_hwnd
+                    try:
+                        bufc = create_unicode_buffer(256)
+                        user32_local.GetClassNameW(h, bufc, 256)
+                        if "Button" in bufc.value:
+                            l = user32_local.GetWindowTextLengthW(h)
+                            if l > 0:
+                                buf = create_unicode_buffer(l + 1)
+                                user32_local.GetWindowTextW(h, buf, l + 1)
+                                txt = buf.value.strip()
+                                if txt == "종료":
+                                    btn_hwnd = h
+                                    return False
+                    except:
+                        pass
+                    return True
+
+                user32_local.EnumChildWindows(dlg, enum_child_for_close, 0)
+
+                if btn_hwnd:
+                    print(f"[INFO] 종료 버튼 클릭 시도: 0x{int(btn_hwnd):X}")
+                    try:
+                        user32_local.SendMessageW(btn_hwnd, BM_CLICK, 0, 0)
+                    except Exception as e:
+                        print(f"[WARN] 종료 버튼 클릭 실패: {e}")
+                    time.sleep(0.5)
+                    # 클릭 후 창이 닫혔는지 확인
+                    if window_gone(timeout=6.0):
+                        print("[SUCCESS] 팝업 종료 버튼 클릭으로 HTS 종료됨")
+                        self._set_login_info("HTS 종료 완료 ✓", fg="lightgreen")
+                        self.after(3000, self._restart_login)
+                        return    
+
+            # 2) 종료/권한 확인 대화상자 있으면 버튼 클릭 시도
+            print("[INFO] 종료 확인 팝업 탐색 중...")
+            # 대화상자 타이틀 패턴 (권한/관리자 관련 텍스트 포함 가능)
+            confirm_keywords = ["종료", "닫기", "닫음", "Yes", "예", "확인", "권한", "관리자"]
+            found_dialog = wintypes.HWND(0)
+
+            @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+            def enum_dialog(hwnd, lp):
+                try:
+                    if not user32_local.IsWindowVisible(hwnd):
+                        return True
+                    l = user32_local.GetWindowTextLengthW(hwnd)
+                    if l == 0:
+                        return True
+                    buf = create_unicode_buffer(l + 1)
+                    user32_local.GetWindowTextW(hwnd, buf, l + 1)
+                    t = buf.value
+                    # 다이얼로그는 보통 짧은 타이틀이므로 포함 검사
+                    if any(kw in t for kw in confirm_keywords) or ("iMeritz" in t and ("종료" in t or "종료" in t)):
+                        found_dialog.value = hwnd
+                        return False
+                except:
+                    pass
+                return True
+
+            user32_local.EnumWindows(enum_dialog, 0)
+            dlg = found_dialog.value
+            if dlg:
+                print(f"[DEBUG] 종료 확인 팝업 발견: 0x{dlg:X} - 시도: 확인 버튼 클릭")
+                # 자식 버튼 탐색 후 클릭 (BM_CLICK)
+                BM_CLICK = 0x00F5
+                clicked = False
+
+                @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+                def enum_button(h, lp):
+                    nonlocal clicked
+                    try:
+                        l = user32_local.GetWindowTextLengthW(h)
+                        if l > 0:
+                            buft = create_unicode_buffer(l + 1)
+                            user32_local.GetWindowTextW(h, buft, l + 1)
+                            txt = buft.value
+                            if any(k in txt for k in ["확인", "예", "Yes", "OK", "확인(&O)", "닫기"]):
+                                # 버튼이면 클릭
+                                bufc = create_unicode_buffer(256)
+                                user32_local.GetClassNameW(h, bufc, 256)
+                                if "Button" in bufc.value:
+                                    user32_local.SendMessageW(h, BM_CLICK, 0, 0)
+                                    clicked = True
+                                    return False
+                    except:
+                        pass
+                    return True
+
+                user32_local.EnumChildWindows(dlg, enum_button, 0)
+                time.sleep(1.0)
+                if clicked and window_gone(timeout=6.0):
+                    print("[SUCCESS] 팝업 확인 버튼 클릭으로 종료 성공")
+                    self._set_login_info("HTS 종료 완료 ✓", fg="lightgreen")
+                    self.after(3000, self._restart_login)
+                    return
+                else:
+                    print("[WARNING] 팝업 클릭 후에도 종료되지 않음")
+
+            # 3) taskkill 시도
+            exe_name = "imeritzmain.exe"  # 실제 exe 이름으로 조정
+            print("[WARNING] taskkill 시도")
+            try:
+                result = subprocess.run(['taskkill', '/F', '/IM', exe_name, '/T'],
+                                        capture_output=True, text=True, timeout=15)
+                print(f"[DEBUG] taskkill stdout: {result.stdout}")
+                print(f"[DEBUG] taskkill stderr: {result.stderr}")
+                taskkill_succeeded = ("성공" in result.stdout) or (result.returncode == 0)
+            except Exception as e:
+                print(f"[ERROR] taskkill 호출 예외: {e}")
+                taskkill_succeeded = False
+
+            if taskkill_succeeded:
+                if window_gone(timeout=6.0):
+                    print("[SUCCESS] taskkill로 종료됨")
+                    self._set_login_info("HTS 강제 종료 완료 ✓", fg="lightgreen")
+                    self.after(3000, self._restart_login)
+                    return
+            else:
+                print("[WARNING] taskkill 실패 또는 액세스 거부")
+
+            # 4) TerminateProcess 폴백 (권한 부여 시도)
+            try:
+                killed = force_terminate_by_name(exe_name)
+            except Exception as e:
+                print(f"[ERROR] TerminateProcess 시도 중 예외: {e}")
+                killed = False
+
+            if killed:
+                print("[SUCCESS] TerminateProcess로 종료 성공")
+                self._set_login_info("HTS 강제 종료 완료 ✓", fg="lightgreen")
+            else:
+                print("[ERROR] 모든 종료 시도 실패")
+                self._set_login_info("종료 실패 - 권한/정책 문제", fg="tomato")
+                self._login_error_active = True
+
+            # 재시작 시도
+            print("[INFO] 5초 후 재로그인 시작...")
+            self.after(5000, self._restart_login)
+
+        except Exception as e:
+            print(f"[ERROR] HTS 종료 중 오류: {e}")
+            import traceback
+            traceback.print_exc()
+            self._login_error_active = True
+            self._set_login_info(f"종료 실패: {e}", fg="tomato")
+
+    def _restart_login(self):
+        """재로그인 시작"""
+        print("[INFO] 재로그인 시작...")
+        self._set_login_info("재로그인 시작...", fg="cyan")
+        self.execute_auto_login()
 
     def _do_login_attempt(self, pwd: str):
         """ 비밀번호 입력 시도 """

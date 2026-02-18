@@ -32,6 +32,76 @@ SETTINGS_FILE = "config/settings.json"
 WM_SETTEXT = 0x000C
 WM_CHAR    = 0x0102
 
+def find_cert_popup(timeout_sec=0.1):
+    """
+    인증서 선택 팝업 찾기 (빠른 체크)
+    
+    Returns:
+        HWND 또는 None
+    """
+    found = wintypes.HWND(0)
+
+    @ctypes.WINFUNCTYPE(ctypes.c_bool, wintypes.HWND, ctypes.c_void_p)
+    def enum_proc(hwnd, lp):
+        try:
+            if not user32.IsWindowVisible(hwnd):
+                return True
+
+            length = user32.GetWindowTextLengthW(hwnd)
+            if length == 0:
+                return True
+
+            buf = ctypes.create_unicode_buffer(length + 1)
+            user32.GetWindowTextW(hwnd, buf, length + 1)
+            title = buf.value
+
+            # 인증서 선택 창 감지 (비밀번호 창 제외)
+            if "인증서" in title and "선택" in title and "비밀번호" not in title:
+                found.value = hwnd
+                return False
+
+        except:
+            pass
+        return True
+
+    user32.EnumWindows(enum_proc, 0)
+    return found.value if found.value else None
+
+
+def select_certificate_auto() -> bool:
+    """
+    인증서 선택 팝업을 최상위로 가져옵니다.
+    
+    Returns: 성공 여부
+    """
+    try:
+        print("[INFO] 인증서 자동 선택 시작...")
+
+        print("[STEP 1] 인증서 선택 팝업 찾는 중...")
+        hwnd_cert = find_cert_popup(timeout_sec=10.0)
+
+        if not hwnd_cert:
+            print("[ERROR] 인증서 팝업을 찾을 수 없습니다.")
+            return False
+        
+        print(f"[SUCCESS] 인증서 팝업 찾음: 0x{hwnd_cert:X}")
+
+        print("[STEP2] 팝업 최상위로 설정 중...")
+        SW_RESTORE = 9
+        user32.ShowWindow(hwnd_cert, SW_RESTORE)
+        time.sleep(0.2)
+
+        press_vk(VK_MENU)
+        user32.SetForegroundWindow(hwnd_cert)
+        release_vk(VK_MENU)
+        time.sleep(0.3)
+
+        return True
+    
+    except Exception as e:
+        print(f"[ERROR] 인증서 선택 자동화 실패: {e}")
+        return False
+    
 def find_update_popup(timeout_sec: float = 3.0) -> int | None:
     """
     HTS 업데이트 팝업을 찾습니다.

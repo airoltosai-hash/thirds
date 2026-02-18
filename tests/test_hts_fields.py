@@ -306,31 +306,75 @@ class HTSController:
                 print(f"{control['desc']:15s} ({field_name:20s}): ✗ 찾을 수 없음")
     
     def test_field_properties(self):
-        """필드 속성 확인"""
+        """마우스 위치의 필드 속성 확인"""
         if not self.hwnd:
             print("✗ 먼저 1번으로 팝업을 열어주세요")
             return
         
         print(f"\n{'='*60}")
-        print("[order_quantity 필드 속성]")
+        print("[필드 속성 확인]")
         print(f"{'='*60}")
+        print("\n5초 후 마우스 커서 위치의 컨트롤 속성을 확인합니다...")
+        print("확인하고 싶은 필드 위에 마우스를 올려놓으세요!")
         
-        child_hwnd = self.get_child_hwnd('order_quantity')
-        if not child_hwnd:
-            print("✗ HWND를 찾을 수 없음")
-            return
+        for i in range(5, 0, -1):
+            print(f"  {i}...")
+            time.sleep(1)
+        
+        # 현재 마우스 위치
+        point = wintypes.POINT()
+        self.user32.GetCursorPos(ctypes.byref(point))
+        print(f"\n마우스 위치: ({point.x}, {point.y})")
+        
+        # 해당 위치의 윈도우
+        hwnd = self.user32.WindowFromPoint(point)
+        
+        print(f"\n[컨트롤 정보]")
+        print(f"  HWND: {hex(hwnd)}")
+        
+        ctrl_id = self.user32.GetDlgCtrlID(hwnd)
+        print(f"  Control ID: {ctrl_id}")
+        
+        class_buf = ctypes.create_unicode_buffer(256)
+        self.user32.GetClassNameW(hwnd, class_buf, 256)
+        class_name = class_buf.value
+        print(f"  Class: {class_name}")
+        
+        length = self.user32.GetWindowTextLengthW(hwnd)
+        if length > 0:
+            text_buf = ctypes.create_unicode_buffer(length + 1)
+            self.user32.GetWindowTextW(hwnd, text_buf, length + 1)
+            print(f"  Text: '{text_buf.value}'")
+        else:
+            print(f"  Text: (빈 값)")
         
         # 스타일 확인
         GWL_STYLE = -16
-        style = self.user32.GetWindowLongW(child_hwnd, GWL_STYLE)
+        style = self.user32.GetWindowLongW(hwnd, GWL_STYLE)
         
         WS_DISABLED = 0x08000000
         ES_READONLY = 0x0800
+        WS_VISIBLE = 0x10000000
         
-        print(f"\nHWND: {hex(child_hwnd)}")
-        print(f"Style: {hex(style)}")
+        print(f"\n[스타일 속성]")
+        print(f"  Style: {hex(style)}")
+        print(f"  Visible: {bool(style & WS_VISIBLE)}")
         print(f"  Disabled: {bool(style & WS_DISABLED)}")
         print(f"  ReadOnly: {bool(style & ES_READONLY)}")
+        
+        # 부모 확인
+        parent = self.user32.GetParent(hwnd)
+        print(f"\n[부모 정보]")
+        print(f"  Parent HWND: {hex(parent)}")
+        print(f"  Main HWND: {hex(self.hwnd)}")
+        
+        # JSON 매핑 제안
+        print(f"\n[JSON 매핑 제안]")
+        print(f'"field_name": {{')
+        print(f'  "id": {ctrl_id},')
+        print(f'  "class": "{class_name}",')
+        print(f'  "desc": "필드 설명"')
+        print(f'}}')
 
     def set_value(self, field_name, value):
         """필드 값 설정 (마우스 클릭 + 키보드 입력)"""
@@ -506,8 +550,8 @@ class HTSController:
             print("1. Ctrl+] 눌러서 6100 팝업 열기")
             print("2. 현재 설정된 값 보기")
             print("3. 수량 입력 테스트")
-            print("4. 수량 필드 속성 확인")
-            print("5. 마우스로 수량 필드 찾기") 
+            print("4. 마우스로 필드 속성 찾기")
+            print("5. 마우스로 수량 필드 찾기(미사용)") 
             print("q. 종료")
             
             choice = input("\n선택: ").strip()
