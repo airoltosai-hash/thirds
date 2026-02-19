@@ -10,6 +10,7 @@ import os
 import datetime
 import re
 import subprocess
+import time
 from core.win_input import(
     user32,   # 포커스/FindWindow 등에 사용
     VK_MENU,  # ALT 트릭
@@ -237,14 +238,18 @@ class ActionMenuPopup(tk.Toplevel):
         if self.parent_cell.task_data.get("type") == "auto_login":
             actions = ["바로 실행", "준비"]
             commands = [
-                # 바로 실행 -> 상태  ⭕ + 알림
-                lambda: [self.parent_cell.execute_auto_login(), self.destroy()],
+                # **수정: 바로실행 시 _is_first_login = False 설정**
+                lambda: [
+                    setattr(self.parent_cell, '_is_first_login', False),  # 재로그인 모드
+                    self.parent_cell.execute_auto_login(), 
+                    self.destroy()
+                ],
                 # 준비 -> 상태 ❌
                 lambda: [self.parent_cell.set_status("Ready", persist=False), self.destroy()],
             ]
 
-
         else:
+            # 일반 작업 메뉴
             actions = ["바로 실행", "활성화", "비활성화", "삭제", "정산"]
             commands = [
                 lambda: [self.parent_cell.quick_run(), self.destroy()],
@@ -473,6 +478,11 @@ class HamburgerMenu(tk.Frame):
             settings_data=self.app.settings["main_settings"],
             save_callback=self.app.save_all_settings
         )
+
+    def hide(self):  
+        """메뉴를 강제로 숨김"""
+        if self.expanded:
+            self.slide_out()
 
     def toggle(self):
         if self.expanded:
@@ -907,8 +917,9 @@ class GridCell(tk.Frame):
         print("[INFO] 로그인 완료, HTS 메인 창 로드 대기")
         self._set_info("HTS 로딩 중...", fg="khaki")
         
-        # HTS 메인 창 완전 로드 대기
-        self._wait_for_hts_ready()
+        # **수정: 기존 함수 재사용 + 완료 후 사이클 시작 콜백 설정**
+        self._cycle_start_after_setup = True  # 플래그 설정
+        self._wait_for_hts_ready_then_close_windows()  # 기존 함수 호출
 
     def _wait_for_hts_ready(self, max_wait_sec=30.0):
         """
@@ -1584,30 +1595,302 @@ class GridCell(tk.Frame):
         """로그인 완료 후 처리"""
         
         if self._is_first_login:
-            # 첫 로그인 → HTS 종료 → 로그인 날짜 저장 → 재실행
-            print("[INFO] 첫 로그인 완료 - HTS 종료 후 재실행")
-            self._set_login_info("첫 로그인 완료 - 재시작 중...", fg="orange")
+            # 첫 로그인 → HTS 메인 창 로드 대기 → 종료 → 재실행
+            print("[INFO] 첫 로그인 완료 - HTS 메인 창 로드 대기")
+            self._set_login_info("HTS 로딩 대기 중...", fg="orange")
             
             # 로그인 날짜 저장
             save_login_date()
             
-            # HTS 종료
-            self.after(2000, self._close_hts_and_relogin)
+            # HTS 메인 창이 완전히 로드될 때까지 폴링
+            self._wait_for_hts_main_window_before_close()
         
         else:
-            # 재로그인 → 정상 작업 진행
-            print("[SUCCESS] 재로그인 완료 - 작업 대기")
+            # 재로그인 → HTS 완전 로드 대기 → 추가 창 닫기 → 비밀번호 설정
+            print("[SUCCESS] 재로그인 완료 - HTS 로드 대기")
+            self._set_login_info("HTS 로딩 중...", fg="khaki")
+            
+            # 공통 함수 호출
+            self._finalize_login_setup()
+
+    def _finalize_login_setup(self):
+        """
+        로그인 완료 후 최종 설정 (Ctrl+F4 + 계좌 비밀번호)
+        - 재로그인 시
+        - 바로실행 시
+        모두 공통으로 사용
+        """
+        print("[INFO] 로그인 후 최종 설정 시작")
+        
+        # HTS 완전 로드 대기 → Ctrl+F4 → 비밀번호 설정
+        self._wait_for_hts_ready_then_close_windows()
+
+    def _wait_for_hts_ready_then_close_windows(self, max_wait_sec=30.0):
+        """
+        재로그인 후 HTS 메인 창이 완전히 로드될 때까지 대기 → 추가 창 닫기
+        """
+        import datetime
+        
+        start_time = getattr(self, "_hts_ready_start_time", None)
+        if start_time is None:
+            self._hts_ready_start_time = datetime.datetime.now()
+            start_time = self._hts_ready_start_time
+        
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        
+        # 타임아웃 체크
+        if elapsed > max_wait_sec:
+            print(f"[ERROR] HTS 로드 대기 타임아웃 ({max_wait_sec}초)")
+            self._set_login_info("HTS 로드 시간 초과", fg="tomato")
+            self._hts_ready_start_time = None
+            self.set_status("Ready", persist=False)
+            return
+        
+        # HTS 메인 창 확인
+        if self._is_hts_main_window_ready():
+            print("[SUCCESS] HTS 메인 창 로드 완료!")
+            self._hts_ready_start_time = None
+            
+            # 추가 안정화 대기 (3초)
+            print("[INFO] HTS 안정화 대기 중... (3초)")
+            self._set_login_info("HTS 안정화 중...", fg="khaki")
+            self.after(3000, self._close_extra_windows)
+            return
+        
+        # 0.5초 후 재시도
+        print(f"[WAIT] HTS 로딩 중... ({elapsed:.1f}초)")
+        self.after(500, lambda: self._wait_for_hts_ready_then_close_windows(max_wait_sec))
+
+
+    def _close_extra_windows(self):
+        """재로그인 후 불필요한 창 닫기 (Ctrl+F4 5번)"""
+        import keyboard
+                
+        print("[INFO] 추가 창 닫기 시작 (Ctrl+F4 x5)")
+        self._set_login_info("추가 창 정리 중...", fg="khaki")
+        
+        try:
+            for i in range(5):
+                keyboard.press_and_release('ctrl+f4')
+                print(f"[DEBUG] Ctrl+F4 전송 ({i+1}/5)")
+                time.sleep(0.1)
+            
+            print("[SUCCESS] 추가 창 닫기 완료")
+            self._set_login_info("로그인 완료 ✓", fg="lightgreen")
+
+            # **추가: 계좌 비밀번호 설정**
+            self.after(1000, self._setup_account_password) 
+            
+        except Exception as e:
+            print(f"[WARNING] 창 닫기 중 오류: {e}")
+            # 오류가 나도 계속 진행
+            self._set_login_info("로그인 완료 ✓", fg="lightgreen")
+
+    def _setup_account_password(self):
+        """계좌 비밀번호 일괄 등록 (9507)"""
+        import keyboard
+        import time
+        
+        print("[INFO] 계좌 비밀번호 설정 시작")
+        self._set_login_info("계좌 비밀번호 설정 중...", fg="khaki")
+        
+        try:
+            # **수정: 자동로그인 작업에서 비밀번호 가져오기**
+            account_password = ""
+            
+            # 1) 현재 셀이 자동로그인이면 바로 가져오기
+            if self.task_data.get("type") == "auto_login":
+                account_password = self.task_data.get("account_password", "")
+            
+            # 2) 일반 작업이면 자동로그인 작업에서 찾기
+            elif self.app_instance:
+                for task in self.app_instance.tasks_data:
+                    if task.get("type") == "auto_login":
+                        account_password = task.get("account_password", "")
+                        break
+            if not account_password:
+                print("[WARNING] 계좌 비밀번호가 설정되지 않음")
+                self._set_login_info("로그인 완료 ✓", fg="lightgreen")
+                self.set_status("Ready", persist=False)
+                
+                # **추가: 일반 작업이면 사이클 시작**
+                if getattr(self, "_cycle_start_after_setup", False):
+                    self._cycle_start_after_setup = False
+                    print("[INFO] 사이클 시작")
+                    self._set_info("사이클 시작", fg="lightgreen")
+                    self.start_cycle()
+                
+                return
+            
+            print(f"[DEBUG] 계좌 비밀번호: {len(account_password)}자")
+            
+            # 2. HTS 메인 창 활성화
+            print("[INFO] HTS 메인 창 활성화")
+            hwnd = self._find_hts_main_window()
+            
+            if not hwnd:
+                print("[ERROR] HTS 메인 창을 찾을 수 없음")
+                self._set_login_info("로그인 완료 ✓", fg="lightgreen")
+                self.set_status("Ready", persist=False)
+                
+                # **추가: 일반 작업이면 사이클 시작**
+                if getattr(self, "_cycle_start_after_setup", False):
+                    self._cycle_start_after_setup = False
+                    print("[INFO] 사이클 시작")
+                    self._set_info("사이클 시작", fg="lightgreen")
+                    self.start_cycle()
+                
+                return
+            
+            print(f"[DEBUG] HTS 메인 창 HWND: 0x{hwnd:X}")
+            
+            # 메인 창 활성화 (강제)
+            user32.ShowWindow(hwnd, 9)  # SW_RESTORE
+            time.sleep(0.3)
+            
+            # ALT 트릭으로 포커스 강제 전환
+            press_vk(VK_MENU)
+            user32.SetForegroundWindow(hwnd)
+            release_vk(VK_MENU)
+            time.sleep(0.5)
+            
+            # 3. ESC 키로 초기화 (메뉴/팝업 닫기)
+            print("[INFO] ESC 키로 초기화")
+            keyboard.press_and_release('esc')
+            time.sleep(0.3)
+            keyboard.press_and_release('esc')  # 2번 누르기
+            time.sleep(0.5)
+            
+            # 4. 9507 입력 (계좌 비밀번호 일괄 등록)
+            print("[INFO] 9507 입력 (계좌 비밀번호 일괄 등록)")
+            keyboard.write('9507')
+            time.sleep(2.0)
+            
+            # 5. 비밀번호 입력
+            print("[INFO] 계좌 비밀번호 입력")
+            keyboard.write(account_password)
+            time.sleep(0.5)
+            
+            # 6. 전체적용 (Tab 2번 + Enter)
+            print("[INFO] 전체적용 버튼 클릭")
+            keyboard.press_and_release('tab')
+            time.sleep(0.2)
+            keyboard.press_and_release('tab')
+            time.sleep(0.2)
+            keyboard.press_and_release('enter')
+            time.sleep(1.0)
+            
+            # 7. 확인 (Tab 2번 + Enter)
+            print("[INFO] 확인 버튼 클릭")
+            keyboard.press_and_release('tab')
+            time.sleep(0.2)
+            keyboard.press_and_release('tab')
+            time.sleep(0.2)
+            keyboard.press_and_release('enter')
+            time.sleep(0.5)
+            
+            print("[SUCCESS] 계좌 비밀번호 설정 완료")
             self._set_login_info("로그인 완료 ✓", fg="lightgreen")
             self.set_status("Ready", persist=False)
+            
+            # **추가: 일반 작업이면 사이클 시작**
+            if getattr(self, "_cycle_start_after_setup", False):
+                self._cycle_start_after_setup = False
+                print("[INFO] 사이클 시작")
+                self._set_info("사이클 시작", fg="lightgreen")
+                self.start_cycle()
+            
+        except Exception as e:
+            print(f"[ERROR] 계좌 비밀번호 설정 실패: {e}")
+            import traceback
+            traceback.print_exc()
+            
+            self._set_login_info("로그인 완료 ✓", fg="lightgreen")
+            self.set_status("Ready", persist=False)
+            
+            # **추가: 일반 작업이면 사이클 시작**
+            if getattr(self, "_cycle_start_after_setup", False):
+                self._cycle_start_after_setup = False
+                print("[INFO] 오류 무시, 사이클 시작")
+                self._set_info("사이클 시작", fg="lightgreen")
+                self.start_cycle()
+
+    def _find_hts_main_window(self):
+        """HTS 메인 창 핸들 찾기"""
+        from ctypes import wintypes, WINFUNCTYPE, c_bool, create_unicode_buffer
+        
+        found = wintypes.HWND(0)
+        keywords = ["iMeritz", "메리츠", "iMERITZ"]
+        exclude = ["로그인", "인증서", "비밀번호", "업데이트"]
+        
+        @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
+        def enum_proc(hwnd, lp):
+            try:
+                if not user32.IsWindowVisible(hwnd):
+                    return True
+                
+                length = user32.GetWindowTextLengthW(hwnd)
+                if length > 0:
+                    buf = create_unicode_buffer(length + 1)
+                    user32.GetWindowTextW(hwnd, buf, length + 1)
+                    title = buf.value
+                    
+                    if any(kw in title for kw in keywords) and not any(ex in title for ex in exclude):
+                        found.value = hwnd
+                        return False
+            except:
+                pass
+            return True
+        
+        user32.EnumWindows(enum_proc, 0)
+        return found.value if found.value else None
+
+    def _wait_for_hts_main_window_before_close(self, max_wait_sec=30.0):
+        """
+        HTS 메인 창이 완전히 로드될 때까지 폴링 (종료 전)
+        
+        Args:
+            max_wait_sec: 최대 대기 시간(초)
+        """
+        import datetime
+        
+        start_time = getattr(self, "_hts_load_start_time", None)
+        if start_time is None:
+            self._hts_load_start_time = datetime.datetime.now()
+            start_time = self._hts_load_start_time
+        
+        elapsed = (datetime.datetime.now() - start_time).total_seconds()
+        
+        # 타임아웃 체크
+        if elapsed > max_wait_sec:
+            print(f"[ERROR] HTS 로드 대기 타임아웃 ({max_wait_sec}초)")
+            self._set_login_info("HTS 로드 시간 초과", fg="tomato")
+            self._login_error_active = True
+            self._hts_load_start_time = None
+            return
+        
+        # HTS 메인 창 확인
+        if self._is_hts_main_window_ready():
+            print("[SUCCESS] HTS 메인 창 로드 완료! 종료 준비...")
+            self._set_login_info("HTS 종료 준비 중...", fg="orange")
+            self._hts_load_start_time = None
+            
+            # 안정화를 위해 3초 대기 후 종료
+            self.after(3000, self._close_hts_and_relogin)
+            return
+        
+        # 0.5초 후 재시도
+        print(f"[WAIT] HTS 로딩 중... ({elapsed:.1f}초)")
+        self.after(500, lambda: self._wait_for_hts_main_window_before_close(max_wait_sec))
 
     def _close_hts_and_relogin(self):
         """HTS 종료 후 재로그인"""
         try:
-            print("[INFO] 5초 대기 후 HTS 종료...")
-            self._set_login_info("안정화 대기 중...", fg="khaki")
+            print("[INFO] HTS 종료 시작...")  # 5초 대기 제거
+            self._set_login_info("HTS 종료 중...", fg="orange")
             
-            # 5초 대기 (로그인 완전히 완료되도록)
-            self.after(5000, self._kill_hts_process)
+            # 바로 종료 시도 (기존 5초 대기 삭제)
+            self._kill_hts_process()
             
         except Exception as e:
             print(f"[ERROR] HTS 종료 실패: {e}")
@@ -1677,17 +1960,17 @@ class GridCell(tk.Frame):
         return killed_any
 
     def _kill_hts_process(self):
-        """HTS 메인 창 종료: WM_CLOSE -> 확인 다이얼로그 클릭 -> taskkill -> TerminateProcess 폴백"""
+        """HTS 종료"""
         try:
             import time, subprocess
             from ctypes import wintypes, WINFUNCTYPE, c_bool, create_unicode_buffer
             user32_local = ctypes.windll.user32
             WM_CLOSE = 0x0010
+            BM_CLICK = 0x00F5
 
             print("[INFO] HTS 메인 창 검색 중...")
-            self._set_login_info("HTS 종료 중...", fg="orange")
-
-            # 윈도우 탐색 기준
+            
+            # 1) 메인 창 찾기
             found = wintypes.HWND(0)
             keywords = ["iMeritz", "메리츠", "iMERITZ"]
             exclude = ["로그인", "인증서", "비밀번호", "업데이트"]
@@ -1698,240 +1981,97 @@ class GridCell(tk.Frame):
                     if not user32_local.IsWindowVisible(hwnd):
                         return True
                     length = user32_local.GetWindowTextLengthW(hwnd)
-                    if length == 0:
-                        return True
-                    buf = create_unicode_buffer(length + 1)
-                    user32_local.GetWindowTextW(hwnd, buf, length + 1)
-                    title = buf.value
-                    if any(kw in title for kw in keywords) and not any(ex in title for ex in exclude):
-                        found.value = hwnd
-                        return False
-                except:
-                    pass
-                return True
-
-            user32_local.EnumWindows(enum_proc, 0)
-            hwnd = found.value
-            if not hwnd:
-                print("[WARNING] HTS 메인 창을 찾을 수 없음")
-                self._set_login_info("HTS 창 없음 - 재시작", fg="yellow")
-                self.after(3000, self._restart_login)
-                return
-
-            print(f"[DEBUG] HTS 메인 창 찾음: 0x{hwnd:X}")
-            self._set_login_info("HTS 정상 종료 시도...", fg="orange")
-
-            # 1) WM_CLOSE 시도
-            try:
-                user32_local.PostMessageW(hwnd, WM_CLOSE, 0, 0)
-            except Exception as e:
-                print(f"[ERROR] WM_CLOSE 전송 실패: {e}")
-
-            # helper: 윈도우가 사라졌는지 확인
-            def window_gone(timeout=8.0):
-                t0 = time.time()
-                while time.time() - t0 < timeout:
-                    tmp = wintypes.HWND(0)
-                    @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
-                    def enum_check(h, lp):
-                        try:
-                            if not user32_local.IsWindowVisible(h):
-                                return True
-                            l = user32_local.GetWindowTextLengthW(h)
-                            if l == 0:
-                                return True
-                            buf2 = create_unicode_buffer(l + 1)
-                            user32_local.GetWindowTextW(h, buf2, l + 1)
-                            t = buf2.value
-                            if any(kw in t for kw in keywords) and not any(ex in t for ex in exclude):
-                                tmp.value = h
-                                return False
-                        except:
-                            pass
-                        return True
-                    user32_local.EnumWindows(enum_check, 0)
-                    if not tmp.value:
-                        return True
-                    time.sleep(0.5)
-                return False
-
-            if window_gone(timeout=6.0):
-                print("[SUCCESS] WM_CLOSE로 종료됨")
-                self._set_login_info("HTS 정상 종료 완료 ✓", fg="lightgreen")
-                self.after(3000, self._restart_login)
-                return
-            
-            # 종료 팝업 찾기 & '종료' 버튼 클릭 (클래스 #32770, 버튼 텍스트 '종료')
-            BM_CLICK = 0x00F5
-            found = wintypes.HWND(0)
-
-            @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
-            def enum_dialog_for_close(hwnd, lparam):
-                try:
-                    # 클래스명 확인
-                    buf_cls = create_unicode_buffer(256)
-                    user32_local.GetClassNameW(hwnd, buf_cls, 256)
-                    cls = buf_cls.value
-                    if cls and ("#32770" in cls or cls == "#32770"):
-                        # 가시성 체크(팝업인지)
-                        if user32_local.IsWindowVisible(hwnd):
+                    if length > 0:
+                        buf = create_unicode_buffer(length + 1)
+                        user32_local.GetWindowTextW(hwnd, buf, length + 1)
+                        title = buf.value
+                        if any(kw in title for kw in keywords) and not any(ex in title for ex in exclude):
                             found.value = hwnd
                             return False
                 except:
                     pass
                 return True
 
-            user32_local.EnumWindows(enum_dialog_for_close, 0)
-            dlg = found.value
-            if dlg:
-                btn_hwnd = wintypes.HWND(0)
+            user32_local.EnumWindows(enum_proc, 0)
+            hwnd = found.value
+            
+            if not hwnd:
+                print("[WARNING] HTS 메인 창 없음")
+                self.after(3000, self._restart_login)
+                return
 
+            print(f"[DEBUG] HTS 메인 창: 0x{hwnd:X}")
+
+            # 2) WM_CLOSE 전송
+            user32_local.PostMessageW(hwnd, WM_CLOSE, 0, 0)
+            print("[INFO] WM_CLOSE 전송")
+            time.sleep(3.0)
+
+            # 3) 다이얼로그 찾기
+            all_dialogs = []
+            max_retries = 3
+
+            for retry in range(max_retries):
+                all_dialogs.clear()
+                
                 @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
-                def enum_child_for_close(h, lparam):
-                    nonlocal btn_hwnd
+                def find_dialogs(h, lp):
                     try:
-                        bufc = create_unicode_buffer(256)
-                        user32_local.GetClassNameW(h, bufc, 256)
-                        if "Button" in bufc.value:
-                            l = user32_local.GetWindowTextLengthW(h)
-                            if l > 0:
-                                buf = create_unicode_buffer(l + 1)
-                                user32_local.GetWindowTextW(h, buf, l + 1)
-                                txt = buf.value.strip()
-                                if txt == "종료":
-                                    btn_hwnd = h
-                                    return False
+                        if user32_local.IsWindowVisible(h):
+                            buf = create_unicode_buffer(256)
+                            user32_local.GetClassNameW(h, buf, 256)
+                            if "#32770" in buf.value:
+                                all_dialogs.append(h)
                     except:
                         pass
                     return True
 
-                user32_local.EnumChildWindows(dlg, enum_child_for_close, 0)
-
-                if btn_hwnd:
-                    print(f"[INFO] 종료 버튼 클릭 시도: 0x{int(btn_hwnd):X}")
-                    try:
-                        user32_local.SendMessageW(btn_hwnd, BM_CLICK, 0, 0)
-                    except Exception as e:
-                        print(f"[WARN] 종료 버튼 클릭 실패: {e}")
-                    time.sleep(0.5)
-                    # 클릭 후 창이 닫혔는지 확인
-                    if window_gone(timeout=6.0):
-                        print("[SUCCESS] 팝업 종료 버튼 클릭으로 HTS 종료됨")
-                        self._set_login_info("HTS 종료 완료 ✓", fg="lightgreen")
-                        self.after(3000, self._restart_login)
-                        return    
-
-            # 2) 종료/권한 확인 대화상자 있으면 버튼 클릭 시도
-            print("[INFO] 종료 확인 팝업 탐색 중...")
-            # 대화상자 타이틀 패턴 (권한/관리자 관련 텍스트 포함 가능)
-            confirm_keywords = ["종료", "닫기", "닫음", "Yes", "예", "확인", "권한", "관리자"]
-            found_dialog = wintypes.HWND(0)
-
-            @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
-            def enum_dialog(hwnd, lp):
-                try:
-                    if not user32_local.IsWindowVisible(hwnd):
-                        return True
-                    l = user32_local.GetWindowTextLengthW(hwnd)
-                    if l == 0:
-                        return True
-                    buf = create_unicode_buffer(l + 1)
-                    user32_local.GetWindowTextW(hwnd, buf, l + 1)
-                    t = buf.value
-                    # 다이얼로그는 보통 짧은 타이틀이므로 포함 검사
-                    if any(kw in t for kw in confirm_keywords) or ("iMeritz" in t and ("종료" in t or "종료" in t)):
-                        found_dialog.value = hwnd
-                        return False
-                except:
-                    pass
-                return True
-
-            user32_local.EnumWindows(enum_dialog, 0)
-            dlg = found_dialog.value
-            if dlg:
-                print(f"[DEBUG] 종료 확인 팝업 발견: 0x{dlg:X} - 시도: 확인 버튼 클릭")
-                # 자식 버튼 탐색 후 클릭 (BM_CLICK)
-                BM_CLICK = 0x00F5
-                clicked = False
-
-                @WINFUNCTYPE(c_bool, wintypes.HWND, ctypes.c_void_p)
-                def enum_button(h, lp):
-                    nonlocal clicked
-                    try:
-                        l = user32_local.GetWindowTextLengthW(h)
-                        if l > 0:
-                            buft = create_unicode_buffer(l + 1)
-                            user32_local.GetWindowTextW(h, buft, l + 1)
-                            txt = buft.value
-                            if any(k in txt for k in ["확인", "예", "Yes", "OK", "확인(&O)", "닫기"]):
-                                # 버튼이면 클릭
-                                bufc = create_unicode_buffer(256)
-                                user32_local.GetClassNameW(h, bufc, 256)
-                                if "Button" in bufc.value:
-                                    user32_local.SendMessageW(h, BM_CLICK, 0, 0)
-                                    clicked = True
-                                    return False
-                    except:
-                        pass
-                    return True
-
-                user32_local.EnumChildWindows(dlg, enum_button, 0)
-                time.sleep(1.0)
-                if clicked and window_gone(timeout=6.0):
-                    print("[SUCCESS] 팝업 확인 버튼 클릭으로 종료 성공")
-                    self._set_login_info("HTS 종료 완료 ✓", fg="lightgreen")
-                    self.after(3000, self._restart_login)
-                    return
+                user32_local.EnumWindows(find_dialogs, 0)
+                
+                if all_dialogs:
+                    print(f"[DEBUG] 다이얼로그 {len(all_dialogs)}개 발견")
+                    break
                 else:
-                    print("[WARNING] 팝업 클릭 후에도 종료되지 않음")
+                    print(f"[DEBUG] 다이얼로그 없음 (재시도 {retry+1}/{max_retries})")
+                    if retry < max_retries - 1:
+                        time.sleep(1.0)
 
-            # 3) taskkill 시도
-            exe_name = "imeritzmain.exe"  # 실제 exe 이름으로 조정
-            print("[WARNING] taskkill 시도")
-            try:
-                result = subprocess.run(['taskkill', '/F', '/IM', exe_name, '/T'],
-                                        capture_output=True, text=True, timeout=15)
-                print(f"[DEBUG] taskkill stdout: {result.stdout}")
-                print(f"[DEBUG] taskkill stderr: {result.stderr}")
-                taskkill_succeeded = ("성공" in result.stdout) or (result.returncode == 0)
-            except Exception as e:
-                print(f"[ERROR] taskkill 호출 예외: {e}")
-                taskkill_succeeded = False
+            # 4) 종료 버튼 클릭
+            for dlg in all_dialogs:
+                btn = user32_local.GetDlgItem(dlg, 1)
+                if btn:
+                    try:
+                        l = user32_local.GetWindowTextLengthW(btn)
+                        if l > 0:
+                            buf = create_unicode_buffer(l + 1)
+                            user32_local.GetWindowTextW(btn, buf, l + 1)
+                            txt = buf.value.strip()
+                            
+                            if "종료" in txt:
+                                print(f"[SUCCESS] 종료 버튼 클릭: '{txt}'")
+                                user32_local.SendMessageW(btn, BM_CLICK, 0, 0)
+                                time.sleep(2.0)
+                                
+                                if not user32_local.IsWindow(hwnd):
+                                    print("[SUCCESS] HTS 종료 완료")
+                                    self._set_login_info("HTS 종료 완료 ✓", fg="lightgreen")
+                                    self.after(3000, self._restart_login)
+                                    return
+                    except:
+                        pass
 
-            if taskkill_succeeded:
-                if window_gone(timeout=6.0):
-                    print("[SUCCESS] taskkill로 종료됨")
-                    self._set_login_info("HTS 강제 종료 완료 ✓", fg="lightgreen")
-                    self.after(3000, self._restart_login)
-                    return
-            else:
-                print("[WARNING] taskkill 실패 또는 액세스 거부")
-
-            # 4) TerminateProcess 폴백 (권한 부여 시도)
-            try:
-                killed = force_terminate_by_name(exe_name)
-            except Exception as e:
-                print(f"[ERROR] TerminateProcess 시도 중 예외: {e}")
-                killed = False
-
-            if killed:
-                print("[SUCCESS] TerminateProcess로 종료 성공")
-                self._set_login_info("HTS 강제 종료 완료 ✓", fg="lightgreen")
-            else:
-                print("[ERROR] 모든 종료 시도 실패")
-                self._set_login_info("종료 실패 - 권한/정책 문제", fg="tomato")
-                self._login_error_active = True
-
-            # 재시작 시도
-            print("[INFO] 5초 후 재로그인 시작...")
-            self.after(5000, self._restart_login)
+            # 5) taskkill
+            print("[INFO] taskkill 시도...")
+            subprocess.run(['taskkill', '/F', '/IM', 'imeritzmain.exe'], timeout=10)
+            time.sleep(2.0)
+            
+            print("[INFO] 재로그인 시작")
+            self.after(3000, self._restart_login)
 
         except Exception as e:
-            print(f"[ERROR] HTS 종료 중 오류: {e}")
-            import traceback
-            traceback.print_exc()
+            print(f"[ERROR] 종료 실패: {e}")
             self._login_error_active = True
-            self._set_login_info(f"종료 실패: {e}", fg="tomato")
+            self._set_login_info("종료 실패", fg="tomato")
 
     def _restart_login(self):
         """재로그인 시작"""
@@ -2032,12 +2172,10 @@ class GridCell(tk.Frame):
 
 class TestApp:
     def minimize_window(self, event=None):
-        # 윈도우 핸들 얻기
         hwnd = ctypes.windll.user32.GetParent(self.root.winfo_id())
-        # 윈도우 최소화 호출
         ctypes.windll.user32.ShowWindow(hwnd, SW_MINIMIZE)
+    
     def close_window(self, event=None):
-        # 종료 전에 저장이 필요하면 호출
         try:
             self.save_all_settings()
         except Exception as e:
@@ -2046,10 +2184,8 @@ class TestApp:
             self.root.destroy()
 
     def save_all_settings(self):
-        """모든 설정(self.settings)을 파일에 저장하는 단일 메서드, 
-        자동로그인은 런타임 전용이므로 저장에서 제외"""
+        """모든 설정(self.settings)을 파일에 저장하는 단일 메서드"""
         try:
-            # tasks를 저장하기 전에 auto_login의 status만 제외한 사본 구성
             self.settings["tasks"] = [
                 {
                     k: v
@@ -2073,17 +2209,22 @@ class TestApp:
                 if isinstance(loaded_data, dict):
                     self.settings["main_settings"] = loaded_data.get("main_settings", {})
                     self.settings["tasks"] = loaded_data.get("tasks", [])
-                    self.tasks_data = self.settings["tasks"] # 참조 다시 연결
+                    self.tasks_data = self.settings["tasks"]
             except (json.JSONDecodeError, Exception):
                 pass
 
         if not self.settings["tasks"]:
             self.add_task(is_auto_login=True)
-            self.save_all_settings() # 초기 작업 생성 후 저장
+            self.save_all_settings()
         else:
             for task_data in self.settings["tasks"]:
                 self.add_task(task_data=task_data)
 
+    def update_scroll_region(self):
+        """스크롤 영역을 컨텐츠 크기에 맞게 업데이트"""
+        if hasattr(self, 'canvas'):
+            self.canvas.update_idletasks()
+            self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
     def __init__(self, root):
         self.root = root
@@ -2092,35 +2233,29 @@ class TestApp:
         window_width = 600
         window_height = 700
         
-        self.center_window(root, window_width, window_height) # 중앙 배치
-        #root.overrideredirect(True) # 상단 Bar 제거 (상단 Bar 제거시 작업표시줄에서 사라짐..)
-
+        self.center_window(root, window_width, window_height)
         root.resizable(False, False)
-        root.configure(bg="black")  # 전체 배경 검은색
+        root.configure(bg="black")
 
         # --- Header ---
         header_frame = tk.Frame(root, bg="black", height=50)
         header_frame.pack(fill=tk.X)
 
-        # 햄버거 버튼 (왼쪽, 흰 글씨)
-        self.menu = HamburgerMenu(root, app=self) # 햄버거 메뉴 프레임 생성
+        self.menu = HamburgerMenu(root, app=self)
         
         self.hamburger_btn = tk.Button(header_frame, text="☰", font=("Segoe UI", 14), width=3,
                                        fg="white", bg="black", bd=0, activebackground="gray20", activeforeground="white",
                                        command=self.menu.toggle)
         self.hamburger_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
-        # 프로그램명 (햄버거 버튼 우측, 흰 글씨)
         self.title_label = tk.Label(header_frame, text="Thirds v1.0", font=("Segoe UI", 16), fg="white", bg="black")
         self.title_label.pack(side=tk.LEFT, padx=5)
 
-        # 종료 버튼
         close_btn = tk.Button(header_frame, text="❌", font=("Segoe UI", 14, "bold"), width=3,
                             fg="white", bg="black", bd=0, command=self.close_window,
                             activebackground="red", activeforeground="white")
         close_btn.pack(side=tk.RIGHT, padx=2, pady=2)
 
-        # 최소화 버튼
         min_btn = tk.Button(header_frame, text="➖", font=("Segoe UI", 14, "bold"), width=3,
                             fg="white", bg="black", bd=0, command=self.minimize_window,
                             activebackground="gray20", activeforeground="white")
@@ -2133,66 +2268,87 @@ class TestApp:
         canvas = tk.Canvas(main_container, bg="black", highlightthickness=0)
         scrollbar = tk.Scrollbar(main_container, orient="vertical", command=canvas.yview)
 
-        # GridCell 이 들어 갈 실제 프레임
         self.grid_frame = tk.Frame(canvas, bg="black")
 
-        # 캔버스에 grid_frame을 창으로 추가
         self.grid_frame_window = canvas.create_window((0,0), window=self.grid_frame, anchor="nw")
         canvas.configure(yscrollcommand=scrollbar.set)
 
         canvas.bind("<Configure>", lambda e: canvas.itemconfigure(self.grid_frame_window, width=e.width))
 
-        # 스크롤바와 캔버스 배치
         scrollbar.pack(side="right", fill="y")
         canvas.pack(side="left", fill="both", expand=True)
 
-         # grid_frame의 크기가 변경될 때 스크롤 영역을 재설정하는 바인딩
-        self.grid_frame.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
-        # 캔버스에 마우스 휠 스크롤 바인딩
-        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(int(-1*(e.delta/120)), "units"))
+        def _update_scroll_on_configure(event=None):
+            canvas.update_idletasks()
+            canvas.configure(scrollregion=canvas.bbox("all"))
         
-        # 메인 영역 클릭 시 메뉴 닫기
+        self.grid_frame.bind("<Configure>", _update_scroll_on_configure)
+        
+        def on_mousewheel(event):
+            bbox = canvas.bbox("all")
+            if bbox:
+                content_height = bbox[3] - bbox[1]
+                canvas_height = canvas.winfo_height()
+                
+                if content_height <= canvas_height:
+                    return "break"
+            
+            canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+            return "break"
+        
+        def on_enter(event):
+            canvas.bind_all("<MouseWheel>", on_mousewheel)
+        
+        def on_leave(event):
+            canvas.unbind_all("<MouseWheel>")
+        
+        canvas.bind("<Enter>", on_enter)
+        canvas.bind("<Leave>", on_leave)
+        
+        self.canvas = canvas
+        
         main_container.bind("<Button-1>", self.hide_menu)
         canvas.bind("<Button-1>", self.hide_menu)
 
-
-        # --- Footer (하단) ---
+        # --- Footer ---
         footer_frame = tk.Frame(root, height=50, bg="black")
         footer_frame.pack(fill=tk.X, side=tk.BOTTOM)
 
-        # Footer 버튼 폰트, 크기 조절
         btn_font = font.Font(family="Helvetica", size=14, weight="bold", slant="italic")
         self.start_stop_btn = tk.Button(footer_frame, text="Start", width=20, command=self.toggle_start_stop,
                          fg="white", bg="black", bd=1, activebackground="gray20", activeforeground="white", font=btn_font)
-        self.start_stop_btn.pack(pady=10) # 중앙에 배치
+        self.start_stop_btn.pack(pady=10)
 
-        # '+' 버튼 추가 (우측 하단)
         add_btn = tk.Button(footer_frame, text="+", font=("Segoe UI", 20, "bold"), width=3, fg="white", bg="gray20", bd=0,
                             command=self.add_new_task, activebackground="gray40", activeforeground="white")
-        add_btn.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor='se') #우측 하단에 배치        
+        add_btn.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor='se')
 
-        # 모든 설정을 담을 중앙 딕셔너리
         self.settings = {"main_settings": {}, "tasks": []}
-        #self.tasks_data는 이제 self.settings['tasks']를 가리키는 참조가 됨
         self.tasks_data = self.settings["tasks"]
 
         self.rows = []
         self.is_running = False
         
-        # 프로그램 시작 시 모든 설정을 불러옴
         self.load_all_settings()
         self._save_after_id = None
 
         self.hts = HtsAutomation()
 
+    def center_window(self, window, width, height):
+        screen_width = window.winfo_screenwidth()
+        screen_height = window.winfo_screenheight()
+        x = (screen_width - width) // 2
+        y = (screen_height - height) // 2
+        window.geometry(f"{width}x{height}+{x}+{y}")
+
+    def hide_menu(self, event=None):
+        if hasattr(self, 'menu'):
+            self.menu.hide()
+
     def add_task(self, task_data=None, is_auto_login=False):
         """GridCell을 하나 추가하는 메서드"""
-        # is_auto_login=True : 기본 자동로그인 작업 생성
-        # task_data 지정 시, 해당 데이터로 작업 생성 (파일 불러오기 등)
-        # 그렇지 않으면 기본 신규 작업 생성
         
         if is_auto_login:
-            # 자동 로그인용 기본 데이터
             new_task_data = {
                 "type": "auto_login", 
                 "nickname": "자동로그인", 
@@ -2200,75 +2356,57 @@ class TestApp:
                 "start_time" : "00:00:00",
                 "cert_password" : ""}
         elif task_data:
-            # 파일에서 불러온 데이터
             new_task_data = task_data
         else:
-            # '+' 버튼으로 새로 추가한 데이터
             task_num = len(self.tasks_data)
             new_task_data = {"type": "new_task", "nickname": f"신규작업 {task_num}", "status": "대기"}
 
-        # 파일에서 불러온 데이터(task_data) 가 이미 리스트에 있다면 중복 추가하지 않음
         if task_data is None or new_task_data not in self.tasks_data:
             self.tasks_data.append(new_task_data)
 
-        # **수정: app_instance=self 전달**
         grid_cell = GridCell(
             self.grid_frame, 
             new_task_data, 
             self.remove_task, 
             on_change_callback=self.save_all_settings,
-            app_instance=self  # TestApp 인스턴스 전달
+            app_instance=self
         )
         grid_cell.pack(side=tk.TOP, fill=tk.X, pady=(0,5))
         self.rows.append(grid_cell)
 
         underline = tk.Frame(self.grid_frame, height=1, bg="gray")
         underline.pack(fill=tk.X)
+        
+        self.update_scroll_region()
 
     def add_new_task(self):
-        """'+' 버튼 클릭 시 호출되는 메서드"""
         self.add_task()
         self.save_all_settings()
 
-    def toggle_start_stop(self):
-        if self.is_running:
-            self.is_running = False
-            self.start_stop_btn.config(text="Start")
-        else:
-            self.is_running = True
-            self.start_stop_btn.config(text="Stop")
-    
     def remove_task(self, grid_cell_to_remove):
         """GridCell을 UI와 데이터 리스트에서 삭제하는 메서드"""
 
-        # 데이터 리스트에서 삭제
         self.tasks_data.remove(grid_cell_to_remove.task_data)
-
-        # 위젯 리스트에서 삭제
         self.rows.remove(grid_cell_to_remove)
 
-        # UI에서 위젯 제거
-        # pack_slaves()를 순회하며 삭제할 위젯과 그 아래 구분선을 함께 찾아서 제거
         slaves = self.grid_frame.pack_slaves()
         for i, slave in enumerate(slaves):
             if slave == grid_cell_to_remove:
-                slave.destroy() # Gridcell 제거
-                if i > 0: # 구분선이 있다면
-                    slaves[i-1].destroy() # 구분선 제거 (pack 순서는 역순임)
+                slave.destroy()
+                if i > 0:
+                    slaves[i-1].destroy()
                 break
+        
         self.save_all_settings()
+        self.update_scroll_region()
 
-
-    def center_window(self, root, width, height):
-        screen_width = root.winfo_screenwidth()
-        screen_height = root.winfo_screenheight()
-        x = (screen_width - width) // 2
-        y = (screen_height - height) // 2
-        root.geometry(f"{width}x{height}+{x}+{y}")
-    
-    def hide_menu(self, event):
-        if self.menu.expanded:
-            self.menu.slide_out()
+    def toggle_start_stop(self):
+        if not self.is_running:
+            self.start_stop_btn.config(text="Stop")
+            self.is_running = True
+        else:
+            self.start_stop_btn.config(text="Start")
+            self.is_running = False
 
 if __name__ == "__main__":
     root = tk.Tk()

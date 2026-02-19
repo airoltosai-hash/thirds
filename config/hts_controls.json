@@ -4,71 +4,50 @@
     "class": "ITGEN_SCREEN_WINDOW"
   },
   "controls": {
-    "common": {
-      "account_combo": {
-        "id": 3780,
-        "class": "AfxWnd90",
-        "desc": "계좌선택"
-      },
-      "password": {
-        "id": 3790,
-        "class": "iMeritz MaskEdit",
-        "desc": "비밀번호"
-      },
-      "stock_code": {
-        "id": 3860,
-        "class": "iMeritz MaskEdit2",
-        "desc": "종목코드"
-      },
-      "order_type_tab": {
-        "id": 3810,
-        "class": "SysTabControl32",
-        "desc": "매수/매도/정정/취소 탭"
-      }
+    "account_combo": {
+      "id": 3780,
+      "class": "AfxWnd90",
+      "desc": "계좌선택"
     },
-    "buy": {
-      "order_type": {
-        "id": 3865,
-        "class": "iMeritz MaskEdit",
-        "desc": "주문유형 (매수)"
-      },
-      "buy_button": {
-        "id": 3875,
-        "class": "Button",
-        "desc": "현금매수(F1)"
-      },
-      "quantity": {
-        "id": 3900,
-        "class": "iMeritz MaskEdit",
-        "desc": "주문수량 (매수)"
-      },
-      "limit_price": {
-        "id": 3930,
-        "class": "iMeritz MaskEdit",
-        "desc": "지정가 (매수)"
-      },
-      "quantity_percent": {
-        "id": 3940,
-        "class": "iMeritz MaskEdit",
-        "desc": "주문수량비율 (매수)"
-      }
+    "password": {
+      "id": 3790,
+      "class": "iMeritz MaskEdit",
+      "desc": "비밀번호"
     },
-    "sell": {
-      "order_type": {
-        "id": 4030,
-        "class": "iMeritz MaskEdit",
-        "desc": "주문유형 (매도)"
-      },
-      "quantity": {
-        "id": 4035,
-        "class": "iMeritz MaskEdit",
-        "desc": "주문수량 (매도)"
-      },
-      "limit_price": {
-        "id": 4390,
-        "class": "iMeritz MaskEdit",
-        "desc": "지정가 (매도)"
-      }
-    }
+    "stock_code": {
+      "id": 3860,
+      "class": "iMeritz MaskEdit2",
+      "desc": "종목코드"
+    },
+    "order_type": {
+      "id": 3865,
+      "class": "iMeritz MaskEdit",
+      "desc": "주문유형"
+    },
+    "buy_button": {
+      "id": 3875,
+      "class": "Button",
+      "desc": "현금매수(F1)"
+    },
+    "order_quantity": {
+      "id": 3900,
+      "class": "iMeritz MaskEdit",
+      "desc": "주문수량"
+    },
+    "limit_price": {
+      "id": 3930,
+      "class": "iMeritz MaskEdit",
+      "desc": "지정가"
+    },
+    "order_quantity_percent": {
+      "id": 3940,
+      "class": "iMeritz MaskEdit",
+      "desc": "주문수량비율"
+    },
+    "order_type_tab": {
+    "id": 3810,
+    "class": "SysTabControl32",
+    "desc": "매수/매도/정정/취소 탭"
+  }
   }
 }

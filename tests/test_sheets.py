@@ -1,7 +1,10 @@
 import os, re, json, sys, traceback
+import asyncio
 from datetime import datetime
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
+from telegram import Bot
+
 
 POSSIBLE_SETTINGS = [
     "../config/setting.json",
@@ -12,6 +15,10 @@ POSSIBLE_SETTINGS = [
 ]
 
 PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+
+async def send_telegram_message(chat_id, token, message):
+    bot = Bot(token=token)
+    await bot.send_message(chat_id=chat_id, text=message)
 
 def load_main_settings():
     for p in POSSIBLE_SETTINGS:
@@ -101,6 +108,7 @@ def print_main_menu():
     print("2) 기본설정 불러오기")
     print("3) 매수/매도표 불러오기")
     print("4) 프로그램 매매정보 업데이트")
+    print("5) 텔레그램 전송 테스트")
     print("q) 종료")
     print("=====================")
     print("명령을 입력하세요:", end=" ", flush=True)
@@ -241,6 +249,20 @@ def main_loop():
                         print(f"매도 업데이트: {value}")
                     else:
                         print("알 수 없는 명령입니다. 다시 시도하세요.")
+        elif cmd == "5":
+            print("시트 이름을 입력하세요:", end=" ", flush=True)
+            sheet_name = input().strip()
+            if sheet_name not in sheet_titles:
+                print("유효하지 않은 시트 이름입니다. 다시 시도하세요.")
+            else:
+                chat_id = get_cell_value(service, spreadsheet_id, sheet_name, "E24")
+                token = get_cell_value(service, spreadsheet_id, sheet_name, "E26")
+                message = f"{sheet_name}_test"
+                try:
+                    asyncio.run(send_telegram_message(chat_id, token, message))
+                    print(f"텔레그램으로 '{message}' 메시지가 전송되었습니다.")
+                except Exception as e:
+                    print("ERROR: 텔레그램 메시지 전송 실패:", e)
         else:
             print("알 수 없는 명령입니다. 다시 시도하세요.")
 
