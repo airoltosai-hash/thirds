@@ -10,12 +10,9 @@ from PIL import Image, ImageFilter, ImageOps
 import pytesseract
 import os
 import json  
-from pywinauto import Application
-from pywinauto.controls.win32_controls import ComboBoxWrapper
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
-PYWINAUTO_AVAILABLE = True
 
 
 class OverseasOrderWindow:
@@ -24,7 +21,6 @@ class OverseasOrderWindow:
     def __init__(self):
         self.user32 = ctypes.WinDLL('user32', use_last_error=True)
         self.hwnd = None
-        self.main_hwnd = None
         
         # 탭 설정
         self.tab_start_offset = 18
@@ -63,6 +59,10 @@ class OverseasOrderWindow:
         # 계좌 비밀번호 필드 추가 (JSON에서 읽어오기)
         self.account_password_id = config['controls']['common'].get('account_password', {}).get('id', 3790)
 
+        #  미체결 탭 컨트롤 (JSON에서 읽기) 
+        self.unsettled_tab_id = config['controls']['unsettled']['tab']['id']
+        self.select_all_grid_id = config['controls']['unsettled']['select_all_grid']['id']
+        self.batch_cancel_button_id = config['controls']['unsettled']['batch_cancel_button']['id']
 
     def check_and_handle_account_password(self, account_password):
         """계좌 비밀번호 필드 확인 및 자동 처리
@@ -713,45 +713,6 @@ class OverseasOrderWindow:
         
         print(f"✅ [{tab_name}] 수량 입력 성공: {quantity}")
         return True
-    
-    # ==================== OCR 헬퍼 메서드 ====================
-    def _capture_printwindow(self, hwnd, rect):
-        """PrintWindow로 특정 영역 캡처"""
-        l, t, r, b = rect
-        w, h = r - l, b - t
-        
-        if w <= 0 or h <= 0:
-            return None
-        
-        PW_RENDERFULLCONTENT = 0x00000002
-        hdc = win32gui.GetWindowDC(hwnd)
-        
-        try:
-            srcdc = win32ui.CreateDCFromHandle(hdc)
-            memdc = srcdc.CreateCompatibleDC()
-            bmp = win32ui.CreateBitmap()
-            bmp.CreateCompatibleBitmap(srcdc, w, h)
-            memdc.SelectObject(bmp)
-            
-            res = ctypes.windll.user32.PrintWindow(hwnd, memdc.GetSafeHdc(), PW_RENDERFULLCONTENT)
-            
-            bmpinfo = bmp.GetInfo()
-            bmpstr = bmp.GetBitmapBits(True)
-            img = Image.frombuffer('RGB', (bmpinfo['bmWidth'], bmpinfo['bmHeight']), 
-                                   bmpstr, 'raw', 'BGRX', 0, 1)
-            
-            try: memdc.DeleteDC()
-            except: pass
-            try: srcdc.DeleteDC()
-            except: pass
-            try: win32gui.DeleteObject(bmp.GetHandle())
-            except: pass
-            
-            return img if res != 0 else None
-            
-        finally:
-            try: win32gui.ReleaseDC(hwnd, hdc)
-            except: pass
 
     
     def _preprocess_for_account(self, img):
@@ -1233,7 +1194,164 @@ class OverseasOrderWindow:
         return self.select_account_by_number(target_account)
 
 
-    
+    def click_unsettled_tab(self):
+        """미체결 탭 클릭"""
+        if not self.hwnd:
+            print("❌ 주문 창을 찾을 수 없습니다!")
+            return False
+        
+        print(f"\n[미체결 탭 클릭]")
+        print(f"{'='*60}")
+        
+        tab_hwnd = self._find_control_by_id(self.unsettled_tab_id)
+        
+        if not tab_hwnd:
+            print(f"❌ 미체결 탭을 찾을 수 없습니다!")
+            return False
+        
+        print(f"✓ 미체결 탭 찾음: HWND={hex(tab_hwnd)}")
+        
+        # 주문 창 활성화
+        print("1) 주문 창 활성화 중...")
+        self.user32.ShowWindow(self.hwnd, 9)
+        time.sleep(0.2)
+        
+        VK_MENU = 0x12
+        self.user32.keybd_event(VK_MENU, 0, 0, 0)
+        time.sleep(0.05)
+        self.user32.SetForegroundWindow(self.hwnd)
+        time.sleep(0.1)
+        self.user32.keybd_event(VK_MENU, 0, 2, 0)
+        time.sleep(0.3)
+        
+        # 미체결 탭 클릭 (153, 486)
+        print("2) 미체결 탭 클릭 중...")
+        
+        old_pos = wintypes.POINT()
+        self.user32.GetCursorPos(ctypes.byref(old_pos))
+        
+        self.user32.SetCursorPos(153, 486)
+        time.sleep(0.2)
+        
+        self.user32.mouse_event(0x0002, 0, 0, 0, 0)  # LEFT DOWN
+        time.sleep(0.05)
+        self.user32.mouse_event(0x0004, 0, 0, 0, 0)  # LEFT UP
+        time.sleep(0.3)
+        
+        self.user32.SetCursorPos(old_pos.x, old_pos.y)
+        
+        print(f"✅ 미체결 탭 클릭 완료!")
+        print(f"{'='*60}")
+        return True
+
+
+    def click_select_all_checkbox(self):
+        """전체 선택 체크박스 클릭"""
+        if not self.hwnd:
+            print("❌ 주문 창을 찾을 수 없습니다!")
+            return False
+        
+        print(f"\n[전체 선택 체크박스 클릭]")
+        print(f"{'='*60}")
+        
+        grid_hwnd = self._find_control_by_id(self.select_all_grid_id)
+        
+        if not grid_hwnd:
+            print(f"❌ 그리드를 찾을 수 없습니다!")
+            return False
+        
+        print(f"✓ 그리드 찾음: HWND={hex(grid_hwnd)}")
+        
+        # 전체 선택 체크박스 클릭 (152, 528)
+        print("1) 전체 선택 체크박스 클릭 중...")
+        
+        old_pos = wintypes.POINT()
+        self.user32.GetCursorPos(ctypes.byref(old_pos))
+        
+        self.user32.SetCursorPos(152, 528)
+        time.sleep(0.2)
+        
+        self.user32.mouse_event(0x0002, 0, 0, 0, 0)
+        time.sleep(0.05)
+        self.user32.mouse_event(0x0004, 0, 0, 0, 0)
+        time.sleep(0.3)
+        
+        self.user32.SetCursorPos(old_pos.x, old_pos.y)
+        
+        print(f"✅ 전체 선택 체크박스 클릭 완료!")
+        print(f"{'='*60}")
+        return True
+
+
+    def click_batch_cancel_button(self):
+        """일괄취소 버튼 클릭"""
+        if not self.hwnd:
+            print("❌ 주문 창을 찾을 수 없습니다!")
+            return False
+        
+        print(f"\n[일괄취소 버튼 클릭]")
+        print(f"{'='*60}")
+        
+        button_hwnd = self._find_control_by_id(self.batch_cancel_button_id)
+        
+        if not button_hwnd:
+            print(f"❌ 일괄취소 버튼을 찾을 수 없습니다!")
+            return False
+        
+        print(f"✓ 일괄취소 버튼 찾음: HWND={hex(button_hwnd)}")
+        
+        # 일괄취소 버튼 클릭 (295, 507)
+        print("1) 일괄취소 버튼 클릭 중...")
+        
+        old_pos = wintypes.POINT()
+        self.user32.GetCursorPos(ctypes.byref(old_pos))
+        
+        self.user32.SetCursorPos(295, 507)
+        time.sleep(0.2)
+        
+        self.user32.mouse_event(0x0002, 0, 0, 0, 0)
+        time.sleep(0.05)
+        self.user32.mouse_event(0x0004, 0, 0, 0, 0)
+        time.sleep(0.3)
+        
+        self.user32.SetCursorPos(old_pos.x, old_pos.y)
+        
+        print(f"✅ 일괄취소 버튼 클릭 완료!")
+        print(f"{'='*60}")
+        return True
+
+
+    def cancel_all_orders(self):
+        """미체결 주문 전체 취소"""
+        if not self.hwnd:
+            print("❌ 주문 창을 찾을 수 없습니다!")
+            return False
+        
+        print(f"\n[미체결 주문 전체 취소]")
+        print(f"{'='*60}")
+        
+        # 1. 미체결 탭 클릭
+        if not self.click_unsettled_tab():
+            return False
+        
+        time.sleep(0.5)
+        
+        # 2. 전체 선택 체크박스 클릭
+        if not self.click_select_all_checkbox():
+            return False
+        
+        time.sleep(0.5)
+        
+        # 3. 일괄취소 버튼 클릭
+        if not self.click_batch_cancel_button():
+            return False
+        
+        time.sleep(0.5)
+        
+        print(f"\n✅ 미체결 주문 전체 취소 완료!")
+        print(f"{'='*60}")
+        return True
+
 def show_menu():
     """메뉴 출력"""
     print("\n" + "="*60)
@@ -1260,6 +1378,11 @@ def show_menu():
     print("11. 매수 탭으로 이동")
     print("12. 매도 탭으로 이동")
     print("13. 취소 탭으로 이동")
+    print("")
+    print("14. 미체결 탭 클릭")
+    print("15. 전체 선택 체크박스 클릭")
+    print("16. 일괄취소 버튼 클릭")
+    print("17. 미체결 주문 전체 취소 (통합)")
     print("")
     print("0. 종료")
     print("="*60)
@@ -1372,13 +1495,28 @@ def main():
             else:
                 print("❌ 매도 탭 이동 실패!")
 
-        elif choice == '13':  # ← 추가!
+        elif choice == '13':  
             print("\n[13. 취소 탭으로 이동]")
             if order_window.switch_tab("취소"):
                 print("✅ 취소 탭 이동 성공!")
             else:
                 print("❌ 취소 탭 이동 실패!")
-        
+
+        elif choice == '14':
+            print("\n[33. 미체결 탭 클릭]")
+            order_window.click_unsettled_tab()
+
+        elif choice == '15':
+            print("\n[34. 전체 선택 체크박스 클릭]")
+            order_window.click_select_all_checkbox()
+
+        elif choice == '16':
+            print("\n[35. 일괄취소 버튼 클릭]")
+            order_window.click_batch_cancel_button()
+
+        elif choice == '17':
+            print("\n[36. 미체결 주문 전체 취소]")
+            order_window.cancel_all_orders()
         else:
             print("❌ 잘못된 선택입니다. 다시 선택해주세요.")
         
