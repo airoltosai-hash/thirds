@@ -7,7 +7,11 @@ import tkinter.font as font
 import tkinter.messagebox as messagebox
 import json
 import os
+import sys
 import datetime
+import requests
+import threading 
+from queue import Queue 
 import re
 import subprocess
 import time
@@ -24,6 +28,98 @@ from core.login_manager import(
     auto_type_password_in_login
 )
 from core.hts_engine import HtsAutomation
+
+def get_user_id_from_file():
+    """
+    License.txt 파일에서 사용자 ID를 읽어옵니다.
+    성공 시 ID를, 실패 시 None과 에러 메시지를 반환합니다.
+    """
+    license_path = "License.txt"
+    
+    # 1. 파일 존재 여부 확인
+    if not os.path.exists(license_path):
+        return None, "라이센스 파일(License.txt)을 찾을 수 없습니다."
+
+    # 2. 파일 읽기 및 내용 확인
+    try:
+        with open(license_path, "r", encoding="utf-8") as f:
+            user_id = f.read().strip() # 양쪽 공백 제거
+        
+        if not user_id:
+            return None, "라이센스 파일(License.txt)에 ID가 없습니다."
+        
+        return user_id, None # 성공 시 (ID, None) 반환
+        
+    except Exception as e:
+        return None, f"라이센스 파일을 읽는 중 오류가 발생했습니다:\n{e}"
+
+def check_license_online(user_id):
+    """
+    Apps Script API를 호출하여 사용자 ID의 유효성을 검사합니다.
+    성공 시 (True, 메시지), 실패 시 (False, 에러 메시지)를 반환합니다.
+    """
+    # 사용자님의 고유한 웹 앱 URL입니다.
+    API_URL = "https://script.google.com/macros/s/AKfycby48pYIhHDy4AGe6yOamM3PPFpWhp_3Rq9aFxtEBT7hSi8belih8ibGERmME13j9Y12/exec"
+    
+    try:
+        # API에 GET 요청을 보냅니다. ?id=user_id 형태로 자동 변환됩니다.
+        # timeout=10 : 최대 10초간 응답을 기다립니다. (네트워크가 느릴 때를 대비)
+        response = requests.get(API_URL, params={'id': user_id}, timeout=10)
+        
+        # HTTP 에러(4xx, 5xx)가 발생하면 예외를 발생시킵니다.
+        response.raise_for_status()
+
+        # 응답받은 JSON 데이터를 파이썬 딕셔너리로 변환합니다.
+        data = response.json()
+        
+        # 응답 내용 확인
+        if data.get('status') == 'valid':
+            return True, "라이센스가 성공적으로 확인되었습니다."
+        else:
+            # 'invalid'일 경우, 'reason'을 함께 가져옵니다.
+            reason = data.get('reason', '알 수 없는 이유입니다.')
+            return False, f"라이센스가 유효하지 않습니다.\n사유: {reason}"
+
+    except requests.exceptions.Timeout:
+        return False, "라이센스 서버 연결 시간을 초과했습니다.\n인터넷 연결을 확인해주세요."
+    except requests.exceptions.RequestException as e:
+        return False, f"라이센스 확인 중 네트워크 오류가 발생했습니다.\n인터넷 연결을 확인 후 다시 시도해주세요."
+    except Exception as e:
+        # JSON 파싱 실패 등 기타 예외 처리
+        return False, f"라이센스 데이터 처리 중 알 수 없는 오류가 발생했습니다.\n{e}"
+
+class LoadingWindow(tk.Toplevel):
+    """인증 대기 중에 표시될 간단한 로딩 창"""
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.title("인증 중")
+        self.geometry("250x100")
+        self.resizable(False, False)
+        
+        # 창 테두리 및 제목 표시줄 제거
+        self.overrideredirect(True)
+
+        # 부모 창의 중앙에 위치
+        parent_x = parent.winfo_rootx()
+        parent_y = parent.winfo_rooty()
+        parent_width = parent.winfo_width()
+        parent_height = parent.winfo_height()
+        win_width = self.winfo_width()
+        win_height = self.winfo_height()
+        x = parent_x + (parent_width - win_width) // 2
+        y = parent_y + (parent_height - win_height) // 2
+        self.geometry(f"+{x}+{y}")
+
+        # 모달 창으로 설정
+        self.transient(parent)
+        self.grab_set()
+
+        # UI 구성
+        main_frame = tk.Frame(self, bg="black", highlightbackground="gray50", highlightthickness=1)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+        
+        label = tk.Label(main_frame, text="라이센스 인증 중...", fg="white", bg="black", font=("Segoe UI", 12))
+        label.pack(pady=20, expand=True)     
 
 def is_first_login_today():
     """오늘 첫 로그인인지 확인"""
@@ -143,13 +239,35 @@ class TaskSettingsWindow(tk.Toplevel):
         keys = ["nickname", "sheet_name", "start_time", "end_time", "interval"]
         self.entries = {}
 
-        for i, (field, key) in enumerate(zip(field, keys)):
+        # 1. 닉네임 필드를 수동으로 먼저 생성
+        label_nickname = tk.Label(main_frame, text="닉네임:", fg="white", bg="black")
+        label_nickname.grid(row=0, column=0, sticky="w", pady=5)
+
+        nickname_frame = tk.Frame(main_frame, bg="black")
+        nickname_frame.grid(row=0, column=1, sticky="we", padx=5)
+
+        task_type = self.parent_cell.task_data.get("type")
+        if task_type == "avatar_task":
+            # [Avatar] 접두사를 편집 불가능한 라벨로 표시
+            prefix_label = tk.Label(nickname_frame, text="[Avatar]", fg="cyan", bg="black")
+            prefix_label.pack(side=tk.LEFT, padx=(0, 5))
+
+        # 실제 닉네임 입력 상자
+        entry_nickname = tk.Entry(nickname_frame, bg="gray20", fg="white", insertbackground="white")
+        entry_nickname.pack(side=tk.LEFT, expand=True, fill=tk.X)
+        entry_nickname.insert(0, self.parent_cell.task_data.get("nickname", ""))
+        self.entries["nickname"] = entry_nickname
+
+        # 2. 나머지 필드들을 루프로 생성 (닉네임 제외)
+        other_fields = ["시트이름", "시작시간", "종료시간", "간격(초)"]
+        other_keys = ["sheet_name", "start_time", "end_time", "interval"]
+
+        for i, (field, key) in enumerate(zip(other_fields, other_keys), start=1): # start=1 (row 1부터 시작)
             label = tk.Label(main_frame, text=f"{field}:", fg="white", bg="black")
             label.grid(row=i, column=0, sticky="w", pady=5)
             entry = tk.Entry(main_frame, bg="gray20", fg="white", insertbackground="white")
             entry.grid(row=i, column=1, sticky="we", padx=5)
 
-            # 기본값 결정
             default = self.parent_cell.task_data.get(key, "")
             if key in ("start_time", "end_time"):
                 default = default or "00:00:00"
@@ -209,12 +327,6 @@ class TaskSettingsWindow(tk.Toplevel):
         if self.parent_cell.on_change_callback:
             self.parent_cell.on_change_callback() 
 
-
-        # 2. GridCell의 닉네임 라벨을 업데이트
-        self.parent_cell.text_left.config(text=self.parent_cell.task_data.get("nickname", "신규작업"))
-
-        
-        # 3. (중료) TestApp에서도 변경사항을 알려서 전체 데이터를 저장하게 해야 함 (나중에 구현)
         messagebox.showinfo("저장", "설정이 임시 저장 되었습니다.", parent=self)
 
         self.destroy()
@@ -270,6 +382,61 @@ class ActionMenuPopup(tk.Toplevel):
 
     def show_info_and_close(self, title, message):
         messagebox.showinfo(title, message, parent=self.parent_cell)
+        self.destroy()
+
+
+class AddTaskPopup(tk.Toplevel):
+    def __init__(self, parent_app, x, y):
+        super().__init__(parent_app.root)
+        self.app = parent_app  # Thirds 인스턴스를 저장
+
+        # 창 테두리 제거 및 위치 설정
+        self.overrideredirect(True)
+        
+        # 메뉴 프레임
+        menu_frame = tk.Frame(self, bg="gray30", highlightbackground="gray50", highlightthickness=1)
+        menu_frame.pack()
+
+        # 추가할 작업 유형 정의 (나중에 여기에 더 추가하면 됩니다)
+        task_types = [
+            {"label": "Avatar", "type": "avatar_task"},
+            # 예: {"label": "다른 작업", "type": "another_task"},
+        ]
+
+        # 각 작업 유형에 대한 버튼 생성
+        for task in task_types:
+            btn = tk.Button(menu_frame, text=task["label"], bg="gray30", fg="white", 
+                            activebackground="gray50", relief="flat", anchor="w",
+                            command=lambda t=task["type"]: self.create_task_and_close(t))
+            btn.pack(fill=tk.X, padx=10, pady=5)
+
+        # 구분선
+        separator = tk.Frame(menu_frame, height=1, bg="gray50")
+        separator.pack(fill=tk.X, padx=5, pady=5)
+
+        # 닫기 버튼
+        close_btn = tk.Button(menu_frame, text="닫기", bg="gray30", fg="red",
+                              activebackground="gray50", relief="flat", anchor="w",
+                              command=self.destroy)
+        close_btn.pack(fill=tk.X, padx=10, pady=5)
+
+        # 팝업 위치 계산 및 설정
+        self.update_idletasks() # 팝업의 실제 크기를 계산
+        popup_width = self.winfo_width()
+        popup_height = self.winfo_height()
+        
+        # + 버튼의 오른쪽 위에 위치하도록 좌표 조정
+        final_x = x - popup_width
+        final_y = y - popup_height
+        self.geometry(f"+{final_x}+{final_y}")
+
+        # 메뉴 바깥을 클릭하면 닫히도록 바인딩
+        self.bind("<FocusOut>", lambda e: self.destroy())
+        self.focus_set()  # 팝업에 포커스 설정
+
+    def create_task_and_close(self, task_type):
+        """선택된 타입의 작업을 생성하고 팝업을 닫습니다."""
+        self.app.add_new_task(task_type=task_type)
         self.destroy()
 
 class SettingWindow(tk.Toplevel):
@@ -388,7 +555,7 @@ class SettingWindow(tk.Toplevel):
         self.settings_data["meritz_hts_path"] = self.entry_meritz.get()
         self.settings_data["google_sheet_path"] = self.entry_google.get()
         
-        # 저장 콜백 함수를 호출하여 TestApp이 파일에 저장하도록 함
+        # 저장 콜백 함수를 호출하여 Thirds이 파일에 저장하도록 함
         self.save_callback()
         
         messagebox.showinfo("저장 완료", "설정이 파일에 저장되었습니다.", parent=self)
@@ -443,7 +610,7 @@ class SettingWindow(tk.Toplevel):
 class HamburgerMenu(tk.Frame):
     def __init__(self, parent, app, width=300, height=700, **kwargs):
         super().__init__(parent, width=width, height=height, bg='gray20', **kwargs)
-        self.app = app # TestApp 인스턴스 저장
+        self.app = app # Thirds 인스턴스 저장
 
         self.width = width
         self.height = height
@@ -519,11 +686,19 @@ class GridCell(tk.Frame):
 
         self.delete_callback = delete_callback # 삭제를 위한 콜백 함수
         self.on_change_callback = on_change_callback # 저장을 위한 콜백 함수
-        self.app_instance = app_instance  # **추가: TestApp 인스턴스 저장**
+        self.app_instance = app_instance  # **추가: Thirds 인스턴스 저장**
 
         # 1 영역
-        self.text_left=tk.Label(self, text=self.task_data.get("nickname", "신규작업"), anchor='w', fg='white', bg='black')
-        self.text_left.grid(row=0, column=0, sticky="w", padx=5)
+        nickname_display_frame = tk.Frame(self, bg='black')
+        nickname_display_frame.grid(row=0, column=0, sticky="w", padx=5)
+
+        # 접두사([Avatar])를 표시할 라벨 (cyan 색상)
+        self.prefix_label = tk.Label(nickname_display_frame, text="", anchor='w', fg='cyan', bg='black')
+        self.prefix_label.pack(side=tk.LEFT)
+
+        # 실제 닉네임을 표시할 라벨 (기본 흰색)
+        self.nickname_label = tk.Label(nickname_display_frame, text="", anchor='w', fg='white', bg='black')
+        self.nickname_label.pack(side=tk.LEFT)
         
         # 3영역
         self.text_right=tk.Label(self, text="Right Text", anchor='e', fg='white', bg='black')
@@ -537,37 +712,27 @@ class GridCell(tk.Frame):
         self.info_frame = tk.Frame(self, bg='black')
         self.info_frame.grid(row=2, column=0, sticky="w", padx=5)
     
-        if self.task_data.get("type") == "auto_login":
-            
-            # 상태 라벨 생성
+        task_type = self.task_data.get("type")
+
+        if task_type == "auto_login":
+            # [자동로그인 타입 UI 생성]
             self.lbl_status = tk.Label(self.info_frame, text="", bg="black", fg="white", font=("Segoe UI Emoji", 10))
             self.lbl_status.pack(side=tk.LEFT, padx=(0,12))
-
-            # 런타임 전용 상태 (파일에 저장하지 않음)
             self.runtime_status = "Ready"
-
-            # 상태 표시
             self._update_auto_login_status_label()
-
-            # 추가 : 오류 상태 플래그
             self._login_error_active = False
-
-            # 초기 문구는 '대기 중'
             self._set_login_info("대기 중", fg="white")
-
-            # 스케쥴 ID 초기화
             self._auto_login_after_id = None
-            
-            # 시작시간 스케줄링
             self.restart_auto_login_schedule()
 
-        else:
-            # 일반 작업 분기 초기화
-            self._cycle_running = False     # 타이머 반복 실행 중 여부
-            self._timer_id = None           # 타이머 after id
-            self._start_after_id = None     # 시작시간 예약 id
-            self._stop_after_id = None      # 종료시간 예약 id
-            self._login_retry_count = 0     # **추가: 로그인 재시도 카운터**
+        # 'avatar_task' 또는 기존의 'new_task'일 때만 시간 관련 아이콘들을 생성
+        elif task_type in ["avatar_task", "new_task"]:
+            # [아바타/일반 작업 타입 UI 생성]
+            self._cycle_running = False
+            self._timer_id = None
+            self._start_after_id = None
+            self._stop_after_id = None
+            self._login_retry_count = 0
 
             self.ICON_TIMER = "⌛"
             self.ICON_START = "🕒"
@@ -586,6 +751,10 @@ class GridCell(tk.Frame):
 
             self.lbl_interval = tk.Label(self.info_frame, text="", bg="black", fg="white", font=emoji_font)
             self.lbl_interval.pack(side=tk.LEFT, padx=(0,12))
+        
+        # else:
+            # 나중에 여기에 다른 타입의 작업 UI 생성 코드를 넣으면 됩니다.
+            # 예: tk.Label(self.info_frame, text="리포트 작업 준비 완료").pack()
         
         self.render_from_data()
 
@@ -1014,7 +1183,7 @@ class GridCell(tk.Frame):
         """
         # **수정: app_instance 사용**
         if not self.app_instance:
-            print("[ERROR] TestApp 인스턴스를 찾을 수 없음")
+            print("[ERROR] Thirds 인스턴스를 찾을 수 없음")
             return ""
         
         for task in self.app_instance.tasks_data:
@@ -1194,7 +1363,7 @@ class GridCell(tk.Frame):
         
         # 라벨 초기화
         if reset_label and hasattr(self, "lbl_countdown"):
-            self.lbl_countdown.config(text="")
+            self.lbl_countdown.config(text=self.ICON_TIMER)
 
     def _parse_hms(self, s: str, default=(0, 0, 0)):
         try:
@@ -1279,26 +1448,30 @@ class GridCell(tk.Frame):
         self.restart_auto_login_schedule()
 
     def render_from_data(self):
-        # 1영역(닉네임)
-        self.text_left.config(text=self.task_data.get("nickname", "신규작업"))
+        nickname = self.task_data.get("nickname", "신규작업")
+        task_type = self.task_data.get("type")
+
+        if task_type == "avatar_task":
+            # 아바타 타입일 경우: prefix_label에 [Avatar] 텍스트와 색상을 설정하고,
+            # nickname_label에는 실제 닉네임을 설정합니다.
+            self.prefix_label.config(text="[Avatar] ") # 시각적 구분을 위해 뒤에 공백 추가
+            self.nickname_label.config(text=nickname)
+        else:
+            # 다른 타입일 경우: prefix_label은 비우고, nickname_label에만 닉네임을 표시합니다.
+            self.prefix_label.config(text="")
+            self.nickname_label.config(text=nickname)
+
+        task_type = self.task_data.get("type")
 
         # 3영역(시작시간 / 시트이름)
-        if self.task_data.get("type") == "auto_login":
-            # 3 영역에 시작시간 표시 (제거 가능)
+        if task_type == "auto_login":
             start_time = (self.task_data.get("start_time") or "00:00:00")
-            self.text_right.config(text=f"\U0001F552 {start_time}") #🕒
-
-            # 항상 Ready 로 시작(저장값 무시)
+            self.text_right.config(text=f"\U0001F552 {start_time}")
             self.runtime_status = "Ready"
             self._update_auto_login_status_label()
-            # 스케쥴은 __init__에서 설정됨
             return
 
-            # 상태 라벨은 set_status에서 설정
-            current = self.task_data.get("status", "Ready")
-            self.set_status(current, persist=False)
-
-        else:
+        elif task_type in ["avatar_task", "new_task"]:
             # 일반 작업 : 시트이름, 시작/종료/간격 표시
             sheet_name = self.task_data.get("sheet_name", "")
             self.text_right.config(text=f"🔗 {sheet_name}")
@@ -1308,13 +1481,18 @@ class GridCell(tk.Frame):
             interval = self.task_data.get("interval", 0)
             try:
                 interval = int(interval)
-            except:
+            except (ValueError, TypeError):
                 interval = 0
 
-            self.lbl_countdown.config(text=f"{self.ICON_TIMER}")
-            self.lbl_start.config(text=f"{self.ICON_START} {start_time}")
-            self.lbl_end.config(text=f"{self.ICON_END} {end_time}")
-            self.lbl_interval.config(text=f"{self.ICON_INT} {interval}")
+            # UI 요소가 생성되었을 때만 업데이트 시도 (안전장치)
+            if hasattr(self, "lbl_countdown"):
+                self.lbl_countdown.config(text=f"{self.ICON_TIMER}")
+            if hasattr(self, "lbl_start"):
+                self.lbl_start.config(text=f"{self.ICON_START} {start_time}")
+            if hasattr(self, "lbl_end"):
+                self.lbl_end.config(text=f"{self.ICON_END} {end_time}")
+            if hasattr(self, "lbl_interval"):
+                self.lbl_interval.config(text=f"{self.ICON_INT} {interval}")
 
 
     def _tick(self):
@@ -2170,7 +2348,7 @@ class GridCell(tk.Frame):
             self.stop_all_schedules()
             self.delete_callback(self)
 
-class TestApp:
+class Thirds:
     def minimize_window(self, event=None):
         hwnd = ctypes.windll.user32.GetParent(self.root.winfo_id())
         ctypes.windll.user32.ShowWindow(hwnd, SW_MINIMIZE)
@@ -2228,7 +2406,7 @@ class TestApp:
 
     def __init__(self, root):
         self.root = root
-        root.title("Test App")
+        root.title("Thrids")
 
         window_width = 600
         window_height = 700
@@ -2319,9 +2497,10 @@ class TestApp:
                          fg="white", bg="black", bd=1, activebackground="gray20", activeforeground="white", font=btn_font)
         self.start_stop_btn.pack(pady=10)
 
-        add_btn = tk.Button(footer_frame, text="+", font=("Segoe UI", 20, "bold"), width=3, fg="white", bg="gray20", bd=0,
-                            command=self.add_new_task, activebackground="gray40", activeforeground="white")
-        add_btn.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor='se')
+        # + 버튼이 open_add_task_menu를 호출하도록 변경
+        self.add_btn = tk.Button(footer_frame, text="+", font=("Segoe UI", 20, "bold"), width=3, fg="white", bg="gray20", bd=0,
+                            command=self.open_add_task_menu, activebackground="gray40", activeforeground="white")
+        self.add_btn.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor='se')
 
         self.settings = {"main_settings": {}, "tasks": []}
         self.tasks_data = self.settings["tasks"]
@@ -2333,6 +2512,13 @@ class TestApp:
         self._save_after_id = None
 
         self.hts = HtsAutomation()
+
+    def open_add_task_menu(self):
+        """+ 버튼을 클릭했을 때 작업 추가 팝업 메뉴를 엽니다."""
+        # + 버튼의 화면상 절대 좌표를 계산
+        x = self.add_btn.winfo_rootx() + self.add_btn.winfo_width()
+        y = self.add_btn.winfo_rooty()
+        AddTaskPopup(self, x, y)
 
     def center_window(self, window, width, height):
         screen_width = window.winfo_screenwidth()
@@ -2379,9 +2565,32 @@ class TestApp:
         
         self.update_scroll_region()
 
-    def add_new_task(self):
-        self.add_task()
+    # ===================================================================
+    # ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ 이 함수가 수정된 핵심 부분입니다 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+    # ===================================================================
+    def add_new_task(self, task_type="new_task"):
+        """지정된 타입의 새로운 작업을 생성합니다."""
+        # 'auto_login'을 제외한 작업들의 순번을 계산
+        task_num = len([t for t in self.tasks_data if t.get("type") != "auto_login"]) + 1
+        
+        if task_type == "avatar_task":
+            new_task_data = {
+                "type": "avatar_task", 
+                "nickname": f"아바타 {task_num}", 
+                "status": "대기"
+            }
+        else: # 기본 또는 알 수 없는 타입
+            new_task_data = {
+                "type": "new_task", 
+                "nickname": f"신규작업 {task_num}", 
+                "status": "대기"
+            }
+
+        self.add_task(task_data=new_task_data)
         self.save_all_settings()
+    # ===================================================================
+    # ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+    # ===================================================================
 
     def remove_task(self, grid_cell_to_remove):
         """GridCell을 UI와 데이터 리스트에서 삭제하는 메서드"""
@@ -2409,7 +2618,54 @@ class TestApp:
             self.is_running = False
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = TestApp(root)
-    root.mainloop()
+    # 1. 로컬 라이센스 파일 확인
+    user_id, error_message = get_user_id_from_file()
 
+    if error_message:
+        temp_root = tk.Tk()
+        temp_root.withdraw()
+        messagebox.showerror("라이센스 오류", f"{error_message}\n\n프로그램을 종료합니다.")
+        temp_root.destroy()
+        sys.exit()
+
+    # 2. 온라인 인증을 위한 준비
+    # 메인 앱 창을 먼저 만들지만, 아직 화면에 표시하지는 않음 (인증 후 표시)
+    root = tk.Tk()
+    root.withdraw() # <--- 중요: 창을 숨겨둠
+    
+    loading_window = LoadingWindow(root) # 로딩 창 생성
+    result_queue = Queue() # 스레드 결과를 담을 큐
+
+    # 3. 별도 스레드에서 온라인 인증 함수 실행
+    def license_check_thread():
+        is_valid, message = check_license_online(user_id)
+        result_queue.put((is_valid, message)) # 결과를 큐에 넣음
+
+    auth_thread = threading.Thread(target=license_check_thread, daemon=True)
+    auth_thread.start()
+
+    # 4. 스레드 작업이 끝났는지 100ms마다 확인
+    def check_thread_status():
+        if auth_thread.is_alive():
+            # 아직 스레드가 실행 중이면 0.1초 후에 다시 확인
+            root.after(100, check_thread_status)
+        else:
+            # 스레드가 끝나면 결과를 큐에서 가져옴
+            is_valid, message = result_queue.get()
+            loading_window.destroy() # 로딩 창 닫기
+
+            if not is_valid:
+                messagebox.showerror("인증 실패", f"{message}\n\n프로그램을 종료합니다.")
+                root.destroy()
+                sys.exit()
+            else:
+                # 모든 인증 성공! 숨겨뒀던 메인 앱 창을 화면에 표시
+                print(message)
+                root.deiconify() # <--- 중요: 숨겨둔 창을 다시 표시
+                app = Thirds(root)
+    
+    # 첫 스레드 상태 확인 시작
+    root.after(100, check_thread_status)
+    
+    # Tkinter 이벤트 루프 시작
+    root.mainloop()

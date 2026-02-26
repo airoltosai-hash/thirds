@@ -13,31 +13,22 @@
       "account_password": "0079"
     },
     {
-      "type": "new_task",
-      "nickname": "test2",
+      "type": "avatar_task",
+      "nickname": "아바타 테스트",
       "status": "비활성",
-      "sheet_name": "arar",
-      "start_time": "12:42:00",
-      "end_time": "12:42:15",
-      "interval": 5
+      "sheet_name": "",
+      "start_time": "00:00:00",
+      "end_time": "00:00:00",
+      "interval": 30
     },
     {
-      "type": "new_task",
-      "nickname": "avatat",
-      "status": "비활성",
-      "sheet_name": "tesetsta",
-      "start_time": "00:06:00",
-      "end_time": "10:20:59",
-      "interval": 40
-    },
-    {
-      "type": "new_task",
-      "nickname": "신규작업 4",
-      "status": "비활성",
-      "sheet_name": "sheet",
-      "start_time": "22:00:00",
-      "end_time": "09:00:00",
-      "interval": 70
+      "type": "avatar_task",
+      "nickname": "아바타 테스트 2",
+      "status": "대기",
+      "sheet_name": "",
+      "start_time": "00:00:00",
+      "end_time": "00:00:00",
+      "interval": 0
     }
   ]
 }
